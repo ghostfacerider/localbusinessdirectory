@@ -53,8 +53,8 @@ const businessDetailSchema = new Schema({
   },
   working_hours: [
     {
-      type: String,
-      required: true,
+      day: { type: String, required: true }, // Day of the week (e.g., "Monday", "Tuesday", etc.)
+      hours: { type: String, required: true },
     },
   ],
   website: {
