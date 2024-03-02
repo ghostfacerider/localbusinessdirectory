@@ -1,7 +1,7 @@
 const axios = require("axios");
 // import axios from "axios";
 
-const businessDetail = require("../../models/businessDetail");
+const businessDetail = require("../../models/businessDetailModel");
 
 const options = {
   method: "GET",
@@ -23,9 +23,7 @@ const fetchData = async (req, res) => {
   try {
     const response = await axios.request(options);
     const businesses = response.data.data;
-    // console.log(businesses);
     for (let i = 0; i < businesses.length; i++) {
-      console.log(businesses[i]);
       const business = new businessDetail({
         business_id: businesses[i]["business_id"],
         google_id: businesses[i]["google_id"],
@@ -44,12 +42,14 @@ const fetchData = async (req, res) => {
         verified: businesses[i]["verified"],
         place_link: businesses[i]["place_link"],
         cid: businesses[i]["cid"],
-        review_link: businesses[i]["review_link"],
+        reviews_link: businesses[i]["reviews_link"],
         owner_id: businesses[i]["owner_id"],
         owner_link: businesses[i]["owner_link"],
         owner_name: businesses[i]["owner_name"],
         booking_link: businesses[i]["booking_link"],
-        reservations_status: businesses[i]["reservations_status"],
+        reservations_link: businesses[i]["reservations_link"],
+        business_status: businesses[i]["business_status"],
+        type: businesses[i]["type"],
         subtype: businesses[i]["subtype"],
         photos_sample: businesses[i]["photos_sample"],
         address: businesses[i]["address"],
@@ -59,6 +59,7 @@ const fetchData = async (req, res) => {
         zipcode: businesses[i]["zipcode"],
         state: businesses[i]["state"],
         country: businesses[i]["country"],
+        emails_and_contacts: businesses[i]["emails_and_contacts"],
       });
       business.save();
     }

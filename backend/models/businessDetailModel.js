@@ -15,7 +15,7 @@ const businessDetailSchema = new Schema({
     type: String,
     required: true,
   },
-  business_mid: {
+  google_mid: {
     type: String,
     required: true,
   },
@@ -51,12 +51,16 @@ const businessDetailSchema = new Schema({
     type: String,
     required: true,
   },
-  working_hours: [
-    {
-      day: { type: String, required: true }, // Day of the week (e.g., "Monday", "Tuesday", etc.)
-      hours: { type: String, required: true },
-    },
-  ],
+  working_hours: {
+    day: [
+      {
+        type: String,
+        required: true,
+        hours: { type: String, required: true },
+      },
+    ],
+  },
+
   website: {
     type: String,
     required: true,
@@ -73,7 +77,7 @@ const businessDetailSchema = new Schema({
     type: String,
     required: true,
   },
-  review_link: {
+  reviews_link: {
     type: String,
     required: true,
   },
@@ -93,20 +97,63 @@ const businessDetailSchema = new Schema({
     type: String,
     required: true,
   },
-  reservation_status: {
+  reservation_link: {
+    type: String,
+  },
+  business_status: {
     type: String,
     required: true,
   },
-  subtype: {
+  type: {
     type: String,
     required: true,
   },
-  photos_sample: [
+  subtype: [
     {
       type: String,
       required: true,
     },
   ],
+  photos_sample: [
+    {
+      photo_id: {
+        type: String,
+        required: true,
+      },
+      photo_url: {
+        type: String,
+        required: true,
+      },
+      photo_url_large: {
+        type: String,
+        required: true,
+      },
+      video_thumbnail_url: {
+        type: String,
+      },
+      latitude: {
+        type: Number,
+        required: true,
+      },
+      longitude: {
+        type: Number,
+        required: true,
+      },
+      type: {
+        type: String,
+        required: true,
+      },
+      photo_datetime_utc: {
+        type: Date,
+        required: true,
+      },
+      photo_timestamp: {
+        type: Number,
+        required: true,
+      },
+    },
+  ],
+
   address: {
     type: String,
     required: true,
@@ -135,6 +182,51 @@ const businessDetailSchema = new Schema({
     type: String,
     required: true,
   },
+  emails_and_contacts: [
+    {
+      email: [
+        {
+          type: String,
+          required: true,
+        },
+      ],
+      phone_numbers: [
+        {
+          type: Number,
+          required: true,
+        },
+      ],
+      facebook: {
+        type: String,
+        required: true,
+      },
+      yelp: {
+        type: String,
+        required: true,
+      },
+      snapchart: {
+        type: String,
+      },
+      twitter: {
+        type: String,
+        required: true,
+      },
+      linkedin: {
+        type: String,
+        required: true,
+      },
+      github: {
+        type: String,
+      },
+      youtube: {
+        type: String,
+      },
+      pinterest: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
 
 const DataModel = mongoose.model("businessDetail", businessDetailSchema);
