@@ -1,7 +1,7 @@
 const axios = require("axios");
 // import axios from "axios";
 
-const businessDetail = require("../../models/businessDetailModel");
+const businessDetail = require("../../models/businessDetail");
 
 const options = {
   method: "GET",
@@ -22,6 +22,7 @@ const options = {
 const fetchData = async (req, res) => {
   try {
     const response = await axios.request(options);
+    console.log(response.data.data);
     const businesses = response.data.data;
     for (let i = 0; i < businesses.length; i++) {
       const business = new businessDetail({

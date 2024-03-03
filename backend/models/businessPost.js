@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 // import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const businessPostSchema = new Schema({
+const businessPostsSchema = new Schema({
   post_id: {
     type: String,
     required: true,
@@ -16,7 +16,7 @@ const businessPostSchema = new Schema({
     required: true,
   },
   post_timestamp: {
-    type: Date,
+    type: Number,
     required: true,
   },
   post_text: {
@@ -43,5 +43,5 @@ const businessPostSchema = new Schema({
   ],
 });
 
-const DataModel = mongoose.model("businessPost", businessPostSchema);
+const DataModel = mongoose.model("businessPosts", businessPostsSchema);
 module.exports = DataModel;

@@ -1,7 +1,7 @@
 const axios = require("axios");
 // import axios from "axios";
 
-const businessPosts = require("../../models/businessPostsModel");
+const businessPosts = require("../../models/businessPost");
 
 const options = {
   method: "GET",
@@ -20,6 +20,7 @@ const options = {
 const fetchData = async (req, res) => {
   try {
     const response = await axios.request(options);
+    console.log(response.data.data);
     const businessPostes = response.data.data;
     for (let i = 0; i < businessPostes.length; i++) {
       const posts = new businessPosts({

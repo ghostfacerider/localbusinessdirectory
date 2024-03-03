@@ -1,7 +1,7 @@
 const axios = require("axios");
 // import axios from "axios";
 
-const Reviews = require("../../models/businessReviewsModel");
+const Reviews = require("../../models/businessReview");
 
 const options = {
   method: "GET",
