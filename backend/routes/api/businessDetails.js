@@ -3,11 +3,15 @@ const axios = require("axios");
 
 const businessDetail = require("../../models/businessDetail");
 
+const id =
+  "0x880fd393d427a591:0x8cba02d713a995ed,0x863f79b1f8b4874d:0xed3aaeb0f12f40e5,0x89c259b5a9bd152b:0x31453e62a3be9f76,";
+// 0x863f79b1f8b4874d:0xed3aaeb0f12f40e5
+
 const options = {
   method: "GET",
   url: "https://local-business-data.p.rapidapi.com/business-details",
   params: {
-    business_id: "0x880fd393d427a591:0x8cba02d713a995ed",
+    business_id: id,
     extract_emails_and_contacts: "true",
     extract_share_link: "false",
     region: "us",

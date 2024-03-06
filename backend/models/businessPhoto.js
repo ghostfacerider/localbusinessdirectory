@@ -13,7 +13,7 @@ const businessPhotosSchema = new Schema({
   },
   photo_url_large: {
     type: String,
-    required: true,
+    // required: true,
   },
   type: {
     type: String,

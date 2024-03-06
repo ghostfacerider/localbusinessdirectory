@@ -20,8 +20,8 @@ const options = {
 const fetchData = async (req, res) => {
   try {
     const response = await axios.request(options);
-    console.log(response.data.data);
-    const businessPostes = response.data.data;
+    console.log(response.data.data.posts);
+    const businessPostes = response.data.data.posts;
     for (let i = 0; i < businessPostes.length; i++) {
       const posts = new businessPosts({
         post_id: businessPostes[i]["post_id"],
