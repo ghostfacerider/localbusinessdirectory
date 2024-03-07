@@ -12,7 +12,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 
 const App = () => {
   return (
-    <React.Fragment>
+    <>
       <BrowserRouter>
         <NavBar />
         <div id="main-content">
@@ -29,7 +29,7 @@ const App = () => {
 
         <Footer />
       </BrowserRouter>
-    </React.Fragment>
+    </>
   );
 };
 
