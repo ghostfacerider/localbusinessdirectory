@@ -271,7 +271,7 @@ html body .db {
 	color:#005536;
 }
 .trans-bg{
-	background:rgba(255,255,255,0.1); !important;
+	background:rgba(255,255,255,0.1) !important;
 }
 .theme-bg-light{
 	background:rgba(244, 27, 59,0.11) !important;
@@ -5270,7 +5270,7 @@ ul.doc.ratting-view li i.filled {
 }
 .author-wrap-footer-ngh .jhk-list-inf-caption p {
     font-size: 13px;
-    color#70737d;
+    color:#70737d;
 }
 .author-wrap-ngh .online {
     position: absolute;

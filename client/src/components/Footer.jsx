@@ -1,66 +1,170 @@
-import React from 'react';
-import '../css/footer.css';
+import React from "react";
+import "../css/footer.css";
 
 const Footer = () => {
-    return (
-      <footer id="footer"  class="footer">
-			<div class="container">
-				<div class="footer-menu">
-		           	<div class="row">
-			           	<div class="col-sm-3">
-			           		 <div class="navbar-header">
-				                <a class="navbar-brand" href="index.html">list<span>race</span></a>
-				            </div>
-                    {/* <!--/.navbar-header--> */}
-			           	</div>
-			           	<div class="col-sm-9">
-			           		<ul class="footer-menu-item">
-			                    <li class="scroll"><a href="#works">how it works</a></li>
-			                    <li class="scroll"><a href="#explore">explore</a></li>
-			                    <li class="scroll"><a href="#reviews">review</a></li>
-			                    <li class="scroll"><a href="#blog">blog</a></li>
-			                    <li class="scroll"><a href="#contact">contact</a></li>
-			                    <li class=" scroll"><a href="#contact">my account</a></li>
-			                </ul>
-                      {/* <!--/.nav --> */}
-			           	</div>
-		           </div>
-				</div>
-				<div class="hm-footer-copyright">
-					<div class="row">
-						<div class="col-sm-5">
-							<p>
-								&copy;copyright. designed and developed by <a href="https://www.themesine.com/">themesine</a>
-							</p>
-              {/* <!--/p--> */}
-						</div>
-						<div class="col-sm-7">
-							<div class="footer-social">
-								<span><i className="fa fa-phone"> +1  (222) 777 8888</i></span>
-								{/* <Link to={"#"<i className="fa fa-facebook"></i></Link>	
-								<a href="#"><i class="fa fa-twitter"></i></a>
-								<a href="#"><i class="fa fa-linkedin"></i></a>
-								<a href="#"><i class="fa fa-google-plus"></i></a> */}
+  return (
+    <>
+      <footer class="light-footer skin-light-footer style-2">
+        <div class="footer-middle">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                <div class="footer_widget">
+                  <img
+                    src="assets/img/logo.png"
+                    class="img-footer small mb-2"
+                    alt=""
+                  />
 
-							</div>
-						</div>
-					</div>
-					
-				</div>
-        {/* <!--/.hm-footer-copyright--> */}
-			</div>
-      {/* <!--/.container--> */}
+                  <div class="address mt-2">
+                    7742 Sadar Street Range Road, USA
+                    <br />
+                    United Kingdom GHQ11
+                  </div>
+                  <div class="address mt-3">
+                    40 568 423 6597
+                    <br />
+                    support@Goodup.com
+                  </div>
+                  <div class="address mt-2">
+                    <ul class="list-inline">
+                      <li class="list-inline-item">
+                        <a href="#" class="theme-cl">
+                          <i class="lni lni-facebook-filled"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="#" class="theme-cl">
+                          <i class="lni lni-twitter-filled"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="#" class="theme-cl">
+                          <i class="lni lni-youtube"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="#" class="theme-cl">
+                          <i class="lni lni-instagram-filled"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="#" class="theme-cl">
+                          <i class="lni lni-linkedin-original"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
-			<div id="scroll-Top">
-				<div class="return-to-top">
-					<i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
-				</div>
-				
-			</div>
-      {/* <!--/.scroll-Top--> */}
-			
-        </footer>
-    );
-}
- 
+              <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                <div class="footer_widget">
+                  <h4 class="widget_title">Main Navigation</h4>
+                  <ul class="footer-menu">
+                    <li>
+                      <a href="#">Explore Listings</a>
+                    </li>
+                    <li>
+                      <a href="#">Browse Authors</a>
+                    </li>
+                    <li>
+                      <a href="#">Submit Listings</a>
+                    </li>
+                    <li>
+                      <a href="#">Shortlisted</a>
+                    </li>
+                    <li>
+                      <a href="#">Dashboard</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                <div class="footer_widget">
+                  <h4 class="widget_title">Business Owners</h4>
+                  <ul class="footer-menu">
+                    <li>
+                      <a href="#">Browse Categories</a>
+                    </li>
+                    <li>
+                      <a href="#">Payment Links</a>
+                    </li>
+                    <li>
+                      <a href="#">Saved Places</a>
+                    </li>
+                    <li>
+                      <a href="#">Dashboard</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                <div class="footer_widget">
+                  <h4 class="widget_title">About Company</h4>
+                  <ul class="footer-menu">
+                    <li>
+                      <a href="#">Who We'r?</a>
+                    </li>
+                    <li>
+                      <a href="#">Our Mission</a>
+                    </li>
+                    <li>
+                      <a href="#">Our team</a>
+                    </li>
+                    <li>
+                      <a href="#">Packages</a>
+                    </li>
+                    <li>
+                      <a href="#">Dashboard</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                <div class="footer_widget">
+                  <h4 class="widget_title">Helpful Topics</h4>
+                  <ul class="footer-menu">
+                    <li>
+                      <a href="#">Site Map</a>
+                    </li>
+                    <li>
+                      <a href="#">Security</a>
+                    </li>
+                    <li>
+                      <a href="#">Contact</a>
+                    </li>
+                    <li>
+                      <a href="#">FAQ's Page</a>
+                    </li>
+                    <li>
+                      <a href="#">Privacy</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom br-top">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-12 col-md-12 text-center">
+                <p class="mb-0">
+                  © 2022 Goodup. Designd By{" "}
+                  <a href="https://themezhub.com">ThemezHub</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+};
+
 export default Footer;

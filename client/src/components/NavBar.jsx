@@ -20,7 +20,7 @@ const NavBar = () => {
         <div className="container">
           <nav id="navigation" className="navigation navigation-landscape">
             <div className="nav-header">
-              <Link className="nav-brand" to="/">
+              <Link className="nav-brand" to="/ ">
                 <img src="assets/img/logo.png" className="logo" alt="" />
               </Link>
               <div className="nav-toggle"></div>
@@ -55,8 +55,7 @@ const NavBar = () => {
             >
               <ul className="nav-menu">
                 <li className="active">
-                  {" "}
-                  <Link to="/">Home</Link>
+                  <Link to="/"> Home </Link>
                 </li>
 
                 {authService.isAuthenticated() && (
@@ -119,6 +118,8 @@ const NavBar = () => {
         </div>
       </div>
     </>
+
+    
   );
 };
 

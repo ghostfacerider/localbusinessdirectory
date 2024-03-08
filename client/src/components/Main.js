@@ -19,8 +19,7 @@ const Main = (props) => {
   }, []);
 
   const handleDelete = (deleteId) => {
-    dataService.deletePlayer(deleteId, 
-    (error) => {
+    dataService.deletePlayer(deleteId, (error) => {
       if (!error) {
         dataService.getPlayers((data) => {
           setPlayers(data);
@@ -28,9 +27,8 @@ const Main = (props) => {
       } else {
         console.log(error);
       }
-    }); 
+    });
   };
-
 
   return (
     <div>
@@ -55,7 +53,9 @@ const Main = (props) => {
         <div className="container">
           <div className="row">
             {players.map((player, index) => {
-              return <Card key={index} player={player} onDelete={handleDelete} />;
+              return (
+                <Card key={index} player={player} onDelete={handleDelete} />
+              );
             })}
           </div>
         </div>
