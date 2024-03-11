@@ -4,64 +4,62 @@ import "../css/footer.css";
 const Footer = () => {
   return (
     <>
-      <footer class="light-footer skin-light-footer style-2">
-        <div class="footer-middle">
-          <div class="container">
-            <div class="row">
-              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                <div class="footer_widget">
+      <footer className="light-footer skin-light-footer style-2">
+        <div className="footer-middle">
+          <div className="container">
+            <div className="row">
+              <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                <div className="footer_widget">
                   <img
                     src="assets/img/logo.png"
-                    class="img-footer small mb-2"
+                    className="img-footer small mb-2"
                     alt=""
                   />
-
-                  <div class="address mt-2">
+                  <div className="address mt-2">
                     7742 Sadar Street Range Road, USA
                     <br />
                     United Kingdom GHQ11
                   </div>
-                  <div class="address mt-3">
+                  <div className="address mt-3">
                     40 568 423 6597
                     <br />
                     support@Goodup.com
                   </div>
-                  <div class="address mt-2">
-                    <ul class="list-inline">
-                      <li class="list-inline-item">
-                        <a href="#" class="theme-cl">
-                          <i class="lni lni-facebook-filled"></i>
+                  <div className="address mt-2">
+                    <ul className="list-inline">
+                      <li className="list-inline-item">
+                        <a href="#" className="theme-cl">
+                          <i className="lni lni-facebook-filled" />
                         </a>
                       </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="theme-cl">
-                          <i class="lni lni-twitter-filled"></i>
+                      <li className="list-inline-item">
+                        <a href="#" className="theme-cl">
+                          <i className="lni lni-twitter-filled" />
                         </a>
                       </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="theme-cl">
-                          <i class="lni lni-youtube"></i>
+                      <li className="list-inline-item">
+                        <a href="#" className="theme-cl">
+                          <i className="lni lni-youtube" />
                         </a>
                       </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="theme-cl">
-                          <i class="lni lni-instagram-filled"></i>
+                      <li className="list-inline-item">
+                        <a href="#" className="theme-cl">
+                          <i className="lni lni-instagram-filled" />
                         </a>
                       </li>
-                      <li class="list-inline-item">
-                        <a href="#" class="theme-cl">
-                          <i class="lni lni-linkedin-original"></i>
+                      <li className="list-inline-item">
+                        <a href="#" className="theme-cl">
+                          <i className="lni lni-linkedin-original" />
                         </a>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
-
-              <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
-                <div class="footer_widget">
-                  <h4 class="widget_title">Main Navigation</h4>
-                  <ul class="footer-menu">
+              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                <div className="footer_widget">
+                  <h4 className="widget_title">Main Navigation</h4>
+                  <ul className="footer-menu">
                     <li>
                       <a href="#">Explore Listings</a>
                     </li>
@@ -80,11 +78,10 @@ const Footer = () => {
                   </ul>
                 </div>
               </div>
-
-              <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
-                <div class="footer_widget">
-                  <h4 class="widget_title">Business Owners</h4>
-                  <ul class="footer-menu">
+              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                <div className="footer_widget">
+                  <h4 className="widget_title">Business Owners</h4>
+                  <ul className="footer-menu">
                     <li>
                       <a href="#">Browse Categories</a>
                     </li>
@@ -100,11 +97,10 @@ const Footer = () => {
                   </ul>
                 </div>
               </div>
-
-              <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
-                <div class="footer_widget">
-                  <h4 class="widget_title">About Company</h4>
-                  <ul class="footer-menu">
+              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                <div className="footer_widget">
+                  <h4 className="widget_title">About Company</h4>
+                  <ul className="footer-menu">
                     <li>
                       <a href="#">Who We'r?</a>
                     </li>
@@ -123,11 +119,10 @@ const Footer = () => {
                   </ul>
                 </div>
               </div>
-
-              <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
-                <div class="footer_widget">
-                  <h4 class="widget_title">Helpful Topics</h4>
-                  <ul class="footer-menu">
+              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                <div className="footer_widget">
+                  <h4 className="widget_title">Helpful Topics</h4>
+                  <ul className="footer-menu">
                     <li>
                       <a href="#">Site Map</a>
                     </li>
@@ -149,12 +144,11 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
-        <div class="footer-bottom br-top">
-          <div class="container">
-            <div class="row align-items-center">
-              <div class="col-lg-12 col-md-12 text-center">
-                <p class="mb-0">
+        <div className="footer-bottom br-top">
+          <div className="container">
+            <div className="row align-items-center">
+              <div className="col-lg-12 col-md-12 text-center">
+                <p className="mb-0">
                   © 2022 Goodup. Designd By{" "}
                   <a href="https://themezhub.com">ThemezHub</a>.
                 </p>

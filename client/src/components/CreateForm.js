@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import dataService from "../services/dataService";
 
 const Create = (props) => {
- 
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [position, setPosition] = useState("");

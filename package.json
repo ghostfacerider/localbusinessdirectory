@@ -5,9 +5,18 @@
   "scripts": {
     "api": " cd backend && npm start",
     "client": " cd client && npm start",
-    "dev": " concurrently \"npm run api\" \"npm run client\" --kill-others --kill-others-on-fail"
+    "dev": " concurrently \"npm run api\" \"npm run client\" --kill-others --kill-others-on-fail",
+    "ionic:serve": "npm run dev"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "@capacitor/app": "5.0.7",
+    "@capacitor/cli": "5.7.2",
+    "@capacitor/core": "5.7.2",
+    "@capacitor/haptics": "5.0.7",
+    "@capacitor/keyboard": "5.0.8",
+    "@capacitor/status-bar": "5.0.7"
   }
 }
