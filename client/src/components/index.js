@@ -1,8 +1,7 @@
-export * from "./Blog";
-export * from "./Categories";
-export * from "./Download";
-export * from "./Footer";
-export * from "./ListingTypes";
-export * from "./Newsletter";
-export * from "./Pricing";
+export * from "../components/Footer";
+export * from "../components/NavBar";
+export * from "../components/Newsletter";
+export * from "../components/ProtectedRoutes";
+export * from "../components/Register";
+export * from "../components/Signin";
 

@@ -3,9 +3,10 @@ import {
   Categories,
   Download,
   ListingTypes,
-  Newsletter,
   Pricing,
-} from "./index";
+} from "./Pages/index";
+
+import { Newsletter } from "./components/index";
 
 const Main = () => {
   return (
@@ -512,7 +513,7 @@ const Main = () => {
         <Newsletter />
 
         {/* <!-- Log In Modal --> */}
-        <div
+        {/* <div
           className="modal fade"
           id="login"
           tabindex="-1"
@@ -540,21 +541,46 @@ const Main = () => {
 
                 <form className="submit-form">
                   <div className="form-group">
-                    <label className="mb-1">User Name</label>
+                    <label className="mb-1">Email</label>
                     <input
                       type="text"
+                      id="inputEmail"
+                      name="email"
+                      onChange={(e) => setEmail(e.target.value)}
                       className="form-control rounded bg-light"
-                      placeholder="Username*"
+                      placeholder="Email*"
                     />
+                    {errors.email && (
+                      <div className="alert alert-danger">
+                        {" "}
+                        {errors.email.message}
+                      </div>
+                    )}
+
+                    {errors.serverMessage && (
+                      <div className="alert alert-danger">
+                        {" "}
+                        {errors.serverMessage}
+                      </div>
+                    )}
                   </div>
 
                   <div className="form-group">
                     <label className="mb-1">Password</label>
                     <input
                       type="password"
+                      id="inputPassword"
+                      name="password"
+                      onChange={(e) => setPassword(e.target.value)}
                       className="form-control rounded bg-light"
                       placeholder="Password*"
                     />
+                    {errors.password && (
+                      <div className="alert alert-danger">
+                        {" "}
+                        {errors.password.message}{" "}
+                      </div>
+                    )}
                   </div>
 
                   <div className="form-group">
@@ -617,7 +643,7 @@ const Main = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* End Modal */}
         <a id="tops-button" className="top-scroll" title="Back to top" href="#">
           <i className="ti-arrow-up" />
