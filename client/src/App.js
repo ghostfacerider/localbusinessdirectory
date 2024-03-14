@@ -1,11 +1,16 @@
-import {
-  NavBar,
-  Footer,
-  // Newsletter,
-  ProtectedRoutes,
-  SignIn,
-  Register,
-} from "../oomponents/index";
+// import {
+//   NavBar,
+//   Footer,
+//   // Newsletter,
+//   ProtectedRoutes,
+//   SignIn,
+//   Register,
+// } from "./components/index";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import SignIn from "./components/SignIn";
+import Register from "./components/Register";
 
 import Main from "./Pages/Main";
 // import Edit from "./components/Edit";

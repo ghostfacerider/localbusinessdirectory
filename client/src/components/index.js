@@ -1,7 +1,6 @@
-export * from "../components/Footer";
-export * from "../components/NavBar";
-export * from "../components/Newsletter";
-export * from "../components/ProtectedRoutes";
-export * from "../components/Register";
-export * from "../components/Signin";
-
+export * from "./Footer";
+export * from "./NavBar";
+export * from "./Newsletter";
+export * from "./ProtectedRoutes";
+export * from "./Register";
+export * from "./SignIn";

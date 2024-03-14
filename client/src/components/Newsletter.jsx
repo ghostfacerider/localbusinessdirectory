@@ -3,7 +3,7 @@ export const Newsletter = () => {
     <>
       <section
         className="space bg-cover"
-        style="background:#03343b url(assets/img/landing-bg.png) no-repeat;"
+      
       >
         <div className="container py-5">
           <div className="row justify-content-center">

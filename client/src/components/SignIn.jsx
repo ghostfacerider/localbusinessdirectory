@@ -104,8 +104,7 @@ const SignIn = (props) => {
                     />
                     {errors.password && (
                       <div className="alert alert-danger">
-                        {" "}
-                        {errors.password.message}{" "}
+                        {errors.password.message}
                       </div>
                     )}
                   </div>

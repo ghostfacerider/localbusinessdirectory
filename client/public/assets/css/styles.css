@@ -1175,7 +1175,7 @@ button.close {
     color:#F41b3b;
     cursor: pointer;
     background-color:transparent;
-    border-color#F41b3b;
+    border-color:#F41b3b;
 }
 
 .pagination li:first-child a {
@@ -2962,6 +2962,7 @@ li.login-attri .account-drop a {
 	 transition: all 0.6s;
     border-radius: 0;
     position: relative;
+    background:#f41b3b url(https://via.placeholder.com/1920x950) no-repeat;
     background-size: cover !important;
     background-position: center !important;
 }
@@ -8231,3 +8232,5 @@ footer.skin-dark-footer ul.footer-bottom-social li a:hover, footer.skin-dark-foo
     background-color:#d2d7e4;
     color:#333c56;
 }
+
+  /* style={{background:#03343b url(assets/img/landing-bg.png) no-repeat;}} */
