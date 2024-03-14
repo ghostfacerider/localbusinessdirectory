@@ -1,27 +1,7 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import Card from "../components/Card";
 
 export const ListingTypes = () => {
-  const [businesses, setBusinesses] = useState([]);
-  const options = {
-    method: "GET",
-    url: "http://localhost:5000/api/businessDetails",
-    params: {},
-    headers: {},
-  };
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.request(options);
-        console.log(response.data);
-        setBusinesses(response.data);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    fetchData();
-  }, []);
+  
 
   return (
     <>
@@ -148,120 +128,8 @@ export const ListingTypes = () => {
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
               <div className="tab-content" id="myTabContent">
                 {/* <!-- Places --> */}
-                <div
-                  className="tab-pane fade show active"
-                  id="places"
-                  role="tabpanel"
-                  aria-labelledby="places-tab"
-                >
-                  <div className="row justify-content-center">
-                    {/* <!-- Single --> */}
-
-                    {businesses.map((business) => (
-                      <div
-                        className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
-                        key={business.business_id}
-                      >
-                        <div className="Goodup-grid-wrap">
-                          <div className="Goodup-grid-upper">
-                            <div className="Goodup-pos ab-left">
-                              <div className="Goodup-status close me-2">
-                                Closed
-                              </div>
-                            </div>
-                            <div className="Goodup-grid-thumb">
-                              <a
-                                href="single-listing-detail-2.html"
-                                className="d-block text-center m-auto"
-                              >
-                                <img
-                                  src={business.photos_sample[0].photo_url}
-                                  className="img-fluid"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                            <div className="Goodup-rating overlay">
-                              <div className="Goodup-pr-average high">4.8</div>
-                              <div className="Goodup-aldeio">
-                                <div className="Goodup-rates">
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                  <i className="fas fa-star"></i>
-                                </div>
-                                <div className="Goodup-all-review">
-                                  <span>46 Reviews</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="Goodup-grid-fl-wrap">
-                            <div className="Goodup-caption px-3 py-2">
-                              <div className="Goodup-author">
-                                <a href={business.website}>
-                                  <img
-                                    src={business.photos_sample[0].photo_url}
-                                    className="img-fluid circle"
-                                    alt=""
-                                  />
-                                </a>
-                              </div>
-                              <h4 className="mb-0 ft-medium medium">
-                                <a
-                                  href="single-listing-detail-2.html"
-                                  className="text-dark fs-md"
-                                >
-                                  {business.name}
-                                </a>
-                              </h4>
-                              <div className="Goodup-location">
-                                <i className="fas fa-map-marker-alt me-1 theme-cl"></i>
-                                {business.full_address}
-                              </div>
-                              <div className="Goodup-middle-caption mt-3">
-                                <p>
-                                  At vero eos et accusamus et iusto odio
-                                  dignissimos ducimus
-                                </p>
-                              </div>
-                            </div>
-                            <div className="Goodup-grid-footer py-2 px-3">
-                              <div className="Goodup-ft-first">
-                                <a
-                                  href="half-map-search-2.html"
-                                  className="Goodup-cats-wrap"
-                                >
-                                  <div className="cats-ico bg-2">
-                                    <i className="lni lni-slim"></i>
-                                  </div>
-                                  <span className="cats-title">
-                                    {business.type}
-                                  </span>
-                                </a>
-                              </div>
-                              <div className="Goodup-ft-last">
-                                <div className="Goodup-inline">
-                                  <div className="Goodup-bookmark-btn">
-                                    <button type="button">
-                                      <i className="lni lni-envelope position-absolute"></i>
-                                    </button>
-                                  </div>
-                                  <div className="Goodup-bookmark-btn">
-                                    <button type="button">
-                                      <i className="lni lni-heart-filled position-absolute"></i>
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <Card />
+               
                 {/* <!-- /Places --> */}
 
                 {/* <!-- Events --> */}
