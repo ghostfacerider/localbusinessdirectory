@@ -14,7 +14,7 @@ const SearchCard = ({ searchQuery }) => {
         try {
           const options = {
             method: "GET",
-            url: `http://localhost:300/api/search?find=${findQuery}&where=${whereQuery}`,
+            url: `http://localhost:5000/api/search?find=${findQuery}&where=${whereQuery}`,
             params: {},
             headers: {},
           };
