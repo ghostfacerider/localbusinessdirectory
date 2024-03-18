@@ -5,7 +5,7 @@ const Card = () => {
   const [businesses, setBusinesses] = useState([]);
   const options = {
     method: "GET",
-    url: "http://localhost:300/api/businessDetails",
+    url: "http://localhost:5000/api/businessDetails",
     params: {},
     headers: {},
   };
