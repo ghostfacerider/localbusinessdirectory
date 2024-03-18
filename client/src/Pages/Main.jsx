@@ -1,8 +1,16 @@
 import { Blog, Categories, Download, ListingTypes, Pricing } from "./index";
 import { Search, Newsletter } from "../components/index";
+import Card from "../components/Card";
+import { useState } from "react";
+import SearchCard from "../components/SearchCard";
 // import NavBar from "../components/NavBar";
 
 const Main = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
   return (
     <>
       {/* <!-- Preloader - style you can find in spinners.css --> */}
@@ -12,33 +20,41 @@ const Main = () => {
       <div id="main-wrapper">
         {/* <!-- Top header  --> */}
         {/* <NavBar /> */}
-
         {/* <!-- ======================= Home Banner ======================== --> */}
-        <div className="home-banner margin-bottom-0" data-overlay="5">
+        <div className="home-banner margin-bottom-40" data-overlay="5">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-xl-11 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div className="banner_caption text-center mb-5">
                   <h1 className="banner_title ft-bold mb-1">
-                    Explore Great Place in Your Town
+                    Explore Great Place in Your
                   </h1>
                   <p className="fs-md ft-medium">
                     Explore wonderful place to stay, salon, shoping, massage or
                     visit local areas.
                   </p>
                 </div>
-                <Search />
+                <Search onSearch={handleSearch} />
               </div>
             </div>
           </div>
         </div>
+        {searchQuery ? (
+          <><span></span>
+        <SearchCard searchQuery={searchQuery} />
+
+          </>
+      ) : (
+        <>
+        <span></span>
+        </>
+      )}
+
 
         {/* <!-- ======================= Listing Categories ======================== --> */}
         <Categories />
-
         {/* <!-- ======================= All Types Listing ======================== --> */}
         <ListingTypes />
-
         {/* <!-- ======================= Our Partner Start ============================ --> */}
         <section className="pt-0">
           <div className="container">
@@ -157,20 +173,18 @@ const Main = () => {
             </div>
           </div>
         </section>
-        {/* <!-- ======================= Our Partner Start ============================ --> */}
 
+        <Card />
+
+        {/* <!-- ======================= Our Partner Start ============================ --> */}
         {/* <!-- ======================= Blog Start ============================ --> */}
         <Blog />
-
         {/* <!-- ============================ Pricing Start ==================================== --> */}
         <Pricing />
-
         {/* <!-- ========================== Download App Section =============================== --> */}
         <Download />
-
         {/* <!-- ======================= Newsletter Start ============================ --> */}
         <Newsletter />
-
         {/* <!-- Log In Modal --> */}
         {/* <div
           className="modal fade"

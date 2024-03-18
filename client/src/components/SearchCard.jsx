@@ -1,27 +1,35 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-const Card = () => {
+
+const SearchCard = ({ searchQuery }) => {
+  console.log(searchQuery, "searchQuery");
+  let { findQuery, whereQuery } = searchQuery;
+
   const [businesses, setBusinesses] = useState([]);
-  const options = {
-    method: "GET",
-    url: "http://localhost:300/api/businessDetails",
-    params: {},
-    headers: {},
-  };
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.request(options);
-        console.log(response.data);
-        setBusinesses(response.data);
-      } catch (err) {
-        console.log(err);
+    if (findQuery && whereQuery) {
+      async function fetchData() {
+        try {
+          const options = {
+            method: "GET",
+            url: `http://localhost:300/api/search?find=${findQuery}&where=${whereQuery}`,
+            params: {},
+            headers: {},
+          };
+
+          const response = await axios.request(options);
+          console.log(response.data);
+          setBusinesses(response.data);
+        } catch (err) {
+          console.log(err);
+        }
       }
+      fetchData();
     }
-    fetchData();
-  }, []);
+  }, [findQuery, whereQuery]);
+
   // Tilt card
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -186,4 +194,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default SearchCard;
