@@ -38,8 +38,8 @@ router.get("/", (req, res) => {
 });
 
 //search
-// var searchRouter = require("./search");
-// router.use("/search", searchRouter);
+var searchRouter = require("./search");
+router.use("/search", searchRouter);
 
 //search in area
 // var searchInAreaRouter = require("./searchinarea");
