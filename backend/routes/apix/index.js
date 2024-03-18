@@ -39,9 +39,13 @@ router.get("/", (req, res) => {
 
 //search
 var searchRouter = require("./search");
-router.use("/search", searchRouter);
+router.use("/search", searchRouter.fetchSearchData);
+
 
 //search in area
+router.use("/searchinarea", searchRouter.fetchSearchInAreaData);
+// var searchRouter = require("./searchinarea");
+
 // var searchInAreaRouter = require("./searchinarea");
 // router.use("/searchinarea", searchInAreaRouter);
 
