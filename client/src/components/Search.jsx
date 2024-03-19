@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
-import axios from "axios";
-export const Search = ({onSearch}) => {
+// import axios from "axios";
+export const Search = ({ onSearch }) => {
   const [findQuery, setFindQuery] = useState("");
   const [whereQuery, setWhereQuery] = useState("");
 
@@ -19,13 +19,12 @@ export const Search = ({onSearch}) => {
 
       // const data = response.data;
       // console.log("data ", data);
-      onSearch({findQuery, whereQuery});
+      onSearch({ findQuery, whereQuery });
       // navigate('/another-component', { state: { responseData: data } });
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
-
 
   return (
     <form className="main-search-wrap fl-wrap half-column">
