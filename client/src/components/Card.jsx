@@ -62,22 +62,22 @@ const Card = () => {
   };
 
   return (
-    <motion.div
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
+    <div
       className="tab-pane fade show active"
       id="places"
       role="tabpanel"
       aria-labelledby="places-tab"
     >
       <motion.div
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
         className="row justify-content-center"
-        style={{ tranform: "translateZ(75px)", transformStyle: "preserve-3d" }}
+        style={{
+          tranform: "translateZ(75px)",
+          transformStyle: "preserve-3d",
+          rotateX,
+          rotateY,
+        }}
       >
         {/* <!-- Single --> */}
 
@@ -182,7 +182,7 @@ const Card = () => {
           </div>
         ))}
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 
