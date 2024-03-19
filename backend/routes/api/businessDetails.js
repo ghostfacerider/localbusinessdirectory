@@ -2,7 +2,7 @@ const businessDetail = require("../../models/businessDetail");
 
 const fetchData = async (req, res) => {
   try {
-    const businesses = businessDetail.find({});
+    const businesses = await businessDetail.find({}).limit(9);
     res.send(businesses);
   } catch (error) {
     console.error(error);

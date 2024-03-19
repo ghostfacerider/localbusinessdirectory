@@ -38,12 +38,14 @@ router.get("/", (req, res) => {
 });
 
 //search
-var searchRouter = require("./searchRouter");
-router.use("/search", searchRouter);
+
+//search
+var searchRouter = require("./search");
+router.use("/search", searchRouter.fetchSearchData);
+
 
 //search in area
-// var searchInAreaRouter = require("./searchinarea");
-// router.use("/searchinarea", searchInAreaRouter);
+router.use("/searchinarea", searchRouter.fetchSearchInAreaData);
 
 //search nearby
 // var searchNearByRouter = require("./searchNearBy");

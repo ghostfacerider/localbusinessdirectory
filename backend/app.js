@@ -23,7 +23,7 @@ db.once("open", () => {
 
 //import our rounters
 var indexRouter = require("./routes/index"); // index = index.js
-var apiRouter = require("./routes/apix"); //api = api folder
+var apiRouter = require("./routes/api"); //api = api folder
 
 //create an instance of express app
 const app = express();

@@ -14,7 +14,7 @@ const Card = () => {
     async function fetchData() {
       try {
         const response = await axios.request(options);
-        console.log(response.data);
+        console.log("The data from the cards ",response.data);
         setBusinesses(response.data);
       } catch (err) {
         console.log(err);
