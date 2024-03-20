@@ -5960,7 +5960,7 @@ button:focus {
   padding: 0.6rem 1.4rem;
 }
 div#myTabContent {
-  width: 100%;
+  /* width: 100%; */
 }
 .nav-tabs.small-tab {
   text-align: center;

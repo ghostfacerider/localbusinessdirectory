@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { Link } from "react-router-dom";
 const Card = () => {
   const [businesses, setBusinesses] = useState([]);
   const options = {
@@ -22,44 +23,22 @@ const Card = () => {
     }
     fetchData();
   }, []);
-  // Tilt card
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  const [hoveredCards, setHoveredCards] = useState(new Array(businesses.length).fill(false));
 
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
-
-  const rotateX = useTransform(
-    mouseYSpring,
-    [-0.5, 0.5],
-    ["7.5deg", "-7.5deg"]
-  );
-
-  const rotateY = useTransform(
-    mouseXSpring,
-    [-0.5, 0.5],
-    ["-7.5deg", "7.5deg"]
-  );
-  const handleMouseMove = (e) => {
-    const rect = e.target.getBoundingClientRect();
-
-    const width = rect.width;
-    const height = rect.height;
-
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-
-    x.set(xPct);
-    y.set(yPct);
+  // Function to handle mouse enter for a specific card
+  const handleMouseEnter = (index) => {
+    const updatedHoveredCards = [...hoveredCards];
+    updatedHoveredCards[index] = true;
+    setHoveredCards(updatedHoveredCards);
   };
 
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
+  // Function to handle mouse leave for a specific card
+  const handleMouseLeave = (index) => {
+    const updatedHoveredCards = [...hoveredCards];
+    updatedHoveredCards[index] = false;
+    setHoveredCards(updatedHoveredCards);
   };
+
 
   return (
     <div
@@ -68,23 +47,27 @@ const Card = () => {
       role="tabpanel"
       aria-labelledby="places-tab"
     >
-      <motion.div
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        className="row justify-content-center"
-        style={{
-          tranform: "translateZ(75px)",
-          transformStyle: "preserve-3d",
-          rotateX,
-          rotateY,
-        }}
-      >
-        {/* <!-- Single --> */}
+      <div className="" style={{display:"flex", flexWrap:"wrap", marginRight:10, marginLeft:10}}>
 
-        {businesses.map((business) => (
-          <div
-            className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
+           {/* Mapping over businesses array */}
+           {businesses.map((business, index) => (
+          <motion.div
             key={business.business_id}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={() => handleMouseLeave(index)}
+            className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
+            style={{
+              margin:20,
+              
+              transformStyle: 'preserve-3d',
+              transform: hoveredCards[index] ? 'scale(1.1)' : 'scale(1)',
+              transition: 'transform 0.3s ease', // Add a smooth transition for the scale change
+            }}
+          >
+
+          <div
+            // className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
+            // key={business.business_id}
           >
             <div className="Goodup-grid-wrap">
               <div className="Goodup-grid-upper">
@@ -94,16 +77,14 @@ const Card = () => {
                   </div>
                 </div>
                 <div className="Goodup-grid-thumb">
-                  <a
-                    href="single-listing-detail-2.html"
-                    className="d-block text-center m-auto"
-                  >
-                    <img
-                      src={business.photos_sample[0].photo_url}
-                      className="img-fluid"
-                      alt=""
-                    />
-                  </a>
+                <Link to={`/single-listing/${business.business_id}`}>
+                   
+                      <img
+                        src={business.photos_sample[0].photo_url}
+                        className="img-fluid"
+                        alt=""
+                      />
+                  </Link>
                 </div>
                 <div className="Goodup-rating overlay">
                   <div className="Goodup-pr-average high">4.8</div>
@@ -180,8 +161,9 @@ const Card = () => {
               </div>
             </div>
           </div>
+          </motion.div>
         ))}
-      </motion.div>
+    </div>
     </div>
   );
 };

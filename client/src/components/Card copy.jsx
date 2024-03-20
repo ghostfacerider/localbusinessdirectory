@@ -2,118 +2,93 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
-
-const SearchCard = ({ searchQuery }) => {
-  console.log(searchQuery, "searchQuery");
-  let { findQuery, whereQuery } = searchQuery;
-
+const Card = () => {
   const [businesses, setBusinesses] = useState([]);
+  const options = {
+    method: "GET",
+    url: "http://localhost:5000/api/businessDetails",
+    params: {},
+    headers: {},
+  };
 
   useEffect(() => {
-    if (findQuery && whereQuery) {
-      async function fetchData() {
-        try {
-          const options = {
-            method: "GET",
-            url: `http://localhost:5000/api/search?find=${findQuery}&where=${whereQuery}`,
-            params: {},
-            headers: {},
-          };
-
-          const response = await axios.request(options);
-          console.log(response.data);
-          setBusinesses(response.data);
-        } catch (err) {
-          console.log(err);
-        }
+    async function fetchData() {
+      try {
+        const response = await axios.request(options);
+        console.log("The data from the cards ", response.data);
+        setBusinesses(response.data);
+      } catch (err) {
+        console.log(err);
       }
-      fetchData();
     }
-  }, [findQuery, whereQuery]);
+    fetchData();
+  }, []);
+  // Tilt card
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
 
-  // // Tilt card
-  // const x = useMotionValue(0);
-  // const y = useMotionValue(0);
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
 
-  // const mouseXSpring = useSpring(x);
-  // const mouseYSpring = useSpring(y);
+  const rotateX = useTransform(
+    mouseYSpring,
+    [-0.5, 0.5],
+    ["7.5deg", "-7.5deg"]
+  );
 
-  // const rotateX = useTransform(
-  //   mouseYSpring,
-  //   [-0.5, 0.5],
-  //   ["7.5deg", "-7.5deg"]
-  // );
+  const rotateY = useTransform(
+    mouseXSpring,
+    [-0.5, 0.5],
+    ["-7.5deg", "7.5deg"]
+  );
+  const handleMouseMove = (e) => {
+    const rect = e.target.getBoundingClientRect();
 
-  // const rotateY = useTransform(
-  //   mouseXSpring,
-  //   [-0.5, 0.5],
-  //   ["-7.5deg", "7.5deg"]
-  // );
-  // const handleMouseMove = (e) => {
-  //   const rect = e.target.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
 
-  //   const width = rect.width;
-  //   const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
 
-  //   const mouseX = e.clientX - rect.left;
-  //   const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
 
-  //   const xPct = mouseX / width - 0.5;
-  //   const yPct = mouseY / height - 0.5;
-
-  //   x.set(xPct);
-  //   y.set(yPct);
-  // };
-
-  // const handleMouseLeave = () => {
-  //   x.set(0);
-  //   y.set(0);
-  // };
-
-  const [hoveredCards, setHoveredCards] = useState(new Array(businesses.length).fill(false));
-
-  // Function to handle mouse enter for a specific card
-  const handleMouseEnter = (index) => {
-    const updatedHoveredCards = [...hoveredCards];
-    updatedHoveredCards[index] = true;
-    setHoveredCards(updatedHoveredCards);
+    x.set(xPct);
+    y.set(yPct);
+    
   };
 
-  // Function to handle mouse leave for a specific card
-  const handleMouseLeave = (index) => {
-    const updatedHoveredCards = [...hoveredCards];
-    updatedHoveredCards[index] = false;
-    setHoveredCards(updatedHoveredCards);
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
   };
 
-  return(
+  return (
     <div
       className="tab-pane fade show active"
       id="places"
       role="tabpanel"
       aria-labelledby="places-tab"
     >
-      <div className="" style={{display:"flex", flexWrap:"wrap", marginRight:10, marginLeft:10}}>
+      <motion.div
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="row justify-content-center"
+        style={{
+          // transform: "translateZ(75px)",
+          // transformStyle: "preserve-3d",
+          // rotateX,
+          // rotateY,
+          transformStyle: 'preserve-3d',
+          transform: `rotateX(${rotateX}) rotateY(${rotateY})`,
+        }}
+      >
+        {/* <!-- Single --> */}
 
-           {/* Mapping over businesses array */}
-           {businesses.map((business, index) => (
-          <motion.div
-            key={business.business_id}
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={() => handleMouseLeave(index)}
-            className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
-            style={{
-              margin:20,
-              
-              transformStyle: 'preserve-3d',
-              transform: hoveredCards[index] ? 'scale(1.1)' : 'scale(1)',
-              transition: 'transform 0.3s ease', // Add a smooth transition for the scale change
-            }}
-          >
-
+        {businesses.map((business) => (
           <div
-            // className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
-            // key={business.business_id}
+            className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
+            key={business.business_id}
           >
             <div className="Goodup-grid-wrap">
               <div className="Goodup-grid-upper">
@@ -123,13 +98,17 @@ const SearchCard = ({ searchQuery }) => {
                   </div>
                 </div>
                 <div className="Goodup-grid-thumb">
-                <Link to={`/single-listing/${business.business_id}`}>
-                   
+                  <Link to={`/single-listing/${business.business_id}`}>
+                    {/* <a
+                      // href="/single-listing"
+                      className="d-block text-center m-auto"
+                    > */}
                       <img
                         src={business.photos_sample[0].photo_url}
                         className="img-fluid"
                         alt=""
                       />
+                    {/* </a> */}
                   </Link>
                 </div>
                 <div className="Goodup-rating overlay">
@@ -207,10 +186,10 @@ const SearchCard = ({ searchQuery }) => {
               </div>
             </div>
           </div>
-          </motion.div>
         ))}
-    </div>
+      </motion.div>
     </div>
   );
 };
-export default SearchCard;
+
+export default Card;

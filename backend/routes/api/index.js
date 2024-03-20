@@ -14,7 +14,8 @@ const router = express.Router();
 
 //business Details
 var businessDetailsRouter = require("./businessDetails");
-router.use("/businessDetails", businessDetailsRouter);
+router.use("/businessDetails", businessDetailsRouter.businessListing);
+router.use("/businessDetail/:id", businessDetailsRouter.singleBusiness);
 
 //business Photos
 var businessPhotosRouter = require("./businessPhotos");
