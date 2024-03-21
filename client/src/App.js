@@ -26,6 +26,7 @@ const App = () => {
         <div id="main-content">
           <Routes>
             <Route path="/" element={<Main />} />
+            {/* <Route path="/" element={<NavBar />} /> */}
             <Route path="/single-listing/:id" element={<Single_Listing />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/register" element={<Register />} />

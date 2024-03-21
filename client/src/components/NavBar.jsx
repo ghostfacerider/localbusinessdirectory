@@ -89,7 +89,7 @@ function NavBar() {
                     </Link>
                   </li>
                 )}
-                {!authService.isAuthenticated() && (
+                {/* {!authService.isAuthenticated() && (
                   <>
                     <li className="nav-item ">
                       <Link
@@ -130,11 +130,11 @@ function NavBar() {
                     </div>
                   </li>
                 )}
-                <ul className="nav-menu nav-menu-social align-to-right"></ul>
+                <ul className="nav-menu nav-menu-social align-to-right"></ul> */}
               </ul>
             </div>
           </nav>
-          <section className="gray" onSubmit={handleSubmit}>
+          {/* <section className="gray" onSubmit={handleSubmit}>
             <div
               className="modal fade"
               id="login"
@@ -265,7 +265,7 @@ function NavBar() {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
         </div>
       </div>
     </>
