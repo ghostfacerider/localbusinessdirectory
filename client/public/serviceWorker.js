@@ -1,8 +1,8 @@
 let cacheData = "appV1";
 this.addEventListener("install", (event) => {
-  event.waitUntill(
+  event.waitUntil(
     caches.open(cacheData).then((cache) => {
-      Cache.addAll([
+      cache.addAll([
         "/static/js/bundle.js",
         "/static/js/jquery.min.js",
         "/static/js/popper.min.js",
