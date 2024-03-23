@@ -16,7 +16,7 @@ import Main from "./Pages/Main";
 // import Edit from "./components/Edit";
 // import CreateForm from "./components/CreateForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Single_Listing from "./Pages/Single_Listing";
+import SingleListing from "./Pages/SingleListing";
 
 const App = () => {
   return (
@@ -27,7 +27,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Main />} />
             {/* <Route path="/" element={<NavBar />} /> */}
-            <Route path="/single-listing/:id" element={<Single_Listing />} />
+            <Route path="/single-listing/:id" element={<SingleListing />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/register" element={<Register />} />
             <Route element={<ProtectedRoutes />}>
