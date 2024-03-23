@@ -14,7 +14,7 @@ exports.singleBusiness = async (req, res) => {
     const business_id = req.query.business_id;
     const businesses = await businessDetail.findOne(business_id);
     console.log("The Single Edge of tomorrow");
-    res.send(businesses);
+    res.send([businesses]);
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Internal Server Error" });

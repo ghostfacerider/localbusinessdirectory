@@ -34,7 +34,10 @@ const Main = () => {
                     visit local areas.
                   </p>
                 </div>
+                <div className="" style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+
                 <Search onSearch={handleSearch} />
+                </div>
               </div>
             </div>
           </div>

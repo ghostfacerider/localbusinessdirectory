@@ -89,7 +89,7 @@ function NavBar() {
                     </Link>
                   </li>
                 )}
-                {/* {!authService.isAuthenticated() && (
+                {authService.isAuthenticated() && (
                   <>
                     <li className="nav-item ">
                       <Link
@@ -111,7 +111,7 @@ function NavBar() {
                   </>
                 )}
 
-                {authService.isAuthenticated() && (
+                {!authService.isAuthenticated() && (
                   <li className="nav-item dropdown">
                     <a
                       className="nav-link dropdown-toggle"
@@ -130,7 +130,7 @@ function NavBar() {
                     </div>
                   </li>
                 )}
-                <ul className="nav-menu nav-menu-social align-to-right"></ul> */}
+                <ul className="nav-menu nav-menu-social align-to-right"></ul>
               </ul>
             </div>
           </nav>
