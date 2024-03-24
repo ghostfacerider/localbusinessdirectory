@@ -3,7 +3,6 @@ import { Search, Newsletter } from "../components/index";
 import Card from "../components/Card";
 import { useState } from "react";
 import SearchCard from "../components/SearchCard";
-// import NavBar from "../components/NavBar";
 
 const Main = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -177,7 +176,8 @@ const Main = () => {
           </div>
         </section>
 
-        <Card />
+        {/* <Card /> */}
+        {/* <Temp /> */}
 
         {/* <!-- ======================= Our Partner Start ============================ --> */}
         {/* <!-- ======================= Blog Start ============================ --> */}
