@@ -28,6 +28,7 @@ this.addEventListener("install", (event) => {
         "/assets/css/plugins/iconfont.css",
         "/assets/css/plugins/font-awesome.css",
         "/assets/css/plugins/flaticon.css",
+        "/assets/css/plugins/animation.css",
         "/index.html",
         "/",
       ]);
@@ -42,8 +43,8 @@ this.addEventListener("fetch", (event) => {
         if (resp) {
           return resp;
         }
-        let requestUrl = event.request.clone()
-        fetch(requestUrl)
+        let requestUrl = event.request.clone();
+        fetch(requestUrl);
       })
     );
   }
