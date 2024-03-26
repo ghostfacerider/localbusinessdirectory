@@ -1,104 +1,119 @@
-import React, { useRef, useState, useEffect } from "react";
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useSpring,
-  wrap,
-} from "framer-motion";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import { useState, useEffect } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { Link } from "react-router-dom";
 
-const ROTATION_RANGE = 10.5;
-const HALF_ROTATION_RANGE = 10.5 / 2;
+const SearchCard = ({ searchQuery }) => {
+  console.log(searchQuery, "searchQuery");
+  let { findQuery, whereQuery } = searchQuery;
 
-const Card = () => {
-  
   const [businesses, setBusinesses] = useState([]);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  const options = {
-    method: "GET",
-    url: "http://localhost:5000/api/businessDetails",
-    params: {},
-    headers: {},
-  };
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.request(options);
-        console.log("The data from the cards ", response.data);
-        setBusinesses(response.data);
-      } catch (err) {
-        console.log(err);
+    if (findQuery && whereQuery) {
+      async function fetchData() {
+        try {
+          const options = {
+            method: "GET",
+            url: `http://localhost:5000/api/search?find=${findQuery}&where=${whereQuery}`,
+            params: {},
+            headers: {},
+          };
+
+          const response = await axios.request(options);
+          console.log(response.data);
+          setBusinesses(response.data);
+        } catch (err) {
+          console.log(err);
+        }
       }
+      fetchData();
     }
-    fetchData();
-  }, []);
+  }, [findQuery, whereQuery]);
 
-const ref = useRef(null);
+  // // Tilt card
+  // const x = useMotionValue(0);
+  // const y = useMotionValue(0);
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  // const mouseXSpring = useSpring(x);
+  // const mouseYSpring = useSpring(y);
 
-  const xSpring = useSpring(x);
-  const ySpring = useSpring(y);
+  // const rotateX = useTransform(
+  //   mouseYSpring,
+  //   [-0.5, 0.5],
+  //   ["7.5deg", "-7.5deg"]
+  // );
 
-  const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
+  // const rotateY = useTransform(
+  //   mouseXSpring,
+  //   [-0.5, 0.5],
+  //   ["-7.5deg", "7.5deg"]
+  // );
+  // const handleMouseMove = (e) => {
+  //   const rect = e.target.getBoundingClientRect();
 
-  const handleMouseMove = (index, e) => {
-    if (!ref.current) return;
+  //   const width = rect.width;
+  //   const height = rect.height;
 
-    const rect = ref.current.getBoundingClientRect();
+  //   const mouseX = e.clientX - rect.left;
+  //   const mouseY = e.clientY - rect.top;
 
-    const width = rect.width;
-    const height = rect.height;
+  //   const xPct = mouseX / width - 0.5;
+  //   const yPct = mouseY / height - 0.5;
 
-    const mouseX = (e.clientX - rect.left) * ROTATION_RANGE;
-    const mouseY = (e.clientY - rect.top) * ROTATION_RANGE;
+  //   x.set(xPct);
+  //   y.set(yPct);
+  // };
 
-    const rX = (mouseY / height - HALF_ROTATION_RANGE) * -1;
-    const rY = mouseX / width - HALF_ROTATION_RANGE;
+  // const handleMouseLeave = () => {
+  //   x.set(0);
+  //   y.set(0);
+  // };
 
-    x.set(rX);
-    y.set(rY);
-    setHoveredIndex(index);
+  const [hoveredCards, setHoveredCards] = useState(new Array(businesses.length).fill(false));
+
+  // Function to handle mouse enter for a specific card
+  const handleMouseEnter = (index) => {
+    const updatedHoveredCards = [...hoveredCards];
+    updatedHoveredCards[index] = true;
+    setHoveredCards(updatedHoveredCards);
   };
 
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-    setHoveredIndex(null);
+  // Function to handle mouse leave for a specific card
+  const handleMouseLeave = (index) => {
+    const updatedHoveredCards = [...hoveredCards];
+    updatedHoveredCards[index] = false;
+    setHoveredCards(updatedHoveredCards);
   };
 
-  return (
+  return(
     <div
-    style={{
-      display: "flex",
-      flexWrap: "wrap",
-      height: "auto",
-      width: "auto",
-    }}
-  >
-    {businesses.map((business, index) => (
-      <div className="" key={business.business_id}
-      >
-      <motion.div
-        ref={ref}
- 
-      onMouseMove={(e) => handleMouseMove(index, e)}
-      onMouseLeave={handleMouseLeave}
-        style={{
-          transformStyle: "preserve-3d",
-          transform: hoveredIndex === index ? transform : 'none',
-          zIndex: hoveredIndex === index ? 1 : 0,
-          margin:20
-        }}
-      >
-        <div className="absolute inset-4 grid place-content-center rounded-xl bg-white shadow-lg">
-          <div
+      className="tab-pane fade show active"
+      id="places"
+      role="tabpanel"
+      aria-labelledby="places-tab"
+    >
+      <div className="" style={{display:"flex", flexWrap:"wrap", marginRight:10, marginLeft:10}}>
+
+           {/* Mapping over businesses array */}
+           {businesses.map((business, index) => (
+          <motion.div
             key={business.business_id}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={() => handleMouseLeave(index)}
+            className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
+            style={{
+              margin:20,
+              
+              transformStyle: 'preserve-3d',
+              transform: hoveredCards[index] ? 'scale(1.1)' : 'scale(1)',
+              transition: 'transform 0.3s ease', // Add a smooth transition for the scale change
+            }}
+          >
+
+          <div
+            // className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
+            // key={business.business_id}
           >
             <div className="Goodup-grid-wrap">
               <div className="Goodup-grid-upper">
@@ -108,17 +123,13 @@ const ref = useRef(null);
                   </div>
                 </div>
                 <div className="Goodup-grid-thumb">
-                  <Link to={`/single-listing/${business.business_id}`}>
-                    {/* <a
-                    // href="/single-listing"
-                    className="d-block text-center m-auto"
-                  > */}
-                    <img
-                      src={business.photos_sample[0].photo_url}
-                      className="img-fluid"
-                      alt=""
-                    />
-                    {/* </a> */}
+                <Link to={`/single-listing/${business.business_id}`}>
+                   
+                      <img
+                        src={business.photos_sample[0].photo_url}
+                        className="img-fluid"
+                        alt=""
+                      />
                   </Link>
                 </div>
                 <div className="Goodup-rating overlay">
@@ -162,8 +173,7 @@ const ref = useRef(null);
                   </div>
                   <div className="Goodup-middle-caption mt-3">
                     <p>
-                      At vero eos et accusamus et iusto odio dignissimos
-                      ducimus
+                      At vero eos et accusamus et iusto odio dignissimos ducimus
                     </p>
                   </div>
                 </div>
@@ -197,20 +207,10 @@ const ref = useRef(null);
               </div>
             </div>
           </div>
-          {/* <p
-        style={{
-          transform: "translateZ(50px)",
-        }}
-        className="text-center text-2xl font-bold"
-      >
-        HOVER ME
-      </p> */}
-        </div>
-      </motion.div>
-       </div>
-    ))}
-  </div>
+          </motion.div>
+        ))}
+    </div>
+    </div>
   );
 };
-
-export default Card;
+export default SearchCard;

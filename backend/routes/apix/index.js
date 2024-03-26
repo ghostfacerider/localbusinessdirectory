@@ -3,54 +3,58 @@ const express = require("express");
 
 const router = express.Router();
 
-//Defind any sub-router of our API
-//Autocomplete
-// var autocompleteRouter = require("./autocomplete");
-// router.use("/autocomplete", autocompleteRouter);
+// //Defind any sub-router of our API
+// //Autocomplete
+// // var autocompleteRouter = require("./autocomplete");
+// // router.use("/autocomplete", autocompleteRouter);
 
-//Bulk search
-// var bulkSearchRouter = require("./bulksearch");
-// router.use("/bulksearch", bulkSearchRouter);
+// //Bulk search
+// // var bulkSearchRouter = require("./bulksearch");
+// // router.use("/bulksearch", bulkSearchRouter);
 
-//business Details
-var businessDetailsRouter = require("./businessDetails");
-router.use("/businessDetails", businessDetailsRouter);
+// //business Details
+// var businessDetailsRouter = require("./businessDetails");
+// router.use("/businessDetails", businessDetailsRouter);
 
-//business Photos
-var businessPhotosRouter = require("./businessPhotos");
-router.use("/businessPhotos", businessPhotosRouter);
+// //business Photos
+// var businessPhotosRouter = require("./businessPhotos");
+// router.use("/businessPhotos", businessPhotosRouter);
 
-//business Photos Details
-var businessPhotosDetailsRouter = require("./businessPhotosDetails");
-router.use("/businessPhotosDetails", businessPhotosDetailsRouter);
+// //business Photos Details
+// var businessPhotosDetailsRouter = require("./businessPhotosDetails");
+// router.use("/businessPhotosDetails", businessPhotosDetailsRouter);
 
-//business Posts
-var businessPostsRouter = require("./businessPosts");
-router.use("/businessPosts", businessPostsRouter);
+// //business Posts
+// var businessPostsRouter = require("./businessPosts");
+// router.use("/businessPosts", businessPostsRouter);
 
-//business Reviews
-var businessReviewsRouter = require("./businessReviews");
-router.use("/businessReviews", businessReviewsRouter);
+// //business Reviews
+// var businessReviewsRouter = require("./businessReviews");
+// router.use("/businessReviews", businessReviewsRouter);
 
-//Our welcome endpoint
-router.get("/", (req, res) => {
-  res.send("Welcome to our API");
-});
+// //Our welcome endpoint
+// router.get("/", (req, res) => {
+//   res.send("Welcome to our API");
+// });
 
-//search
+// //search
 // var searchRouter = require("./search");
-// router.use("/search", searchRouter);
+// router.use("/search", searchRouter.fetchSearchData);
 
-//search in area
-// var searchInAreaRouter = require("./searchinarea");
-// router.use("/searchinarea", searchInAreaRouter);
 
-//search nearby
-// var searchNearByRouter = require("./searchNearBy");
-// router.use("/searchnearby", searchNearByRouter);
+// //search in area
+// router.use("/searchinarea", searchRouter.fetchSearchInAreaData);
+// // var searchRouter = require("./searchinarea");
 
-//Users
-var usersRouter = require("./users");
-router.use("/users", usersRouter);
+// // var searchInAreaRouter = require("./searchinarea");
+// // router.use("/searchinarea", searchInAreaRouter);
+
+// //search nearby
+// // var searchNearByRouter = require("./searchNearBy");
+// // router.use("/searchnearby", searchNearByRouter);
+
+// //Users
+// var usersRouter = require("./users");
+// router.use("/users", usersRouter);
 
 module.exports = router;

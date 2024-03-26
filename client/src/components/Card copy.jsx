@@ -1,22 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useSpring,
-  wrap,
-} from "framer-motion";
-import { Link } from "react-router-dom";
 import axios from "axios";
-
-const ROTATION_RANGE = 10.5;
-const HALF_ROTATION_RANGE = 10.5 / 2;
-
+import { useState, useEffect } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { Link } from "react-router-dom";
 const Card = () => {
-  
   const [businesses, setBusinesses] = useState([]);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
   const options = {
     method: "GET",
     url: "http://localhost:5000/api/businessDetails",
@@ -36,68 +23,71 @@ const Card = () => {
     }
     fetchData();
   }, []);
-
-const ref = useRef(null);
-
+  // Tilt card
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const xSpring = useSpring(x);
-  const ySpring = useSpring(y);
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
 
-  const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
+  const rotateX = useTransform(
+    mouseYSpring,
+    [-0.5, 0.5],
+    ["7.5deg", "-7.5deg"]
+  );
 
-  const handleMouseMove = (index, e) => {
-    if (!ref.current) return;
-
-    const rect = ref.current.getBoundingClientRect();
+  const rotateY = useTransform(
+    mouseXSpring,
+    [-0.5, 0.5],
+    ["-7.5deg", "7.5deg"]
+  );
+  const handleMouseMove = (e) => {
+    const rect = e.target.getBoundingClientRect();
 
     const width = rect.width;
     const height = rect.height;
 
-    const mouseX = (e.clientX - rect.left) * ROTATION_RANGE;
-    const mouseY = (e.clientY - rect.top) * ROTATION_RANGE;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
 
-    const rX = (mouseY / height - HALF_ROTATION_RANGE) * -1;
-    const rY = mouseX / width - HALF_ROTATION_RANGE;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
 
-    x.set(rX);
-    y.set(rY);
-    setHoveredIndex(index);
+    x.set(xPct);
+    y.set(yPct);
+    
   };
 
   const handleMouseLeave = () => {
     x.set(0);
     y.set(0);
-    setHoveredIndex(null);
   };
 
   return (
     <div
-    style={{
-      display: "flex",
-      flexWrap: "wrap",
-      height: "auto",
-      width: "auto",
-    }}
-  >
-    {businesses.map((business, index) => (
-      <div className="" key={business.business_id}
-      >
+      className="tab-pane fade show active"
+      id="places"
+      role="tabpanel"
+      aria-labelledby="places-tab"
+    >
       <motion.div
-        ref={ref}
- 
-      onMouseMove={(e) => handleMouseMove(index, e)}
-      onMouseLeave={handleMouseLeave}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="row justify-content-center"
         style={{
-          transformStyle: "preserve-3d",
-          transform: hoveredIndex === index ? transform : 'none',
-          zIndex: hoveredIndex === index ? 1 : 0,
-          margin:20
+          // transform: "translateZ(75px)",
+          // transformStyle: "preserve-3d",
+          // rotateX,
+          // rotateY,
+          transformStyle: 'preserve-3d',
+          transform: `rotateX(${rotateX}) rotateY(${rotateY})`,
         }}
       >
-        <div className="absolute inset-4 grid place-content-center rounded-xl bg-white shadow-lg">
+        {/* <!-- Single --> */}
+
+        {businesses.map((business) => (
           <div
+            className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
             key={business.business_id}
           >
             <div className="Goodup-grid-wrap">
@@ -110,14 +100,14 @@ const ref = useRef(null);
                 <div className="Goodup-grid-thumb">
                   <Link to={`/single-listing/${business.business_id}`}>
                     {/* <a
-                    // href="/single-listing"
-                    className="d-block text-center m-auto"
-                  > */}
-                    <img
-                      src={business.photos_sample[0].photo_url}
-                      className="img-fluid"
-                      alt=""
-                    />
+                      // href="/single-listing"
+                      className="d-block text-center m-auto"
+                    > */}
+                      <img
+                        src={business.photos_sample[0].photo_url}
+                        className="img-fluid"
+                        alt=""
+                      />
                     {/* </a> */}
                   </Link>
                 </div>
@@ -162,8 +152,7 @@ const ref = useRef(null);
                   </div>
                   <div className="Goodup-middle-caption mt-3">
                     <p>
-                      At vero eos et accusamus et iusto odio dignissimos
-                      ducimus
+                      At vero eos et accusamus et iusto odio dignissimos ducimus
                     </p>
                   </div>
                 </div>
@@ -197,19 +186,9 @@ const ref = useRef(null);
               </div>
             </div>
           </div>
-          {/* <p
-        style={{
-          transform: "translateZ(50px)",
-        }}
-        className="text-center text-2xl font-bold"
-      >
-        HOVER ME
-      </p> */}
-        </div>
+        ))}
       </motion.div>
-       </div>
-    ))}
-  </div>
+    </div>
   );
 };
 

@@ -89,7 +89,7 @@ function NavBar() {
                     </Link>
                   </li>
                 )}
-                {!authService.isAuthenticated() && (
+                {authService.isAuthenticated() && (
                   <>
                     <li className="nav-item ">
                       <Link
@@ -111,7 +111,7 @@ function NavBar() {
                   </>
                 )}
 
-                {authService.isAuthenticated() && (
+                {!authService.isAuthenticated() && (
                   <li className="nav-item dropdown">
                     <a
                       className="nav-link dropdown-toggle"
@@ -134,7 +134,7 @@ function NavBar() {
               </ul>
             </div>
           </nav>
-          <section className="gray" onSubmit={handleSubmit}>
+          {/* <section className="gray" onSubmit={handleSubmit}>
             <div
               className="modal fade"
               id="login"
@@ -265,7 +265,7 @@ function NavBar() {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
         </div>
       </div>
     </>

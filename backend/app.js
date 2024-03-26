@@ -13,7 +13,7 @@ var cors = require("cors");
 require("dotenv").config();
 
 //conect to our monodb
-console.log(`MONGO_DB: ${process.env.MONGO_DB}`);
+// console.log(`MONGO_DB: ${process.env.MONGO_DB}`);
 mongoose.connect(process.env.MONGO_DB);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
@@ -23,7 +23,7 @@ db.once("open", () => {
 
 //import our rounters
 var indexRouter = require("./routes/index"); // index = index.js
-var apiRouter = require("./routes/apix"); //api = api folder
+var apiRouter = require("./routes/api"); //api = api folder
 
 //create an instance of express app
 const app = express();

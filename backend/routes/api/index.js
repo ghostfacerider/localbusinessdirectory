@@ -14,7 +14,8 @@ const router = express.Router();
 
 //business Details
 var businessDetailsRouter = require("./businessDetails");
-router.use("/businessDetails", businessDetailsRouter);
+router.use("/businessDetails", businessDetailsRouter.businessListing);
+router.use("/businessDetail/:id", businessDetailsRouter.singleBusiness);
 
 //business Photos
 var businessPhotosRouter = require("./businessPhotos");
@@ -38,12 +39,14 @@ router.get("/", (req, res) => {
 });
 
 //search
-// var searchRouter = require("./search");
-// router.use("/search", searchRouter);
+
+//search
+var searchRouter = require("./search");
+router.use("/search", searchRouter.fetchSearchData);
+
 
 //search in area
-// var searchInAreaRouter = require("./searchinarea");
-// router.use("/searchinarea", searchInAreaRouter);
+router.use("/searchinarea", searchRouter.fetchSearchInAreaData);
 
 //search nearby
 // var searchNearByRouter = require("./searchNearBy");
