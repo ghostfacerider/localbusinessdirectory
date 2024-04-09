@@ -94,8 +94,8 @@ function NavBar() {
                     <li className="nav-item ">
                       <Link
                         to="/signin"
-                        data-bs-toggle="modal"
-                        data-bs-target="#login"
+                        // data-bs-toggle="modal"
+                        // data-bs-target="#login"
                         className="ft-bold"
                       >
                         <i className="fas fa-sign-in-alt me-1 theme-cl"></i>
