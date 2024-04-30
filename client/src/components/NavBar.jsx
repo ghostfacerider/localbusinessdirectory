@@ -77,10 +77,10 @@ function NavBar() {
               </div>
             </div>
             <div className="nav-menus-wrapper">
-              <ul className="nav-menu">
-                <li className="active">
+              <ul className="nav-menu" style={{display:"flex",alignItems:"flex-end", justifyContent:"flex-end"}}>
+                {/* <li className="active">
                   <Link to="/"> Home </Link>
-                </li>
+                </li> */}
 
                 {authService.isAuthenticated() && (
                   <li className="nav-item">
@@ -89,13 +89,13 @@ function NavBar() {
                     </Link>
                   </li>
                 )}
-                {authService.isAuthenticated() && (
+                {!authService.isAuthenticated() && (
                   <>
                     <li className="nav-item ">
                       <Link
                         to="/signin"
-                        data-bs-toggle="modal"
-                        data-bs-target="#login"
+                        // data-bs-toggle="modal"
+                        // data-bs-target="#login"
                         className="ft-bold"
                       >
                         <i className="fas fa-sign-in-alt me-1 theme-cl"></i>
@@ -111,7 +111,7 @@ function NavBar() {
                   </>
                 )}
 
-                {!authService.isAuthenticated() && (
+                {authService.isAuthenticated() && (
                   <li className="nav-item dropdown">
                     <a
                       className="nav-link dropdown-toggle"
