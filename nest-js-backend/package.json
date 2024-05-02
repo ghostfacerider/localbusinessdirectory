@@ -1,5 +1,5 @@
 {
-  "name": "mailcraft-new",
+  "name": "localbusinessdirectory",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -18,12 +18,20 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "postinstall": "husky install"
+    "lint:fix": "eslint . --ext .ts --fix",
+    "postinstall": "husky install && npx husky add .husky/pre-commit \"npx lint-staged\"",
+    "prettier": "prettier --write"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@nestjs/common": "^10.0.5",
