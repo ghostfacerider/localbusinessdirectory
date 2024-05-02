@@ -38,4 +38,5 @@ export class BusinessReview {
   author_photo_url: string;
 }
 
-export const BusinessReviewSchema = SchemaFactory.createForClass(BusinessReview);
+export const BusinessReviewSchema =
+  SchemaFactory.createForClass(BusinessReview);

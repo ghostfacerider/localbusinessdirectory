@@ -21,7 +21,7 @@ export class BusinessPost extends Document {
   post_text: string;
 
   @Prop([{ url: String, caption: String }])
-  post_links: { url: string, caption: string }[];
+  post_links: { url: string; caption: string }[];
 
   @Prop([String])
   post_photos: string[];

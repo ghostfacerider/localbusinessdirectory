@@ -26,4 +26,5 @@ export class BusinessPhotoDetails {
   owner_profile_link: string;
 }
 
-export const BusinessPhotoDetailsSchema = SchemaFactory.createForClass(BusinessPhotoDetails);
+export const BusinessPhotoDetailsSchema =
+  SchemaFactory.createForClass(BusinessPhotoDetails);

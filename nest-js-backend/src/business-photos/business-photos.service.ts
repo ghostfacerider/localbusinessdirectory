@@ -7,7 +7,8 @@ import { BusinessPhoto } from './schema/business-photos.schema';
 @Injectable()
 export class BusinessPhotosService {
   constructor(
-    @InjectModel(BusinessPhoto.name) private readonly businessPhotoModel: Model<BusinessPhoto>,
+    @InjectModel(BusinessPhoto.name)
+    private readonly businessPhotoModel: Model<BusinessPhoto>,
   ) {}
 
   async fetchData(): Promise<any> {
