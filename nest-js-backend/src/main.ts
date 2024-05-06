@@ -3,10 +3,12 @@ import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
 import { ValidationPipe } from '@nestjs/common';
+import { CustomLogger } from './logger/globalLogger.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: true,
+    logger: new CustomLogger(),
   });
 
   const configService = app.get(ConfigService);
@@ -21,6 +23,8 @@ async function bootstrap() {
     }),
   );
 
+  app.useLogger(new CustomLogger());
+  
   // set helmet
   app.use(helmet());
 
