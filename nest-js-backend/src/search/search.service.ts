@@ -1,12 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { BusinessDetail, BusinessDetailDocument } from '../business-details/schema/business-detail.schema';
+import {
+  BusinessDetail,
+  BusinessDetailDocument,
+} from '../business-details/schema/business-detail.schema';
 import axios from 'axios';
 
 @Injectable()
 export class SearchService {
-  constructor(@InjectModel(BusinessDetail.name) private businessDetailModel: Model<BusinessDetailDocument>) {}
+  constructor(
+    @InjectModel(BusinessDetail.name)
+    private businessDetailModel: Model<BusinessDetailDocument>,
+  ) {}
 
   async findAll(): Promise<BusinessDetail[]> {
     return this.businessDetailModel.find().limit(12).exec();
@@ -46,7 +52,11 @@ export class SearchService {
     }
   }
 
-  async fetchSearchInAreaData(find: string, latitude: string, longitude: string) {
+  async fetchSearchInAreaData(
+    find: string,
+    latitude: string,
+    longitude: string,
+  ) {
     try {
       const options = {
         method: 'GET',

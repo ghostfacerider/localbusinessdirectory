@@ -1,13 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { BusinessReview, BusinessReviewDocument } from './schema/business-reviews.schema';
+import {
+  BusinessReview,
+  BusinessReviewDocument,
+} from './schema/business-reviews.schema';
 import axios from 'axios';
 
 @Injectable()
 export class BusinessReviewsService {
   constructor(
-    @InjectModel(BusinessReview.name) private readonly businessReviewModel: Model<BusinessReviewDocument>,
+    @InjectModel(BusinessReview.name)
+    private readonly businessReviewModel: Model<BusinessReviewDocument>,
   ) {}
 
   async fetchData(): Promise<any> {
@@ -29,7 +33,7 @@ export class BusinessReviewsService {
 
       const response = await axios.request(options);
       const businessReviews = response.data.data;
-      
+
       for (const review of businessReviews) {
         const businessReview = new this.businessReviewModel({
           review_id: review.review_id,

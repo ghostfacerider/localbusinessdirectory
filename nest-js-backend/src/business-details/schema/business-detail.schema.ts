@@ -198,4 +198,5 @@ export class BusinessDetail extends Document {
   emails_and_contacts?: EmailsAndContacts;
 }
 
-export const BusinessDetailSchema = SchemaFactory.createForClass(BusinessDetail);
+export const BusinessDetailSchema =
+  SchemaFactory.createForClass(BusinessDetail);
