@@ -9,7 +9,6 @@ import { SearchService } from './search.service';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/localbusinessdirectory'),
     MongooseModule.forFeature([
       { name: BusinessDetail.name, schema: BusinessDetailSchema },
     ]),
