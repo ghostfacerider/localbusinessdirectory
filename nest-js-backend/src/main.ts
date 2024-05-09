@@ -12,6 +12,7 @@ async function bootstrap() {
   });
 
   const configService = app.get(ConfigService);
+  app.setGlobalPrefix('api');  // Set the global prefix here
 
   // data transfer object validation pipes
   app.useGlobalPipes(
