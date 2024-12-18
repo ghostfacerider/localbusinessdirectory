@@ -7,7 +7,8 @@ import axios from 'axios';
 @Injectable()
 export class BusinessReviewsService {
   constructor(
-    @InjectModel(BusinessReview.name) private readonly businessReviewModel: Model<BusinessReviewDocument>,
+    @InjectModel(BusinessReview.name)
+    private readonly businessReviewModel: Model<BusinessReviewDocument>,
   ) {}
 
   async fetchData(): Promise<any> {
@@ -29,7 +30,7 @@ export class BusinessReviewsService {
 
       const response = await axios.request(options);
       const businessReviews = response.data.data;
-      
+
       for (const review of businessReviews) {
         const businessReview = new this.businessReviewModel({
           review_id: review.review_id,

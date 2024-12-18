@@ -6,7 +6,10 @@ import axios from 'axios';
 
 @Injectable()
 export class BusinessDetailsService {
-  constructor(@InjectModel(BusinessDetail.name) private businessDetailModel: Model<BusinessDetailDocument>) {}
+  constructor(
+    @InjectModel(BusinessDetail.name)
+    private businessDetailModel: Model<BusinessDetailDocument>,
+  ) {}
 
   async findAll(): Promise<BusinessDetail[]> {
     return this.businessDetailModel.find().limit(12).exec();

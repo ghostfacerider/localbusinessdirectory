@@ -5,9 +5,7 @@ import { BusinessPhotosService } from './business-photos.service';
 import { BusinessPhoto, BusinessPhotoSchema } from './schema/business-photos.schema';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: BusinessPhoto.name, schema: BusinessPhotoSchema }]),
-  ],
+  imports: [MongooseModule.forFeature([{ name: BusinessPhoto.name, schema: BusinessPhotoSchema }])],
   controllers: [BusinessPhotosController],
   providers: [BusinessPhotosService],
 })

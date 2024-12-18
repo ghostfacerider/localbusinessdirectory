@@ -7,10 +7,7 @@ export class LoggerController {
 
   @Get('info')
   getInfoLog() {
-    this.logger.log(
-      'This is an INFO log message from the LoggerController.',
-      'LoggerController',
-    );
+    this.logger.log('This is an INFO log message from the LoggerController.', 'LoggerController');
     return 'Logged an INFO message.';
   }
 

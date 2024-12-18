@@ -7,7 +7,8 @@ import { BusinessPost, BusinessPostsDocument } from './schema/business-posts.sch
 @Injectable()
 export class BusinessPostsService {
   constructor(
-    @InjectModel(BusinessPost.name) private readonly businessPostModel: Model<BusinessPostsDocument>,
+    @InjectModel(BusinessPost.name)
+    private readonly businessPostModel: Model<BusinessPostsDocument>,
   ) {}
 
   async fetchData(): Promise<any> {

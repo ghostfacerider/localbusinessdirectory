@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { BusinessDetail, BusinessDetailSchema } from '../business-details/schema/business-detail.schema';
+import {
+  BusinessDetail,
+  BusinessDetailSchema,
+} from '../business-details/schema/business-detail.schema';
 import { SearchController } from './search.controller';
 import { SearchService } from './search.service';
 

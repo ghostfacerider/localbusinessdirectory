@@ -11,9 +11,7 @@ const transports = [
       winston.format.colorize(),
       // What the details you need as logs
       winston.format.printf(({ timestamp, level, message, context, trace }) => {
-        return `${timestamp} [${context}] ${level}: ${message}${
-          trace ? `\n${trace}` : ''
-        }`;
+        return `${timestamp} [${context}] ${level}: ${message}${trace ? `\n${trace}` : ''}`;
       }),
     ),
   }),
@@ -23,10 +21,7 @@ const transports = [
     zippedArchive: true,
     maxSize: '20m',
     maxFiles: '14d',
-    format: winston.format.combine(
-      winston.format.timestamp(),
-      winston.format.json(),
-    ),
+    format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
   }),
   new winstonMongoDB.MongoDB({
     level: 'info',

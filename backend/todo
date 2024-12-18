@@ -1,3 +1,5 @@
-middleware
-assigment 2 phase 3
-assignment 4 
+// "husky": {
+  //   "hooks": {
+  //     "pre-commit": "npm run lint"
+  //   }
+  // },

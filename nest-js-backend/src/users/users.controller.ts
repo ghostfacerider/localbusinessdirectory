@@ -61,9 +61,7 @@ export class UsersController {
     if (isMatch) {
       const token = jwt.sign({ data: user }, process.env.JWT_SECRET_KEY);
       res.header('x-auth-token', token);
-      res
-        .status(HttpStatus.OK)
-        .send({ serverMessage: 'Login successful', data: user, token });
+      res.status(HttpStatus.OK).send({ serverMessage: 'Login successful', data: user, token });
     } else {
       res.status(HttpStatus.UNAUTHORIZED).send();
     }

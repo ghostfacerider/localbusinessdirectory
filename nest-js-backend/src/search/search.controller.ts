@@ -20,10 +20,6 @@ export class SearchController {
     @Query('latitude') latitude: string,
     @Query('longitude') longitude: string,
   ) {
-    return this.businessDetailsService.fetchSearchInAreaData(
-      find,
-      latitude,
-      longitude,
-    );
+    return this.businessDetailsService.fetchSearchInAreaData(find, latitude, longitude);
   }
 }

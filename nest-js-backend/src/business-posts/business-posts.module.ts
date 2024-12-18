@@ -5,9 +5,7 @@ import { BusinessPostsService } from './business-posts.service';
 import { BusinessPost, BusinessPostSchema } from './schema/business-posts.schema';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: BusinessPost.name, schema: BusinessPostSchema }]),
-  ],
+  imports: [MongooseModule.forFeature([{ name: BusinessPost.name, schema: BusinessPostSchema }])],
   controllers: [BusinessPostsController],
   providers: [BusinessPostsService],
 })

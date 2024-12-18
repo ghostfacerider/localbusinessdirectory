@@ -3,13 +3,17 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { BusinessPhotoDetails, BusinessPhotoDetailsDocument } from './schema/business-photo-details.schema';
+import {
+  BusinessPhotoDetails,
+  BusinessPhotoDetailsDocument,
+} from './schema/business-photo-details.schema';
 import axios from 'axios';
 
 @Injectable()
 export class BusinessPhotoDetailsService {
   constructor(
-    @InjectModel(BusinessPhotoDetails.name) private readonly businessPhotoDetailsModel: Model<BusinessPhotoDetailsDocument>,
+    @InjectModel(BusinessPhotoDetails.name)
+    private readonly businessPhotoDetailsModel: Model<BusinessPhotoDetailsDocument>,
   ) {}
 
   async fetchData() {

@@ -5,9 +5,7 @@ import { AuthMiddleware } from 'src/auth.middleware';
 
 @Controller('businessDetails')
 export class BusinessDetailsController {
-  constructor(
-    private readonly businessDetailsService: BusinessDetailsService,
-  ) {}
+  constructor(private readonly businessDetailsService: BusinessDetailsService) {}
 
   @Get()
   @UseGuards(AuthMiddleware) // Apply middleware to the login route
