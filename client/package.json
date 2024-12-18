@@ -9,6 +9,7 @@
     "axios": "^1.6.7",
     "font-awesome": "^4.7.0",
     "framer-motion": "^11.0.13",
+    "install-peerdeps": "^3.0.3",
     "jsonwebtoken": "^9.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -19,6 +20,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
+    "prettier:fix": "prettier --write \"src/**/*.{ts,tsx,js,jsx}\"",
+    "prettier:check": "prettier \"src/**/*.{ts,tsx,js,jsx}\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -40,5 +44,33 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^4.14.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jest": "^28.9.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1"
+  },
+    "lint-staged": {
+  "src/**/*.{ts/tsx}": [
+    "npm run prettier:fix .", "npm run lint", "git add"
+  ]
+},
+"husky": {
+  "hooks": {
+    "pre-commit": "lint-staged"
   }
+},
 }
+
