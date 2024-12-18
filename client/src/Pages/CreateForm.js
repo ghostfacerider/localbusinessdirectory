@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import dataService from "../services/dataService";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import dataService from '../services/dataService';
 
 const Create = (props) => {
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [position, setPosition] = useState("");
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [position, setPosition] = useState('');
   const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Create = (props) => {
 
     dataService.createPlayer({ firstname, lastname, position }, (error) => {
       if (!error) {
-        navigate("/");
+        navigate('/');
       } else {
         console.log(error);
       }

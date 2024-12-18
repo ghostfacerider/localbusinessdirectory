@@ -1,25 +1,24 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from 'react';
 import {
   motion,
   useMotionTemplate,
   useMotionValue,
   useSpring,
   wrap,
-} from "framer-motion";
-import { Link } from "react-router-dom";
-import axios from "axios";
+} from 'framer-motion';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const ROTATION_RANGE = 10.5;
 const HALF_ROTATION_RANGE = 10.5 / 2;
 
 const Card = () => {
-  
   const [businesses, setBusinesses] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const options = {
-    method: "GET",
-    url: "http://localhost:5000/api/businessDetails",
+    method: 'GET',
+    url: 'http://localhost:5000/api/businessDetails',
     params: {},
     headers: {},
   };
@@ -28,7 +27,7 @@ const Card = () => {
     async function fetchData() {
       try {
         const response = await axios.request(options);
-        console.log("The data from the cards ", response.data);
+        console.log('The data from the cards ', response.data);
         setBusinesses(response.data);
       } catch (err) {
         console.log(err);
@@ -37,7 +36,7 @@ const Card = () => {
     fetchData();
   }, []);
 
-const ref = useRef(null);
+  const ref = useRef(null);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -74,130 +73,126 @@ const ref = useRef(null);
 
   return (
     <div
-    style={{
-      display: "flex",
-      flexWrap: "wrap",
-      height: "auto",
-      width: "auto",
-    }}
-  >
-    {businesses.map((business, index) => (
-      <div className="" key={business.business_id}
-      >
-      <motion.div
-        ref={ref}
- 
-      onMouseMove={(e) => handleMouseMove(index, e)}
-      onMouseLeave={handleMouseLeave}
-        style={{
-          transformStyle: "preserve-3d",
-          transform: hoveredIndex === index ? transform : 'none',
-          zIndex: hoveredIndex === index ? 1 : 0,
-          margin:20
-        }}
-      >
-        <div className="absolute inset-4 grid place-content-center rounded-xl bg-white shadow-lg">
-          <div
-            key={business.business_id}
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        height: 'auto',
+        width: 'auto',
+      }}
+    >
+      {businesses.map((business, index) => (
+        <div className="" key={business.business_id}>
+          <motion.div
+            ref={ref}
+            onMouseMove={(e) => handleMouseMove(index, e)}
+            onMouseLeave={handleMouseLeave}
+            style={{
+              transformStyle: 'preserve-3d',
+              transform: hoveredIndex === index ? transform : 'none',
+              zIndex: hoveredIndex === index ? 1 : 0,
+              margin: 20,
+            }}
           >
-            <div className="Goodup-grid-wrap">
-              <div className="Goodup-grid-upper">
-                <div className="Goodup-pos ab-left">
-                  <div className="Goodup-status close me-2">
-                    {business.business_status}
-                  </div>
-                </div>
-                <div className="Goodup-grid-thumb">
-                  <Link to={`/single-listing/${business.business_id}`}>
-                    {/* <a
+            <div className="absolute inset-4 grid place-content-center rounded-xl bg-white shadow-lg">
+              <div key={business.business_id}>
+                <div className="Goodup-grid-wrap">
+                  <div className="Goodup-grid-upper">
+                    <div className="Goodup-pos ab-left">
+                      <div className="Goodup-status close me-2">
+                        {business.business_status}
+                      </div>
+                    </div>
+                    <div className="Goodup-grid-thumb">
+                      <Link to={`/single-listing/${business.business_id}`}>
+                        {/* <a
                     // href="/single-listing"
                     className="d-block text-center m-auto"
                   > */}
-                    <img
-                      src={business.photos_sample[0].photo_url}
-                      className="img-fluid"
-                      alt=""
-                    />
-                    {/* </a> */}
-                  </Link>
-                </div>
-                <div className="Goodup-rating overlay">
-                  <div className="Goodup-pr-average high">4.8</div>
-                  <div className="Goodup-aldeio">
-                    <div className="Goodup-rates">
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
+                        <img
+                          src={business.photos_sample[0].photo_url}
+                          className="img-fluid"
+                          alt=""
+                        />
+                        {/* </a> */}
+                      </Link>
                     </div>
-                    <div className="Goodup-all-review">
-                      <span>46 Reviews</span>
+                    <div className="Goodup-rating overlay">
+                      <div className="Goodup-pr-average high">4.8</div>
+                      <div className="Goodup-aldeio">
+                        <div className="Goodup-rates">
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                        </div>
+                        <div className="Goodup-all-review">
+                          <span>46 Reviews</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="Goodup-grid-fl-wrap">
+                    <div className="Goodup-caption px-3 py-2">
+                      <div className="Goodup-author">
+                        <a href={business.website}>
+                          <img
+                            src={business.photos_sample[0].photo_url}
+                            className="img-fluid circle"
+                            alt=""
+                          />
+                        </a>
+                      </div>
+                      <h4 className="mb-0 ft-medium medium">
+                        <a
+                          href="single-listing-detail-2.html"
+                          className="text-dark fs-md"
+                        >
+                          {business.name}
+                        </a>
+                      </h4>
+                      <div className="Goodup-location">
+                        <i className="fas fa-map-marker-alt me-1 theme-cl"></i>
+                        {business.city}, {business.state}
+                      </div>
+                      <div className="Goodup-middle-caption mt-3">
+                        <p>
+                          At vero eos et accusamus et iusto odio dignissimos
+                          ducimus
+                        </p>
+                      </div>
+                    </div>
+                    <div className="Goodup-grid-footer py-2 px-3">
+                      <div className="Goodup-ft-first">
+                        <a
+                          href="half-map-search-2.html"
+                          className="Goodup-cats-wrap"
+                        >
+                          <div className="cats-ico bg-2">
+                            <i className="lni lni-slim"></i>
+                          </div>
+                          <span className="cats-title">{business.type}</span>
+                        </a>
+                      </div>
+                      <div className="Goodup-ft-last">
+                        <div className="Goodup-inline">
+                          <div className="Goodup-bookmark-btn">
+                            <button type="button">
+                              <i className="lni lni-envelope position-absolute"></i>
+                            </button>
+                          </div>
+                          <div className="Goodup-bookmark-btn">
+                            <button type="button">
+                              <i className="lni lni-heart-filled position-absolute"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="Goodup-grid-fl-wrap">
-                <div className="Goodup-caption px-3 py-2">
-                  <div className="Goodup-author">
-                    <a href={business.website}>
-                      <img
-                        src={business.photos_sample[0].photo_url}
-                        className="img-fluid circle"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <h4 className="mb-0 ft-medium medium">
-                    <a
-                      href="single-listing-detail-2.html"
-                      className="text-dark fs-md"
-                    >
-                      {business.name}
-                    </a>
-                  </h4>
-                  <div className="Goodup-location">
-                    <i className="fas fa-map-marker-alt me-1 theme-cl"></i>
-                    {business.city}, {business.state}
-                  </div>
-                  <div className="Goodup-middle-caption mt-3">
-                    <p>
-                      At vero eos et accusamus et iusto odio dignissimos
-                      ducimus
-                    </p>
-                  </div>
-                </div>
-                <div className="Goodup-grid-footer py-2 px-3">
-                  <div className="Goodup-ft-first">
-                    <a
-                      href="half-map-search-2.html"
-                      className="Goodup-cats-wrap"
-                    >
-                      <div className="cats-ico bg-2">
-                        <i className="lni lni-slim"></i>
-                      </div>
-                      <span className="cats-title">{business.type}</span>
-                    </a>
-                  </div>
-                  <div className="Goodup-ft-last">
-                    <div className="Goodup-inline">
-                      <div className="Goodup-bookmark-btn">
-                        <button type="button">
-                          <i className="lni lni-envelope position-absolute"></i>
-                        </button>
-                      </div>
-                      <div className="Goodup-bookmark-btn">
-                        <button type="button">
-                          <i className="lni lni-heart-filled position-absolute"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* <p
+              {/* <p
         style={{
           transform: "translateZ(50px)",
         }}
@@ -205,11 +200,11 @@ const ref = useRef(null);
       >
         HOVER ME
       </p> */}
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
-       </div>
-    ))}
-  </div>
+      ))}
+    </div>
   );
 };
 

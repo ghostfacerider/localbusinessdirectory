@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import authService from "../services/authService";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import authService from '../services/authService';
 
 const Register = (props) => {
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [errors, setErrors] = useState({});
 
   //use tge provided by react route
@@ -24,7 +24,7 @@ const Register = (props) => {
 
     authService.register({ email, password, firstname, lastname }, (error) => {
       if (!error) {
-        navigate("/");
+        navigate('/');
       } else {
         console.log(error);
       }
@@ -57,7 +57,7 @@ const Register = (props) => {
                           />
                           {errors.firstname && (
                             <div className="alert alert-danger">
-                              {" "}
+                              {' '}
                               {errors.firstname.message}
                             </div>
                           )}
@@ -76,7 +76,7 @@ const Register = (props) => {
                           />
                           {errors.lastname && (
                             <div className="alert alert-danger">
-                              {" "}
+                              {' '}
                               {errors.lastname.message}
                             </div>
                           )}
@@ -95,14 +95,14 @@ const Register = (props) => {
                       />
                       {errors.email && (
                         <div className="alert alert-danger">
-                          {" "}
+                          {' '}
                           {errors.email.message}
                         </div>
                       )}
 
                       {errors.serverMessage && (
                         <div className="alert alert-danger">
-                          {" "}
+                          {' '}
                           {errors.serverMessage}
                         </div>
                       )}
@@ -118,7 +118,7 @@ const Register = (props) => {
                       />
                       {errors.password && (
                         <div className="alert alert-danger">
-                          {" "}
+                          {' '}
                           {errors.password.message}
                         </div>
                       )}
@@ -158,7 +158,7 @@ const Register = (props) => {
                     </div>
                     <div className="form-group text-center mt-4 mb-0">
                       <p className="mb-0">
-                        Have You Already An account?{" "}
+                        Have You Already An account?{' '}
                         <a href="login.html" className="ft-medium text-success">
                           Sign In
                         </a>

@@ -1,12 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
-import authService from "../services/authService";
-import logo from "../img/logo.png";
+import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import authService from '../services/authService';
+import logo from '../img/logo.png';
 
 function NavBar() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   //use the provided by react route
 
@@ -20,7 +20,7 @@ function NavBar() {
     //we will post the form data to the API for Autherntication
     authService.signin({ email, password }, (error) => {
       if (!error) {
-        navigate("/");
+        navigate('/');
       } else {
         console.log(error);
         //save our validation errors in state
@@ -35,10 +35,10 @@ function NavBar() {
   };
 
   const handleLogout = (event) => {
-    console.log("handleLogout");
+    console.log('handleLogout');
     event.preventDefault();
     authService.signout();
-    navigate("/");
+    navigate('/');
   };
 
   return (
@@ -77,7 +77,14 @@ function NavBar() {
               </div>
             </div>
             <div className="nav-menus-wrapper">
-              <ul className="nav-menu" style={{display:"flex",alignItems:"flex-end", justifyContent:"flex-end"}}>
+              <ul
+                className="nav-menu"
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                  justifyContent: 'flex-end',
+                }}
+              >
                 {/* <li className="active">
                   <Link to="/"> Home </Link>
                 </li> */}

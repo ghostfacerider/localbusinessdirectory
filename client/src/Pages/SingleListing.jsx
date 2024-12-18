@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const Single_Listing = () => {
   const business_id = useParams();
   const [businesses, setBusinesses] = useState([]);
   const options = {
-    method: "GET",
+    method: 'GET',
     url: `http://localhost:5000/api/businessDetail/${business_id}`,
     params: {},
     headers: {},
@@ -16,7 +16,7 @@ const Single_Listing = () => {
     async function fetchData() {
       try {
         const response = await axios.request(options);
-        console.log("The data from the Listings ", response.data);
+        console.log('The data from the Listings ', response.data);
         setBusinesses(response?.data);
       } catch (err) {
         console.log(err);
@@ -24,7 +24,7 @@ const Single_Listing = () => {
     }
     fetchData();
   }, [business_id]);
-  console.log("asdfghjkl", businesses);
+  console.log('asdfghjkl', businesses);
   return (
     <section className="gray py-5 position-relative">
       <div className="container">
@@ -32,27 +32,23 @@ const Single_Listing = () => {
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12">
             {/* About The Business */}
 
-                <div className="bg-white rounded mb-4">
-                  <div className="jbd-01 px-4 py-4">
-                    <div className="jbd-details">
-                      <h5 className="ft-bold fs-lg">{businesses[0]?.name}</h5>
-                      <div className="d-block mt-3">
-                        <p>
-                        {businesses[0]?.owner_name}
-                      
-                        </p>
-                        <p className="p-0 m-0">
-
-                        {businesses[0]?.address}
-                          {/* Temporibus autem quibusdam et aut officiis debitis aut
+            <div className="bg-white rounded mb-4">
+              <div className="jbd-01 px-4 py-4">
+                <div className="jbd-details">
+                  <h5 className="ft-bold fs-lg">{businesses[0]?.name}</h5>
+                  <div className="d-block mt-3">
+                    <p>{businesses[0]?.owner_name}</p>
+                    <p className="p-0 m-0">
+                      {businesses[0]?.address}
+                      {/* Temporibus autem quibusdam et aut officiis debitis aut
                           rerum necessitatibus saepe eveniet ut et voluptates
                           repudiandae sint et molestiae non recusandae. Itaque
                           earum rerum hic tenetur */}
-                        </p>
-                      </div>
-                    </div>
+                    </p>
                   </div>
                 </div>
+              </div>
+            </div>
 
             {/* Business Menu */}
             <div className="bg-white rounded mb-4">
@@ -64,14 +60,14 @@ const Single_Listing = () => {
                       {/* {businesses.} */}
 
                       {/* Single Menu */}
-                            
-                      <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6" >
+
+                      <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
                         <div className="Goodup-sng-menu">
                           <div className="Goodup-sng-menu-thumb">
                             <img
                               // src="https://via.placeholder.com/550x400"
-                              src={ businesses[0]?.photos_sample[0]?.photo_url}
-                              style={{height:250}}
+                              src={businesses[0]?.photos_sample[0]?.photo_url}
+                              style={{ height: 250 }}
                               className="img-fluid"
                               alt=""
                             />
@@ -81,14 +77,12 @@ const Single_Listing = () => {
                               Brigue Medium Burger
                             </h4>
                             <div className="lkji-oiyt">
-                              <span>Start From</span>{" "}
+                              <span>Start From</span>{' '}
                               <h5 className="theme-cl ft-bold">$49</h5>
                             </div>
                           </div>
                         </div>
                       </div>
-
-
 
                       {/* Single Menu */}
                       {/* <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
@@ -841,17 +835,23 @@ const Single_Listing = () => {
                             </tr>
                             <tr>
                               <td>Tue</td>
-                              <td>{businesses[0]?.working_hours?.Tuesday[0]}</td>
+                              <td>
+                                {businesses[0]?.working_hours?.Tuesday[0]}
+                              </td>
                               <td />
                             </tr>
                             <tr>
                               <td>Wed</td>
-                              <td>{businesses[0]?.working_hours?.Tuesday[0]}</td>
+                              <td>
+                                {businesses[0]?.working_hours?.Tuesday[0]}
+                              </td>
                               <td />
                             </tr>
                             <tr>
                               <td>Thu</td>
-                              <td>{businesses[0]?.working_hours?.Wednesday[0]}</td>
+                              <td>
+                                {businesses[0]?.working_hours?.Wednesday[0]}
+                              </td>
                               <td />
                             </tr>
                             <tr>
@@ -861,7 +861,9 @@ const Single_Listing = () => {
                             </tr>
                             <tr>
                               <td>Sat</td>
-                              <td>{businesses[0]?.working_hours?.Saturday[0]}</td>
+                              <td>
+                                {businesses[0]?.working_hours?.Saturday[0]}
+                              </td>
                               <td />
                             </tr>
                             <tr>
@@ -930,7 +932,7 @@ const Single_Listing = () => {
                             <textarea
                               className="form-control rounded ht-140"
                               placeholder="Review"
-                              defaultValue={""}
+                              defaultValue={''}
                             />
                           </div>
                         </div>
@@ -998,14 +1000,17 @@ const Single_Listing = () => {
                 <div className="Goodup-agent-thumb">
                   <img
                     // src={businesses?.photos_sample[0]?.photo_url}
-                    src={ businesses[0]?.photos_sample[0]?.photo_url}
+                    src={businesses[0]?.photos_sample[0]?.photo_url}
                     width={90}
                     className="img-fluid circle"
                     alt=""
                   />
                 </div>
                 <div className="Goodup-agent-caption">
-                  <h4 className="ft-medium mb-0"> {businesses[0]?.owner_name}</h4>
+                  <h4 className="ft-medium mb-0">
+                    {' '}
+                    {businesses[0]?.owner_name}
+                  </h4>
                   <span className="agd-location">
                     <i className="lni lni-map-marker me-1" />
                     {businesses[0]?.state}
@@ -1080,7 +1085,9 @@ const Single_Listing = () => {
                       </div>
                       <div className="list-uiyt-capt">
                         <h5>Drop a Mail</h5>
-                        <p>{businesses[0]?.emails_and_contacts[0]?.emails[0]}</p>
+                        <p>
+                          {businesses[0]?.emails_and_contacts[0]?.emails[0]}
+                        </p>
                       </div>
                     </div>
                   </li>
@@ -1091,7 +1098,12 @@ const Single_Listing = () => {
                       </div>
                       <div className="list-uiyt-capt">
                         <h5>Call Us</h5>
-                        <p>{businesses[0]?.emails_and_contacts[0]?.phone_numbers[0]}</p>
+                        <p>
+                          {
+                            businesses[0]?.emails_and_contacts[0]
+                              ?.phone_numbers[0]
+                          }
+                        </p>
                       </div>
                     </div>
                   </li>

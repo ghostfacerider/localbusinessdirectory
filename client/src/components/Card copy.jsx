@@ -1,12 +1,12 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Link } from "react-router-dom";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
 const Card = () => {
   const [businesses, setBusinesses] = useState([]);
   const options = {
-    method: "GET",
-    url: "http://localhost:5000/api/businessDetails",
+    method: 'GET',
+    url: 'http://localhost:5000/api/businessDetails',
     params: {},
     headers: {},
   };
@@ -15,7 +15,7 @@ const Card = () => {
     async function fetchData() {
       try {
         const response = await axios.request(options);
-        console.log("The data from the cards ", response.data);
+        console.log('The data from the cards ', response.data);
         setBusinesses(response.data);
       } catch (err) {
         console.log(err);
@@ -33,13 +33,13 @@ const Card = () => {
   const rotateX = useTransform(
     mouseYSpring,
     [-0.5, 0.5],
-    ["7.5deg", "-7.5deg"]
+    ['7.5deg', '-7.5deg']
   );
 
   const rotateY = useTransform(
     mouseXSpring,
     [-0.5, 0.5],
-    ["-7.5deg", "7.5deg"]
+    ['-7.5deg', '7.5deg']
   );
   const handleMouseMove = (e) => {
     const rect = e.target.getBoundingClientRect();
@@ -55,7 +55,6 @@ const Card = () => {
 
     x.set(xPct);
     y.set(yPct);
-    
   };
 
   const handleMouseLeave = () => {
@@ -103,11 +102,11 @@ const Card = () => {
                       // href="/single-listing"
                       className="d-block text-center m-auto"
                     > */}
-                      <img
-                        src={business.photos_sample[0].photo_url}
-                        className="img-fluid"
-                        alt=""
-                      />
+                    <img
+                      src={business.photos_sample[0].photo_url}
+                      className="img-fluid"
+                      alt=""
+                    />
                     {/* </a> */}
                   </Link>
                 </div>

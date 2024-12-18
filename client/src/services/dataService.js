@@ -1,5 +1,5 @@
-import axios from "axios";
-import authService from "../services/authService";
+import axios from 'axios';
+import authService from '../services/authService';
 
 class dataService {
   getPlayers(callback) {
@@ -22,7 +22,9 @@ class dataService {
   createPlayer(create, callback) {
     // console.log("create");
     axios
-      .post(`${process.env.REACT_APP_API_URL}/players`, create, {headers:{'x-auth-token':authService.getToken()}})
+      .post(`${process.env.REACT_APP_API_URL}/players`, create, {
+        headers: { 'x-auth-token': authService.getToken() },
+      })
       .then((response) => {
         if (response.status === 201) {
           console.log(response);
@@ -37,9 +39,13 @@ class dataService {
 
   updatePlayer(updateId, updatePlayer, callback) {
     axios
-      .put(`${process.env.REACT_APP_API_URL}/players/${updateId}`, updatePlayer,{headers:{'x-auth-token':authService.getToken()}})
+      .put(
+        `${process.env.REACT_APP_API_URL}/players/${updateId}`,
+        updatePlayer,
+        { headers: { 'x-auth-token': authService.getToken() } }
+      )
       .then((response) => {
-        callback()
+        callback();
       })
       .catch((error) => {
         console.log(error);
@@ -49,7 +55,9 @@ class dataService {
 
   deletePlayer(deleteId, callback) {
     axios
-      .delete(`${process.env.REACT_APP_API_URL}/players/${deleteId}`,{headers:{'x-auth-token':authService.getToken()}})
+      .delete(`${process.env.REACT_APP_API_URL}/players/${deleteId}`, {
+        headers: { 'x-auth-token': authService.getToken() },
+      })
       .then((response) => {
         callback();
       })

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import "../css/signin.css";
-import { useNavigate } from "react-router-dom";
-import authService from "../services/authService";
+import React, { useState } from 'react';
+import '../css/signin.css';
+import { useNavigate } from 'react-router-dom';
+import authService from '../services/authService';
 
 const SignIn = (props) => {
   //define state in this component using Hooks! yay
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   //use the provided by react route
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const SignIn = (props) => {
     //we will post the form data to the API for Autherntication
     authService.signin({ email, password }, (error) => {
       if (!error) {
-        navigate("/");
+        navigate('/');
       } else {
         console.log(error);
         //save our validation errors in state
@@ -79,14 +79,14 @@ const SignIn = (props) => {
                     />
                     {errors.email && (
                       <div className="alert alert-danger">
-                        {" "}
+                        {' '}
                         {errors.email.message}
                       </div>
                     )}
 
                     {errors.serverMessage && (
                       <div className="alert alert-danger">
-                        {" "}
+                        {' '}
                         {errors.serverMessage}
                       </div>
                     )}

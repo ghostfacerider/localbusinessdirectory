@@ -1,8 +1,6 @@
-import Card from "../components/Card";
+import Card from '../components/Card';
 
 export const ListingTypes = () => {
-  
-
   return (
     <>
       <section className="space min">
@@ -129,7 +127,7 @@ export const ListingTypes = () => {
               <div className="tab-content" id="myTabContent">
                 {/* <!-- Places --> */}
                 <Card />
-               
+
                 {/* <!-- /Places --> */}
 
                 {/* <!-- Events --> */}

@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
-import dataService from "../services/dataService";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import dataService from '../services/dataService';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import React from "react";
+import React from 'react';
 
 const Edit = () => {
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [position, setPosition] = useState("");
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [position, setPosition] = useState('');
 
   const [errors, setErrors] = useState({});
   //use the provided by react route
@@ -32,13 +32,13 @@ const Edit = () => {
       { firstname, lastname, position },
       (error) => {
         if (!error) {
-          navigate("/");
+          navigate('/');
         } else {
           console.log(error);
         }
       }
     );
-    navigate("/");
+    navigate('/');
   };
   return (
     <form className="form-signin" onSubmit={handleSubmit}>

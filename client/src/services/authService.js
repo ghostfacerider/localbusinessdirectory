@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 class authService {
   signin(credentials, callback) {
@@ -10,7 +10,7 @@ class authService {
           // store it
           //*remove localStorage in the future* store in memory\
           console.log(response.headers);
-          localStorage.setItem("token", response.headers["x-auth-token"]);
+          localStorage.setItem('token', response.headers['x-auth-token']);
           callback(null);
         }
       })
@@ -27,8 +27,8 @@ class authService {
         if (response.status === 200) {
           // store it
           //*remove localStorage in the future* store in
-          const token = response.headers["x-auth-token"];
-          localStorage.setItem("token", token);
+          const token = response.headers['x-auth-token'];
+          localStorage.setItem('token', token);
           console.log(token);
           console.log(response.headers);
           callback(null);
@@ -40,7 +40,7 @@ class authService {
   }
 
   isAuthenticated() {
-    return localStorage.getItem("token") !== null;
+    return localStorage.getItem('token') !== null;
 
     //when the user logs in show "welcome" with there name and a drop down
 
@@ -48,11 +48,10 @@ class authService {
   }
 
   signout() {
-    localStorage.removeItem("token");
-  
+    localStorage.removeItem('token');
   }
   getToken() {
-    return localStorage.getItem("token");
+    return localStorage.getItem('token');
   }
 }
 

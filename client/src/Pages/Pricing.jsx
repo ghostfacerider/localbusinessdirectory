@@ -35,7 +35,7 @@ export const Pricing = () => {
                     </div>
                   </div>
                   <div className="Goodup-price-subtitle">
-                    Best Choice for Individuals{" "}
+                    Best Choice for Individuals{' '}
                   </div>
                 </div>
                 <div className="Goodup-price-body">
@@ -94,7 +94,7 @@ export const Pricing = () => {
                     </div>
                   </div>
                   <div className="Goodup-price-subtitle">
-                    Best Choice for Individuals{" "}
+                    Best Choice for Individuals{' '}
                   </div>
                 </div>
                 <div className="Goodup-price-body">
@@ -153,7 +153,7 @@ export const Pricing = () => {
                     </div>
                   </div>
                   <div className="Goodup-price-subtitle">
-                    Best Choice for Individuals{" "}
+                    Best Choice for Individuals{' '}
                   </div>
                 </div>
                 <div className="Goodup-price-body">

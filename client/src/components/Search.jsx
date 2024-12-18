@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 // import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 export const Search = ({ onSearch }) => {
-  const [findQuery, setFindQuery] = useState("");
-  const [whereQuery, setWhereQuery] = useState("");
+  const [findQuery, setFindQuery] = useState('');
+  const [whereQuery, setWhereQuery] = useState('');
 
   // const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ export const Search = ({ onSearch }) => {
       onSearch({ findQuery, whereQuery });
       // navigate('/another-component', { state: { responseData: data } });
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error);
     }
   };
 

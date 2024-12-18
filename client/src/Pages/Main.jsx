@@ -1,11 +1,11 @@
-import { Blog, Categories, Download, ListingTypes, Pricing } from "./index";
-import { Search, Newsletter } from "../components/index";
-import Card from "../components/Card";
-import { useState } from "react";
-import SearchCard from "../components/SearchCard";
+import { Blog, Categories, Download, ListingTypes, Pricing } from './index';
+import { Search, Newsletter } from '../components/index';
+import Card from '../components/Card';
+import { useState } from 'react';
+import SearchCard from '../components/SearchCard';
 
 const Main = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (query) => {
     setSearchQuery(query);
@@ -33,25 +33,30 @@ const Main = () => {
                     visit local areas.
                   </p>
                 </div>
-                <div className="" style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
-
-                <Search onSearch={handleSearch} />
+                <div
+                  className=""
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Search onSearch={handleSearch} />
                 </div>
               </div>
             </div>
           </div>
         </div>
         {searchQuery ? (
-          <><span></span>
-        <SearchCard searchQuery={searchQuery} />
-
+          <>
+            <span></span>
+            <SearchCard searchQuery={searchQuery} />
           </>
-      ) : (
-        <>
-        <span></span>
-        </>
-      )}
-
+        ) : (
+          <>
+            <span></span>
+          </>
+        )}
 
         {/* <!-- ======================= Listing Categories ======================== --> */}
         <Categories />
@@ -65,7 +70,7 @@ const Main = () => {
                 <div className="sec_title position-relative text-center mb-5">
                   <h6 className="text-muted mb-0">Our Partners</h6>
                   <h2 className="ft-bold">
-                    We Have Worked with{" "}
+                    We Have Worked with{' '}
                     <span className="theme-cl">10,000+</span> Trusted Companies
                   </h2>
                 </div>

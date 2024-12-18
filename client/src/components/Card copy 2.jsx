@@ -1,13 +1,13 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Link } from "react-router-dom";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
 const Card = () => {
   const [businesses, setBusinesses] = useState([]);
-  const [mode, setmode] = useState("online");
+  const [mode, setmode] = useState('online');
   const options = {
-    method: "GET",
-    url: "http://localhost:5000/api/businessDetails",
+    method: 'GET',
+    url: 'http://localhost:5000/api/businessDetails',
     params: {},
     headers: {},
   };
@@ -16,13 +16,13 @@ const Card = () => {
     async function fetchData() {
       try {
         const response = await axios.request(options);
-        console.log("The data from the cards ", response.data);
+        console.log('The data from the cards ', response.data);
         setBusinesses(response.data);
-        localStorage.setItem("card", JSON.stringify(response.data));
+        localStorage.setItem('card', JSON.stringify(response.data));
       } catch (err) {
         // console.log(err);
-        setmode("offline");
-        let collection = localStorage.getItem("card");
+        setmode('offline');
+        let collection = localStorage.getItem('card');
         setBusinesses(JSON.parse(collection));
       }
     }
@@ -54,15 +54,15 @@ const Card = () => {
       aria-labelledby="places-tab"
     >
       <div>
-        {mode === "offline" ? (
+        {mode === 'offline' ? (
           <div> You are in offline mode or some issue with connections</div>
         ) : null}
       </div>
       <div
         className=""
         style={{
-          display: "flex",
-          flexWrap: "wrap",
+          display: 'flex',
+          flexWrap: 'wrap',
           marginRight: 10,
           marginLeft: 10,
         }}
@@ -77,9 +77,9 @@ const Card = () => {
             style={{
               margin: 20,
 
-              transformStyle: "preserve-3d",
-              transform: hoveredCards[index] ? "scale(1.1)" : "scale(1)",
-              transition: "transform 0.3s ease", // Add a smooth transition for the scale change
+              transformStyle: 'preserve-3d',
+              transform: hoveredCards[index] ? 'scale(1.1)' : 'scale(1)',
+              transition: 'transform 0.3s ease', // Add a smooth transition for the scale change
             }}
           >
             <div

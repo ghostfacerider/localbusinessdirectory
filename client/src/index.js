@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import serviceWorkerDev from "./serviceWorkerDev";
+import serviceWorkerDev from './serviceWorkerDev';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,4 +17,4 @@ root.render(
 reportWebVitals();
 
 //serviceWorkerDev is for PWA (Progressive web app)
-serviceWorkerDev()
+serviceWorkerDev();
