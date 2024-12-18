@@ -11,6 +11,7 @@ import { BusinessPhotoDetailsModule } from './business-photo-details/business-ph
 import { BusinessPostsModule } from './business-posts/business-posts.module';
 import { BusinessReviewsModule } from './business-reviews/business-reviews.module';
 import { SearchModule } from './search/search.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
