@@ -1,4 +1,5 @@
 import { Module, MiddlewareConsumer, NestModule } from '@nestjs/common';
+import { CategoryModule } from './category/category.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './users/users.module';
@@ -12,6 +13,7 @@ import { BusinessPostsModule } from './business-posts/business-posts.module';
 import { BusinessReviewsModule } from './business-reviews/business-reviews.module';
 import { SearchModule } from './search/search.module';
 import { UserModule } from './user/user.module';
+import { CategoryModule } from './category/category.module';
 
 @Module({
   imports: [
@@ -33,6 +35,7 @@ import { UserModule } from './user/user.module';
     BusinessReviewsModule,
     SearchModule,
     LoggerModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [],
