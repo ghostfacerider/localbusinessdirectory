@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 class authService {
-  signin(credentials, callback) {
+  signin(credentials:any, callback:any) {
     axios
       .post(`${process.env.REACT_APP_API_URL}/users/login`, credentials)
       .then((response) => {
@@ -20,7 +20,7 @@ class authService {
       });
   }
 
-  register(registrationData, callback) {
+  register(registrationData:any, callback:any) {
     axios
       .post(`${process.env.REACT_APP_API_URL}/users/register`, registrationData)
       .then((response) => {

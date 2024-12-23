@@ -1,21 +1,39 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-
-const Single_Listing = () => {
-  const business_id = useParams();
-  const [businesses, setBusinesses] = useState([]);
-  const options = {
-    method: 'GET',
-    url: `http://localhost:5000/api/businessDetail/${business_id}`,
-    params: {},
-    headers: {},
+interface Business {
+  name: string;
+  owner_name: string;
+  address: string;
+  photos_sample: { photo_url: string }[];
+  website: string;
+  rating: string;
+  state: string;
+  working_hours: {
+    Monday?: string[];
+    Tuesday?: string[];
+    Wednesday?: string[];
+    Thursday?: string[];
+    Friday?: string[];
+    Saturday?: string[];
+    Sunday?: string[];
   };
+  emails_and_contacts: {
+    emails: string[];
+    phone_numbers: string[];
+  }[];
+  full_address: string;
+}
+const Single_Listing: React.FC = () => {
+  const { business_id } = useParams<{ business_id: string }>();
+  const [businesses, setBusinesses] = useState<Business[]>([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.request(options);
+        const response = await axios.get<Business[]>(
+          `http://localhost:5000/api/businessDetail/${business_id}`
+        );
         console.log('The data from the Listings ', response.data);
         setBusinesses(response?.data);
       } catch (err) {
@@ -203,7 +221,7 @@ const Single_Listing = () => {
                     <ul>
                       <li>
                         <div className="Goodup-afl-pace">
-                          <img src="assets/img/verify.svg" className alt="" />
+                          <img src="assets/img/verify.svg" className="" alt="" />
                           <span>Health Score 8.7 / 10</span>
                         </div>
                       </li>
@@ -830,45 +848,46 @@ const Single_Listing = () => {
                           <tbody>
                             <tr>
                               <th scope="row">Mon</th>
-                              <td>{businesses[0]?.working_hours?.Monday[0]}</td>
+                              <td>{businesses[0]?.working_hours?.Monday?.[0]}</td>
+                            
                               <td className="text-success">Open now</td>
                             </tr>
                             <tr>
                               <td>Tue</td>
                               <td>
-                                {businesses[0]?.working_hours?.Tuesday[0]}
+                                {businesses[0]?.working_hours?.Tuesday?.[0]}
                               </td>
                               <td />
                             </tr>
                             <tr>
                               <td>Wed</td>
                               <td>
-                                {businesses[0]?.working_hours?.Tuesday[0]}
+                                {businesses[0]?.working_hours?.Tuesday?.[0]}
                               </td>
                               <td />
                             </tr>
                             <tr>
                               <td>Thu</td>
                               <td>
-                                {businesses[0]?.working_hours?.Wednesday[0]}
+                                {businesses[0]?.working_hours?.Wednesday?.[0]}
                               </td>
                               <td />
                             </tr>
                             <tr>
                               <td>Fri</td>
-                              <td>{businesses[0]?.working_hours?.Friday[0]}</td>
+                              <td>{businesses[0]?.working_hours?.Friday?.[0]}</td>
                               <td />
                             </tr>
                             <tr>
                               <td>Sat</td>
                               <td>
-                                {businesses[0]?.working_hours?.Saturday[0]}
+                                {businesses[0]?.working_hours?.Saturday?.[0]}
                               </td>
                               <td />
                             </tr>
                             <tr>
                               <td>Sun</td>
-                              <td>{businesses[0]?.working_hours?.Sunday[0]}</td>
+                              <td>{businesses[0]?.working_hours?.Sunday?.[0]}</td>
                               <td />
                             </tr>
                           </tbody>

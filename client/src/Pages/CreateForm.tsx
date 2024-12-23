@@ -1,32 +1,40 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import dataService from '../services/dataService';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import dataService from "./../services/dataService";
 
-const Create = (props) => {
-  const [firstname, setFirstName] = useState('');
-  const [lastname, setLastName] = useState('');
-  const [position, setPosition] = useState('');
-  const [errors, setErrors] = useState({});
+interface Errors {
+  firstname?: { message: string };
+  lastname?: { message: string };
+  position?: { message: string };
+}
+
+const Create: React.FC = () => {
+  const [firstname, setFirstName] = useState<string>("");
+  const [lastname, setLastName] = useState<string>("");
+  const [position, setPosition] = useState<string>("");
+  const [errors, setErrors] = useState<Errors>({});
 
   const navigate = useNavigate();
 
-  const handleCreate = (event) => {
-    //  console.log("test create");
+  const handleCreate = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setErrors({});
 
-    dataService.createPlayer({ firstname, lastname, position }, (error) => {
-      if (!error) {
-        navigate('/');
-      } else {
-        console.log(error);
+    dataService.createPlayer(
+      { firstname, lastname, position },
+      (error: any) => {
+        if (!error) {
+          navigate("/");
+        } else {
+          console.error(error);
+        }
       }
-    });
+    );
   };
 
   return (
     <form className="form-signin" onSubmit={handleCreate}>
-      <label htmlFor="inputname" className="sr-only">
+      <label htmlFor="inputFirstName" className="sr-only">
         First Name
       </label>
       <input
@@ -43,12 +51,12 @@ const Create = (props) => {
         <div className="alert alert-danger"> {errors.firstname.message}</div>
       )}
 
-      <label htmlFor="inputname" className="sr-only">
-        Last name
+      <label htmlFor="inputLastName" className="sr-only">
+        Last Name
       </label>
       <input
         type="text"
-        id="inputlastname"
+        id="inputLastName"
         name="lastname"
         value={lastname}
         onChange={(e) => setLastName(e.target.value)}
@@ -59,12 +67,13 @@ const Create = (props) => {
       {errors.lastname && (
         <div className="alert alert-danger"> {errors.lastname.message}</div>
       )}
-      <label htmlFor="inputname" className="sr-only">
+
+      <label htmlFor="inputPosition" className="sr-only">
         Position
       </label>
       <input
         type="text"
-        id="inputPostion"
+        id="inputPosition"
         name="position"
         value={position}
         onChange={(e) => setPosition(e.target.value)}

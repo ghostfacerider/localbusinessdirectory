@@ -1,20 +1,40 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
-const SearchCard = ({ searchQuery }) => {
-  console.log(searchQuery, 'searchQuery');
-  let { findQuery, whereQuery } = searchQuery;
+type Business = {
+  business_id: string;
+  business_status: string;
+  photos_sample: { photo_url: string }[];
+  website: string;
+  name: string;
+  city: string;
+  state: string;
+  type: string;
+};
 
-  const [businesses, setBusinesses] = useState([]);
+type SearchQuery = {
+  findQuery: string;
+  whereQuery: string;
+};
+
+interface SearchCardProps {
+  searchQuery: SearchQuery;
+}
+
+const SearchCard: React.FC<SearchCardProps> = ({ searchQuery }) => {
+  console.log(searchQuery, "searchQuery");
+  const { findQuery, whereQuery } = searchQuery;
+
+  const [businesses, setBusinesses] = useState<Business[]>([]);
 
   useEffect(() => {
     if (findQuery && whereQuery) {
       async function fetchData() {
         try {
           const options = {
-            method: 'GET',
+            method: "GET",
             url: `http://localhost:5000/api/search?find=${findQuery}&where=${whereQuery}`,
             params: {},
             headers: {},
@@ -70,19 +90,19 @@ const SearchCard = ({ searchQuery }) => {
   //   y.set(0);
   // };
 
-  const [hoveredCards, setHoveredCards] = useState(
+  const [hoveredCards, setHoveredCards] = useState<boolean[]>(
     new Array(businesses.length).fill(false)
   );
 
   // Function to handle mouse enter for a specific card
-  const handleMouseEnter = (index) => {
+  const handleMouseEnter = (index: number) => {
     const updatedHoveredCards = [...hoveredCards];
     updatedHoveredCards[index] = true;
     setHoveredCards(updatedHoveredCards);
   };
 
   // Function to handle mouse leave for a specific card
-  const handleMouseLeave = (index) => {
+  const handleMouseLeave = (index: number) => {
     const updatedHoveredCards = [...hoveredCards];
     updatedHoveredCards[index] = false;
     setHoveredCards(updatedHoveredCards);
@@ -98,8 +118,8 @@ const SearchCard = ({ searchQuery }) => {
       <div
         className=""
         style={{
-          display: 'flex',
-          flexWrap: 'wrap',
+          display: "flex",
+          flexWrap: "wrap",
           marginRight: 10,
           marginLeft: 10,
         }}
@@ -107,22 +127,20 @@ const SearchCard = ({ searchQuery }) => {
         {/* Mapping over businesses array */}
         {businesses.map((business, index) => (
           <motion.div
-            key={business.business_id}
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={() => handleMouseLeave(index)}
-            className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
-            style={{
-              margin: 20,
-
-              transformStyle: 'preserve-3d',
-              transform: hoveredCards[index] ? 'scale(1.1)' : 'scale(1)',
-              transition: 'transform 0.3s ease', // Add a smooth transition for the scale change
-            }}
+            {...({
+              key: business.business_id,
+              onHoverStart: () => handleMouseEnter(index),
+              onHoverEnd: () => handleMouseLeave(index),
+              className: "col-xl-3 col-lg-4 col-md-6 col-sm-12",
+              style: {
+                margin: 20,
+                transformStyle: "preserve-3d",
+                transform: hoveredCards[index] ? "scale(1.1)" : "scale(1)",
+                transition: "transform 0.3s ease",
+              },
+            } as any)}
           >
-            <div
-            // className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
-            // key={business.business_id}
-            >
+            <div>
               <div className="Goodup-grid-wrap">
                 <div className="Goodup-grid-upper">
                   <div className="Goodup-pos ab-left">
@@ -221,4 +239,5 @@ const SearchCard = ({ searchQuery }) => {
     </div>
   );
 };
+
 export default SearchCard;

@@ -1,28 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
 
-const Register = (props) => {
-  const [firstname, setFirstName] = useState('');
-  const [lastname, setLastName] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [errors, setErrors] = useState({});
+interface Errors {
+  firstname?: { message: string };
+  lastname?: { message: string };
+  email?: { message: string };
+  password?: { message: string };
+  serverMessage?: string;
+}
 
-  //use tge provided by react route
+const Register: React.FC = () => {
+  const [firstname, setFirstName] = useState<string>('');
+  const [lastname, setLastName] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [errors, setErrors] = useState<Errors>({});
+
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    //reset any validation messages
+    // Reset any validation messages
     console.log({ email, password, firstname, lastname });
     setErrors({});
 
-    // console.log("buttonClick_reg");
-    //we will post the form data to the API for Autherntication
-
-    authService.register({ email, password, firstname, lastname }, (error) => {
+    authService.register({ email, password, firstname, lastname }, (error: any) => {
       if (!error) {
         navigate('/');
       } else {
@@ -57,7 +61,6 @@ const Register = (props) => {
                           />
                           {errors.firstname && (
                             <div className="alert alert-danger">
-                              {' '}
                               {errors.firstname.message}
                             </div>
                           )}
@@ -76,7 +79,6 @@ const Register = (props) => {
                           />
                           {errors.lastname && (
                             <div className="alert alert-danger">
-                              {' '}
                               {errors.lastname.message}
                             </div>
                           )}
@@ -95,14 +97,12 @@ const Register = (props) => {
                       />
                       {errors.email && (
                         <div className="alert alert-danger">
-                          {' '}
                           {errors.email.message}
                         </div>
                       )}
 
                       {errors.serverMessage && (
                         <div className="alert alert-danger">
-                          {' '}
                           {errors.serverMessage}
                         </div>
                       )}
@@ -118,7 +118,6 @@ const Register = (props) => {
                       />
                       {errors.password && (
                         <div className="alert alert-danger">
-                          {' '}
                           {errors.password.message}
                         </div>
                       )}
@@ -135,21 +134,21 @@ const Register = (props) => {
                       <p className="extra">Or Signup with</p>
                       <div className="option-log">
                         <div className="single-log-opt">
-                          <a href="javascript:void(0);" className="log-btn">
+                          <a href="#" className="log-btn">
                             <img
                               src="https://via.placeholder.com/200x200"
                               className="img-fluid"
-                              alt=""
+                              alt="Google"
                             />
                             Login with Google
                           </a>
                         </div>
                         <div className="single-log-opt">
-                          <a href="javascript:void(0);" className="log-btn">
+                          <a href="#" className="log-btn">
                             <img
                               src="assets/img/facebook.png"
                               className="img-fluid"
-                              alt=""
+                              alt="Facebook"
                             />
                             Login with Facebook
                           </a>
@@ -159,7 +158,7 @@ const Register = (props) => {
                     <div className="form-group text-center mt-4 mb-0">
                       <p className="mb-0">
                         Have You Already An account?{' '}
-                        <a href="login.html" className="ft-medium text-success">
+                        <a href="/signin" className="ft-medium text-success">
                           Sign In
                         </a>
                       </p>

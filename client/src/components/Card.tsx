@@ -4,23 +4,35 @@ import {
   useMotionTemplate,
   useMotionValue,
   useSpring,
-  wrap,
 } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const ROTATION_RANGE = 10.5;
-const HALF_ROTATION_RANGE = 10.5 / 2;
+interface Photo {
+  photo_url: string;
+}
 
-const Card = () => {
-  const [businesses, setBusinesses] = useState([]);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+interface Business {
+  business_id: string;
+  business_status: string;
+  photos_sample: Photo[];
+  website: string;
+  name: string;
+  city: string;
+  state: string;
+  type: string;
+}
+
+const ROTATION_RANGE = 10.5;
+const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
+
+const Card: React.FC = () => {
+  const [businesses, setBusinesses] = useState<Business[]>([]);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const options = {
     method: 'GET',
     url: 'http://localhost:5000/api/businessDetails',
-    params: {},
-    headers: {},
   };
 
   useEffect(() => {
@@ -30,13 +42,13 @@ const Card = () => {
         console.log('The data from the cards ', response.data);
         setBusinesses(response.data);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
     fetchData();
   }, []);
 
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -46,7 +58,7 @@ const Card = () => {
 
   const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
 
-  const handleMouseMove = (index, e) => {
+  const handleMouseMove = (index: number, e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();
@@ -84,8 +96,10 @@ const Card = () => {
         <div className="" key={business.business_id}>
           <motion.div
             ref={ref}
-            onMouseMove={(e) => handleMouseMove(index, e)}
-            onMouseLeave={handleMouseLeave}
+            {...({
+              onMouseMove: (e: React.MouseEvent<HTMLDivElement>) => handleMouseMove(index, e),
+              onMouseLeave: handleMouseLeave,
+            } as any)}
             style={{
               transformStyle: 'preserve-3d',
               transform: hoveredIndex === index ? transform : 'none',
@@ -94,7 +108,7 @@ const Card = () => {
             }}
           >
             <div className="absolute inset-4 grid place-content-center rounded-xl bg-white shadow-lg">
-              <div key={business.business_id}>
+              <div>
                 <div className="Goodup-grid-wrap">
                   <div className="Goodup-grid-upper">
                     <div className="Goodup-pos ab-left">
@@ -104,16 +118,11 @@ const Card = () => {
                     </div>
                     <div className="Goodup-grid-thumb">
                       <Link to={`/single-listing/${business.business_id}`}>
-                        {/* <a
-                    // href="/single-listing"
-                    className="d-block text-center m-auto"
-                  > */}
                         <img
-                          src={business.photos_sample[0].photo_url}
+                          src={business.photos_sample[0]?.photo_url}
                           className="img-fluid"
-                          alt=""
+                          alt={business.name}
                         />
-                        {/* </a> */}
                       </Link>
                     </div>
                     <div className="Goodup-rating overlay">
@@ -135,71 +144,47 @@ const Card = () => {
                   <div className="Goodup-grid-fl-wrap">
                     <div className="Goodup-caption px-3 py-2">
                       <div className="Goodup-author">
-                        <a href={business.website}>
+                        <a href={business.website} target="_blank" rel="noopener noreferrer">
                           <img
-                            src={business.photos_sample[0].photo_url}
+                            src={business.photos_sample[0]?.photo_url}
                             className="img-fluid circle"
-                            alt=""
+                            alt={business.name}
                           />
                         </a>
                       </div>
                       <h4 className="mb-0 ft-medium medium">
-                        <a
-                          href="single-listing-detail-2.html"
-                          className="text-dark fs-md"
-                        >
+                        <Link to={`/single-listing/${business.business_id}`} className="text-dark fs-md">
                           {business.name}
-                        </a>
+                        </Link>
                       </h4>
                       <div className="Goodup-location">
                         <i className="fas fa-map-marker-alt me-1 theme-cl"></i>
                         {business.city}, {business.state}
                       </div>
-                      <div className="Goodup-middle-caption mt-3">
-                        <p>
-                          At vero eos et accusamus et iusto odio dignissimos
-                          ducimus
-                        </p>
-                      </div>
                     </div>
                     <div className="Goodup-grid-footer py-2 px-3">
                       <div className="Goodup-ft-first">
-                        <a
-                          href="half-map-search-2.html"
-                          className="Goodup-cats-wrap"
-                        >
+                        <div className="Goodup-cats-wrap">
                           <div className="cats-ico bg-2">
                             <i className="lni lni-slim"></i>
                           </div>
                           <span className="cats-title">{business.type}</span>
-                        </a>
+                        </div>
                       </div>
                       <div className="Goodup-ft-last">
                         <div className="Goodup-inline">
-                          <div className="Goodup-bookmark-btn">
-                            <button type="button">
-                              <i className="lni lni-envelope position-absolute"></i>
-                            </button>
-                          </div>
-                          <div className="Goodup-bookmark-btn">
-                            <button type="button">
-                              <i className="lni lni-heart-filled position-absolute"></i>
-                            </button>
-                          </div>
+                          <button type="button" className="Goodup-bookmark-btn">
+                            <i className="lni lni-envelope position-absolute"></i>
+                          </button>
+                          <button type="button" className="Goodup-bookmark-btn">
+                            <i className="lni lni-heart-filled position-absolute"></i>
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              {/* <p
-        style={{
-          transform: "translateZ(50px)",
-        }}
-        className="text-center text-2xl font-bold"
-      >
-        HOVER ME
-      </p> */}
             </div>
           </motion.div>
         </div>

@@ -1,6 +1,3 @@
-import React from 'react';
-import '../css/footer.css';
-
 const Footer = () => {
   return (
     <>
@@ -149,7 +146,7 @@ const Footer = () => {
             <div className="row align-items-center">
               <div className="col-lg-12 col-md-12 text-center">
                 <p className="mb-0">
-                  © 2022 Goodup. Designd By{' '}
+                  © 2022 Goodup. Designd By{" "}
                   <a href="https://themezhub.com">ThemezHub</a>.
                 </p>
               </div>

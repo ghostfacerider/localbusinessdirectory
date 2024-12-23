@@ -1,14 +1,21 @@
-import { Blog, Categories, Download, ListingTypes, Pricing } from './index';
-import { Search, Newsletter } from '../components/index';
-import Card from '../components/Card';
-import { useState } from 'react';
-import SearchCard from '../components/SearchCard';
-
+import { useState } from "react";
+import SearchCard from "../components/SearchCard";
+import Search from "../components/Search";
+import Categories from "./Categories";
+import ListingTypes from "./ListingTypes";
+import Blog from "./Blog";
+import Pricing from "./Pricing";
+import Download from "./Download";
+import Newsletter from "../components/Newsletter";
+interface SearchQuery {
+  findQuery: string;
+  whereQuery: string;
+}
 const Main = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState<SearchQuery | null>(null);
 
-  const handleSearch = (query) => {
-    setSearchQuery(query);
+  const handleSearch = (find: string, where: string): void => {
+    setSearchQuery({ findQuery: find, whereQuery: where }); // Create a SearchQuery object
   };
   return (
     <>
@@ -36,9 +43,9 @@ const Main = () => {
                 <div
                   className=""
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
                   <Search onSearch={handleSearch} />
@@ -70,7 +77,7 @@ const Main = () => {
                 <div className="sec_title position-relative text-center mb-5">
                   <h6 className="text-muted mb-0">Our Partners</h6>
                   <h2 className="ft-bold">
-                    We Have Worked with{' '}
+                    We Have Worked with{" "}
                     <span className="theme-cl">10,000+</span> Trusted Companies
                   </h2>
                 </div>
