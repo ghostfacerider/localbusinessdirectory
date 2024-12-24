@@ -1,30 +1,49 @@
 import React, { useState } from "react";
+import "../css/signin.css";
 import { useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 
+// Define interface for validation errors
 interface Errors {
   email?: { message: string };
   password?: { message: string };
   serverMessage?: string;
 }
 
-const SignIn = () => {
+// Define the structure of the error object returned by authService
+interface SignInError {
+  status: number;
+  data: {
+    errors?: Errors;
+    serverMessage?: string;
+  };
+}
+
+const SignIn: React.FC = () => {
+  // Define state using React hooks
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errors, setErrors] = useState<Errors>({});
   const navigate = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  // Handle form submission
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
+    // Reset any validation messages
+    console.log({ email, password });
     setErrors({});
-    authService.signin({ email, password }, (error: any) => {
+
+    // Post the form data to the API for authentication
+    authService.signin({ email, password }, (error: SignInError) => {
       if (!error) {
-        navigate("/");
+        navigate("/"); // Navigate to home if no error
       } else {
-        console.error(error);
+        console.log(error);
+
+        // Handle validation errors
         if (error.status === 422) {
-          setErrors(error.data.errors);
+          setErrors(error.data.errors || {});
         } else if (error.status === 401) {
           setErrors(error.data);
         }
@@ -33,7 +52,8 @@ const SignIn = () => {
   };
 
   return (
-    <section className="gray">
+    <section className="gray" onSubmit={handleSubmit}>
+      {/* Log In Modal */}
       <div
         className="modal fade"
         id="login"
@@ -60,7 +80,7 @@ const SignIn = () => {
                 <h4 className="m-0 ft-medium">Login Your Account</h4>
               </div>
 
-              <form className="submit-form" onSubmit={handleSubmit}>
+              <form className="submit-form">
                 <div className="form-group">
                   <label className="mb-1">Email</label>
                   <input
@@ -76,6 +96,7 @@ const SignIn = () => {
                       {errors.email.message}
                     </div>
                   )}
+
                   {errors.serverMessage && (
                     <div className="alert alert-danger">
                       {errors.serverMessage}
@@ -139,7 +160,7 @@ const SignIn = () => {
                         <img
                           src="https://via.placeholder.com/200x200"
                           className="img-fluid"
-                          alt="Google Login"
+                          alt=""
                         />
                         Login with Google
                       </a>
@@ -149,7 +170,7 @@ const SignIn = () => {
                         <img
                           src="assets/img/facebook.png"
                           className="img-fluid"
-                          alt="Facebook Login"
+                          alt=""
                         />
                         Login with Facebook
                       </a>
@@ -161,6 +182,7 @@ const SignIn = () => {
           </div>
         </div>
       </div>
+      {/* End Modal */}
     </section>
   );
 };

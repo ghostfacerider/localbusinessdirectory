@@ -1,35 +1,51 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import dataService from "./../services/dataService";
+import dataService from "../services/dataService";
 
+// Define the structure for the form state
+interface FormState {
+  firstname: string;
+  lastname: string;
+  position: string;
+}
+
+// Define the structure of the error messages
 interface Errors {
   firstname?: { message: string };
   lastname?: { message: string };
   position?: { message: string };
 }
 
-const Create: React.FC = () => {
-  const [firstname, setFirstName] = useState<string>("");
-  const [lastname, setLastName] = useState<string>("");
-  const [position, setPosition] = useState<string>("");
+export const CreateForm: React.FC = () => {
+  const [formData, setFormData] = useState<FormState>({
+    firstname: "",
+    lastname: "",
+    position: "",
+  });
   const [errors, setErrors] = useState<Errors>({});
-
   const navigate = useNavigate();
 
-  const handleCreate = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setErrors({});
+  // Handle input change for each form field
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: keyof FormState
+  ) => {
+    setFormData({ ...formData, [field]: e.target.value });
+  };
 
-    dataService.createPlayer(
-      { firstname, lastname, position },
-      (error: any) => {
-        if (!error) {
-          navigate("/");
-        } else {
-          console.error(error);
-        }
+  // Handle form submission
+  const handleCreate = (event: React.FormEvent) => {
+    event.preventDefault();
+    setErrors({}); // Reset previous errors
+
+    dataService.createPlayer(formData, (error: any) => {
+      if (!error) {
+        navigate("/"); // Redirect to homepage if no error
+      } else {
+        console.log(error);
+        setErrors(error?.data?.errors || {}); // Set errors if there is any
       }
-    );
+    });
   };
 
   return (
@@ -41,14 +57,14 @@ const Create: React.FC = () => {
         type="text"
         id="inputFirstName"
         name="firstname"
-        value={firstname}
-        onChange={(e) => setFirstName(e.target.value)}
+        value={formData.firstname}
+        onChange={(e) => handleInputChange(e, "firstname")}
         className="form-control"
-        placeholder="First name"
+        placeholder="First Name"
         autoFocus
       />
       {errors.firstname && (
-        <div className="alert alert-danger"> {errors.firstname.message}</div>
+        <div className="alert alert-danger">{errors.firstname.message}</div>
       )}
 
       <label htmlFor="inputLastName" className="sr-only">
@@ -58,14 +74,13 @@ const Create: React.FC = () => {
         type="text"
         id="inputLastName"
         name="lastname"
-        value={lastname}
-        onChange={(e) => setLastName(e.target.value)}
+        value={formData.lastname}
+        onChange={(e) => handleInputChange(e, "lastname")}
         className="form-control"
         placeholder="Last Name"
-        autoFocus
       />
       {errors.lastname && (
-        <div className="alert alert-danger"> {errors.lastname.message}</div>
+        <div className="alert alert-danger">{errors.lastname.message}</div>
       )}
 
       <label htmlFor="inputPosition" className="sr-only">
@@ -75,14 +90,13 @@ const Create: React.FC = () => {
         type="text"
         id="inputPosition"
         name="position"
-        value={position}
-        onChange={(e) => setPosition(e.target.value)}
+        value={formData.position}
+        onChange={(e) => handleInputChange(e, "position")}
         className="form-control"
         placeholder="Position"
-        autoFocus
       />
       {errors.position && (
-        <div className="alert alert-danger"> {errors.position.message}</div>
+        <div className="alert alert-danger">{errors.position.message}</div>
       )}
 
       <button className="btn btn-lg btn-primary btn-block" type="submit">
@@ -92,4 +106,4 @@ const Create: React.FC = () => {
   );
 };
 
-export default Create;
+export default CreateForm;

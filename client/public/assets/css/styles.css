@@ -1676,9 +1676,7 @@ nav a:hover {
   height: 2px;
   background-color: #70798b;
   border-radius: 10px;
-  box-shadow:
-    0 0.5em 0 0 #70798b,
-    0 1em 0 0 #70798b;
+  box-shadow: 0 0.5em 0 0 #70798b, 0 1em 0 0 #70798b;
 }
 
 .navigation-portrait .nav-toggle {
@@ -2432,12 +2430,8 @@ nav a {
   background: #02b875;
   -webkit-transform: translate3d(0, -3em, 0);
   transform: translate3d(0, -3em, 0);
-  -webkit-transition:
-    -webkit-transform 0s 0.3s,
-    opacity 0.2s;
-  transition:
-    transform 0s 0.3s,
-    opacity 0.2s;
+  -webkit-transition: -webkit-transform 0s 0.3s, opacity 0.2s;
+  transition: transform 0s 0.3s, opacity 0.2s;
 }
 
 .menu--francisco .menu__item--current .menu__link::before,
@@ -2445,12 +2439,8 @@ nav a {
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-  -webkit-transition:
-    -webkit-transform 0.5s,
-    opacity 0.1s;
-  transition:
-    transform 0.5s,
-    opacity 0.1s;
+  -webkit-transition: -webkit-transform 0.5s, opacity 0.1s;
+  transition: transform 0.5s, opacity 0.1s;
   -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -3523,9 +3513,7 @@ span.search-tag i {
   font-size: 16px !important;
 }
 .gm-style {
-  font:
-    400 14px "Jost",
-    sans-serif !important;
+  font: 400 14px "Jost", sans-serif !important;
   text-decoration: none;
 }
 .infoBox {

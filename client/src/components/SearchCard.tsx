@@ -3,31 +3,34 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-type Business = {
+// Define types for business and search query props
+interface Business {
   business_id: string;
   business_status: string;
   photos_sample: { photo_url: string }[];
-  website: string;
   name: string;
+  website: string;
   city: string;
   state: string;
   type: string;
-};
+}
 
-type SearchQuery = {
+interface SearchQuery {
   findQuery: string;
   whereQuery: string;
-};
+}
 
 interface SearchCardProps {
   searchQuery: SearchQuery;
 }
 
 const SearchCard: React.FC<SearchCardProps> = ({ searchQuery }) => {
-  console.log(searchQuery, "searchQuery");
   const { findQuery, whereQuery } = searchQuery;
 
   const [businesses, setBusinesses] = useState<Business[]>([]);
+  const [hoveredCards, setHoveredCards] = useState<boolean[]>(
+    new Array(businesses.length).fill(false)
+  );
 
   useEffect(() => {
     if (findQuery && whereQuery) {
@@ -36,12 +39,9 @@ const SearchCard: React.FC<SearchCardProps> = ({ searchQuery }) => {
           const options = {
             method: "GET",
             url: `http://localhost:5000/api/search?find=${findQuery}&where=${whereQuery}`,
-            params: {},
-            headers: {},
           };
 
           const response = await axios.request(options);
-          console.log(response.data);
           setBusinesses(response.data);
         } catch (err) {
           console.log(err);
@@ -51,57 +51,12 @@ const SearchCard: React.FC<SearchCardProps> = ({ searchQuery }) => {
     }
   }, [findQuery, whereQuery]);
 
-  // // Tilt card
-  // const x = useMotionValue(0);
-  // const y = useMotionValue(0);
-
-  // const mouseXSpring = useSpring(x);
-  // const mouseYSpring = useSpring(y);
-
-  // const rotateX = useTransform(
-  //   mouseYSpring,
-  //   [-0.5, 0.5],
-  //   ["7.5deg", "-7.5deg"]
-  // );
-
-  // const rotateY = useTransform(
-  //   mouseXSpring,
-  //   [-0.5, 0.5],
-  //   ["-7.5deg", "7.5deg"]
-  // );
-  // const handleMouseMove = (e) => {
-  //   const rect = e.target.getBoundingClientRect();
-
-  //   const width = rect.width;
-  //   const height = rect.height;
-
-  //   const mouseX = e.clientX - rect.left;
-  //   const mouseY = e.clientY - rect.top;
-
-  //   const xPct = mouseX / width - 0.5;
-  //   const yPct = mouseY / height - 0.5;
-
-  //   x.set(xPct);
-  //   y.set(yPct);
-  // };
-
-  // const handleMouseLeave = () => {
-  //   x.set(0);
-  //   y.set(0);
-  // };
-
-  const [hoveredCards, setHoveredCards] = useState<boolean[]>(
-    new Array(businesses.length).fill(false)
-  );
-
-  // Function to handle mouse enter for a specific card
   const handleMouseEnter = (index: number) => {
     const updatedHoveredCards = [...hoveredCards];
     updatedHoveredCards[index] = true;
     setHoveredCards(updatedHoveredCards);
   };
 
-  // Function to handle mouse leave for a specific card
   const handleMouseLeave = (index: number) => {
     const updatedHoveredCards = [...hoveredCards];
     updatedHoveredCards[index] = false;
@@ -116,7 +71,6 @@ const SearchCard: React.FC<SearchCardProps> = ({ searchQuery }) => {
       aria-labelledby="places-tab"
     >
       <div
-        className=""
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -127,18 +81,16 @@ const SearchCard: React.FC<SearchCardProps> = ({ searchQuery }) => {
         {/* Mapping over businesses array */}
         {businesses.map((business, index) => (
           <motion.div
-            {...({
-              key: business.business_id,
-              onHoverStart: () => handleMouseEnter(index),
-              onHoverEnd: () => handleMouseLeave(index),
-              className: "col-xl-3 col-lg-4 col-md-6 col-sm-12",
-              style: {
-                margin: 20,
-                transformStyle: "preserve-3d",
-                transform: hoveredCards[index] ? "scale(1.1)" : "scale(1)",
-                transition: "transform 0.3s ease",
-              },
-            } as any)}
+            key={business.business_id}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={() => handleMouseLeave(index)}
+            className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
+            style={{
+              margin: 20,
+              transformStyle: "preserve-3d",
+              transform: hoveredCards[index] ? "scale(1.1)" : "scale(1)",
+              transition: "transform 0.3s ease",
+            }}
           >
             <div>
               <div className="Goodup-grid-wrap">

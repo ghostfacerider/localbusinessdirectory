@@ -2,14 +2,14 @@ import axios from "axios";
 import authService from "../services/authService";
 
 class dataService {
-  getPlayers(callback: any) {
+  getPlayers(callback) {
     axios.get(`${process.env.REACT_APP_API_URL}/players`).then((response) => {
       console.log(response.data);
       callback(response.data);
     });
   }
 
-  getOnePlayer(id: any, callback: any) {
+  getOnePlayer(id, callback) {
     axios
       .get(`${process.env.REACT_APP_API_URL}/players/${id}`)
       .then((response) => {
@@ -19,7 +19,7 @@ class dataService {
       });
   }
 
-  createPlayer(create: any, callback: any) {
+  createPlayer(create, callback) {
     // console.log("create");
     axios
       .post(`${process.env.REACT_APP_API_URL}/players`, create, {
@@ -37,7 +37,7 @@ class dataService {
       });
   }
 
-  updatePlayer(updateId: any, updatePlayer: any, callback: any) {
+  updatePlayer(updateId, updatePlayer, callback) {
     axios
       .put(
         `${process.env.REACT_APP_API_URL}/players/${updateId}`,
@@ -45,7 +45,6 @@ class dataService {
         { headers: { "x-auth-token": authService.getToken() } }
       )
       .then((response) => {
-        console.log(response);
         callback();
       })
       .catch((error) => {
@@ -54,13 +53,12 @@ class dataService {
       });
   }
 
-  deletePlayer(deleteId: any, callback: any) {
+  deletePlayer(deleteId, callback) {
     axios
       .delete(`${process.env.REACT_APP_API_URL}/players/${deleteId}`, {
         headers: { "x-auth-token": authService.getToken() },
       })
       .then((response) => {
-        console.log(response);
         callback();
       })
       .catch((error) => {

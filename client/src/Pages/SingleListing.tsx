@@ -1,68 +1,75 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+interface PhotoSample {
+  photo_url: string;
+}
+
+interface WorkingHours {
+  Monday?: string[];
+  Tuesday?: string[];
+  Wednesday?: string[];
+  Thursday?: string[];
+  Friday?: string[];
+  Saturday?: string[];
+  Sunday?: string[];
+}
+
+interface emails_and_contacts {
+  emails: [];
+  phone_numbers: [];
+}
+
 interface Business {
   name: string;
   owner_name: string;
   address: string;
-  photos_sample: { photo_url: string }[];
-  website: string;
-  rating: string;
   state: string;
-  working_hours: {
-    Monday?: string[];
-    Tuesday?: string[];
-    Wednesday?: string[];
-    Thursday?: string[];
-    Friday?: string[];
-    Saturday?: string[];
-    Sunday?: string[];
-  };
-  emails_and_contacts: {
-    emails: string[];
-    phone_numbers: string[];
-  }[];
+  photos_sample: PhotoSample[];
+  working_hours: WorkingHours;
+  rating?: number; // Optional if it might not exist
+  website: string;
   full_address: string;
+  emails_and_contacts: emails_and_contacts;
 }
-const Single_Listing: React.FC = () => {
+
+const SingleListing: React.FC = () => {
   const { business_id } = useParams<{ business_id: string }>();
-  const [businesses, setBusinesses] = useState<Business[]>([]);
+  const [business, setBusiness] = useState<Business | null>(null);
+
+  const options = {
+    method: "GET",
+    url: `http://localhost:5000/api/businessDetail/${business_id}`,
+    headers: {},
+  };
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get<Business[]>(
-          `http://localhost:5000/api/businessDetail/${business_id}`
-        );
-        console.log('The data from the Listings ', response.data);
-        setBusinesses(response?.data);
+        const response = await axios.request(options);
+        console.log("The data from the Listings", response.data);
+        setBusiness(response.data);
       } catch (err) {
         console.log(err);
       }
     }
     fetchData();
   }, [business_id]);
-  console.log('asdfghjkl', businesses);
+
   return (
     <section className="gray py-5 position-relative">
       <div className="container">
         <div className="row">
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12">
             {/* About The Business */}
-
             <div className="bg-white rounded mb-4">
               <div className="jbd-01 px-4 py-4">
                 <div className="jbd-details">
-                  <h5 className="ft-bold fs-lg">{businesses[0]?.name}</h5>
+                  <h5 className="ft-bold fs-lg">{business?.name}</h5>
                   <div className="d-block mt-3">
-                    <p>{businesses[0]?.owner_name}</p>
-                    <p className="p-0 m-0">
-                      {businesses[0]?.address}
-                      {/* Temporibus autem quibusdam et aut officiis debitis aut
-                          rerum necessitatibus saepe eveniet ut et voluptates
-                          repudiandae sint et molestiae non recusandae. Itaque
-                          earum rerum hic tenetur */}
-                    </p>
+                    <p>{business?.owner_name}</p>
+                    <p className="p-0 m-0">{business?.address}</p>
                   </div>
                 </div>
               </div>
@@ -75,33 +82,33 @@ const Single_Listing: React.FC = () => {
                   <h5 className="ft-bold fs-lg">Business Menu</h5>
                   <div className="d-block mt-3">
                     <div className="row g-3">
-                      {/* {businesses.} */}
-
                       {/* Single Menu */}
-
-                      <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
-                        <div className="Goodup-sng-menu">
-                          <div className="Goodup-sng-menu-thumb">
-                            <img
-                              // src="https://via.placeholder.com/550x400"
-                              src={businesses[0]?.photos_sample[0]?.photo_url}
-                              style={{ height: 250 }}
-                              className="img-fluid"
-                              alt=""
-                            />
-                          </div>
-                          <div className="Goodup-sng-menu-caption">
-                            <h4 className="ft-medium fs-md">
-                              Brigue Medium Burger
-                            </h4>
-                            <div className="lkji-oiyt">
-                              <span>Start From</span>{' '}
-                              <h5 className="theme-cl ft-bold">$49</h5>
+                      {business?.photos_sample.map((photo, index) => (
+                        <div
+                          key={index}
+                          className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6"
+                        >
+                          <div className="Goodup-sng-menu">
+                            <div className="Goodup-sng-menu-thumb">
+                              <img
+                                src={photo.photo_url}
+                                style={{ height: 250 }}
+                                className="img-fluid"
+                                alt={`Business Menu ${index}`}
+                              />
+                            </div>
+                            <div className="Goodup-sng-menu-caption">
+                              <h4 className="ft-medium fs-md">
+                                Brigue Medium Burger
+                              </h4>
+                              <div className="lkji-oiyt">
+                                <span>Start From</span>
+                                <h5 className="theme-cl ft-bold">$49</h5>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-
+                      ))}
                       {/* Single Menu */}
                       {/* <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
                         <div className="Goodup-sng-menu">
@@ -221,7 +228,7 @@ const Single_Listing: React.FC = () => {
                     <ul>
                       <li>
                         <div className="Goodup-afl-pace">
-                          <img src="assets/img/verify.svg" className="" alt="" />
+                          <img src="assets/img/verify.svg" alt="" />
                           <span>Health Score 8.7 / 10</span>
                         </div>
                       </li>
@@ -845,52 +852,100 @@ const Single_Listing: React.FC = () => {
                       </div>
                       <div className="col-xl-6 col-lg-6 col-md-12">
                         <table className="table table-borderless">
+                          <thead>
+                            <tr>
+                              <th>Day</th>
+                              <th>Working Hours</th>
+                              <th>Status</th>
+                            </tr>
+                          </thead>
                           <tbody>
+                            {[
+                              "Monday",
+                              "Tuesday",
+                              "Wednesday",
+                              "Thursday",
+                              "Friday",
+                              "Saturday",
+                              "Sunday",
+                            ].map((day) => (
+                              <tr key={day}>
+                                <th scope="row">{day.slice(0, 3)}</th>
+                                <td>
+                                  {business?.working_hours?.[
+                                    day as keyof WorkingHours
+                                  ]?.[0] ?? "Closed"}
+                                </td>
+                                <td>
+                                  {day === "Monday" ? (
+                                    <span className="text-success">
+                                      Open now
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                          {/* <tbody>
                             <tr>
                               <th scope="row">Mon</th>
-                              <td>{businesses[0]?.working_hours?.Monday?.[0]}</td>
-                            
+                              <td>
+                                {business?.[0]?.working_hours?.Monday?.[0] ??
+                                  "Closed"}
+                              </td>
                               <td className="text-success">Open now</td>
                             </tr>
                             <tr>
                               <td>Tue</td>
                               <td>
-                                {businesses[0]?.working_hours?.Tuesday?.[0]}
+                                {business?.[0]?.working_hours?.Tuesday?.[0] ??
+                                  "Closed"}
                               </td>
                               <td />
                             </tr>
                             <tr>
                               <td>Wed</td>
                               <td>
-                                {businesses[0]?.working_hours?.Tuesday?.[0]}
+                                {business?.[0]?.working_hours?.Wednesday?.[0] ??
+                                  "Closed"}
                               </td>
                               <td />
                             </tr>
                             <tr>
                               <td>Thu</td>
                               <td>
-                                {businesses[0]?.working_hours?.Wednesday?.[0]}
+                                {business?.[0]?.working_hours?.Thursday?.[0] ??
+                                  "Closed"}
                               </td>
                               <td />
                             </tr>
                             <tr>
                               <td>Fri</td>
-                              <td>{businesses[0]?.working_hours?.Friday?.[0]}</td>
+                              <td>
+                                {business?.[0]?.working_hours?.Friday?.[0] ??
+                                  "Closed"}
+                              </td>
                               <td />
                             </tr>
                             <tr>
                               <td>Sat</td>
                               <td>
-                                {businesses[0]?.working_hours?.Saturday?.[0]}
+                                {business?.[0]?.working_hours?.Saturday?.[0] ??
+                                  "Closed"}
                               </td>
                               <td />
                             </tr>
                             <tr>
                               <td>Sun</td>
-                              <td>{businesses[0]?.working_hours?.Sunday?.[0]}</td>
+                              <td>
+                                {business?.[0]?.working_hours?.Sunday?.[0] ??
+                                  "Closed"}
+                              </td>
                               <td />
                             </tr>
-                          </tbody>
+                          </tbody> */}
                         </table>
                       </div>
                     </div>
@@ -951,7 +1006,7 @@ const Single_Listing: React.FC = () => {
                             <textarea
                               className="form-control rounded ht-140"
                               placeholder="Review"
-                              defaultValue={''}
+                              defaultValue={""}
                             />
                           </div>
                         </div>
@@ -1018,38 +1073,42 @@ const Single_Listing: React.FC = () => {
               <div className="Goodup-agent-blocks">
                 <div className="Goodup-agent-thumb">
                   <img
-                    // src={businesses?.photos_sample[0]?.photo_url}
-                    src={businesses[0]?.photos_sample[0]?.photo_url}
+                    src={
+                      business?.photos_sample?.[0]?.photo_url ||
+                      "default-image.jpg"
+                    }
                     width={90}
                     className="img-fluid circle"
-                    alt=""
+                    alt="Agent Thumbnail"
                   />
                 </div>
                 <div className="Goodup-agent-caption">
                   <h4 className="ft-medium mb-0">
-                    {' '}
-                    {businesses[0]?.owner_name}
+                    {business?.owner_name || "Owner Name Unavailable"}
                   </h4>
                   <span className="agd-location">
                     <i className="lni lni-map-marker me-1" />
-                    {businesses[0]?.state}
+                    {business?.state || "Location Unavailable"}
                   </span>
                 </div>
                 <div className="clearfix" />
-              </div>
-              <div className="Goodup-iuky">
-                <ul>
-                  <li>
-                    140+<span>Listings</span>
-                  </li>
-                  <li>
-                    <div className="text-success">{businesses[0]?.rating}</div>
-                    <span>Rattings</span>
-                  </li>
-                  <li>
-                    80K<span>Followers</span>
-                  </li>
-                </ul>
+
+                <div className="Goodup-iuky">
+                  <ul>
+                    <li>
+                      140+<span> Listings</span>
+                    </li>
+                    <li>
+                      <div className="text-success">
+                        {business?.rating || 0}
+                      </div>
+                      <span> Ratings</span>
+                    </li>
+                    <li>
+                      80K<span> Followers</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
               <div className="agent-cnt-info">
                 <div className="row g-4">
@@ -1093,7 +1152,7 @@ const Single_Listing: React.FC = () => {
                       </div>
                       <div className="list-uiyt-capt">
                         <h5>Live Site</h5>
-                        <p>{businesses[0]?.website}</p>
+                        <p>{business?.website || "Not Available"}</p>
                       </div>
                     </div>
                   </li>
@@ -1105,7 +1164,60 @@ const Single_Listing: React.FC = () => {
                       <div className="list-uiyt-capt">
                         <h5>Drop a Mail</h5>
                         <p>
-                          {businesses[0]?.emails_and_contacts[0]?.emails[0]}
+                          {business?.emails_and_contacts?.emails ||
+                            "Not Available"}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="list-uiyt">
+                      <div className="list-iobk">
+                        <i className="fas fa-phone" />
+                      </div>
+                      <div className="list-uiyt-capt">
+                        <h5>Call Us</h5>
+                        <p>
+                          {business?.emails_and_contacts?.phone_numbers ||
+                            "Not Available"}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="list-uiyt">
+                      <div className="list-iobk">
+                        <i className="fas fa-map-marker-alt" />
+                      </div>
+                      <div className="list-uiyt-capt">
+                        <h5>Get Directions</h5>
+                        <p>{business?.full_address || "Not Available"}</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+
+                {/* <ul>
+                  <li>
+                    <div className="list-uiyt">
+                      <div className="list-iobk">
+                        <i className="fas fa-globe" />
+                      </div>
+                      <div className="list-uiyt-capt">
+                        <h5>Live Site</h5>
+                        <p>{business?.[0]?.website}</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="list-uiyt">
+                      <div className="list-iobk">
+                        <i className="fas fa-envelope" />
+                      </div>
+                      <div className="list-uiyt-capt">
+                        <h5>Drop a Mail</h5>
+                        <p>
+                          {business?.[0]?.emails_and_contacts[0]?.emails[0]}
                         </p>
                       </div>
                     </div>
@@ -1119,7 +1231,7 @@ const Single_Listing: React.FC = () => {
                         <h5>Call Us</h5>
                         <p>
                           {
-                            businesses[0]?.emails_and_contacts[0]
+                            business?.[0]?.emails_and_contacts[0]
                               ?.phone_numbers[0]
                           }
                         </p>
@@ -1133,11 +1245,11 @@ const Single_Listing: React.FC = () => {
                       </div>
                       <div className="list-uiyt-capt">
                         <h5>Get Directions</h5>
-                        <p>{businesses[0]?.full_address}</p>
+                        <p>{business?.[0]?.full_address}</p>
                       </div>
                     </div>
                   </li>
-                </ul>
+                </ul> */}
               </div>
             </div>
             <div className="row g-3 mb-3">
@@ -1167,4 +1279,4 @@ const Single_Listing: React.FC = () => {
   );
 };
 
-export default Single_Listing;
+export default SingleListing;

@@ -1,13 +1,18 @@
-import { useState } from "react";
+import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import axios from "axios";
-export const Search = ({ onSearch }: { onSearch: any }) => {
+
+export const Search = ({
+  onSearch,
+}: {
+  onSearch: (queries: { findQuery: string; whereQuery: string }) => void;
+}) => {
   const [findQuery, setFindQuery] = useState("");
   const [whereQuery, setWhereQuery] = useState("");
 
   // const navigate = useNavigate();
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       // const response = await axios.get(`http://localhost:300/api/search`, {
@@ -27,7 +32,10 @@ export const Search = ({ onSearch }: { onSearch: any }) => {
   };
 
   return (
-    <form className="main-search-wrap fl-wrap half-column">
+    <form
+      className="main-search-wrap fl-wrap half-column"
+      onSubmit={handleSubmit}
+    >
       <div className="main-search-item">
         <span className="search-tag">Find</span>
         <input
@@ -47,11 +55,7 @@ export const Search = ({ onSearch }: { onSearch: any }) => {
         />
       </div>
       <div className="main-search-button">
-        <button
-          className="btn full-width theme-bg text-white"
-          type="button"
-          onClick={handleSubmit}
-        >
+        <button className="btn full-width theme-bg text-white" type="submit">
           Search<i className="fas fa-search"></i>
         </button>
       </div>

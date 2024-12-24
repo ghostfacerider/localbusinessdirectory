@@ -1,55 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import dataService from './../services/dataService';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import dataService from "../services/dataService";
 
-interface Player {
+// Define types for the form state
+interface FormState {
   firstname: string;
   lastname: string;
   position: string;
 }
 
+// Define the structure of the error messages
 interface Errors {
   firstname?: { message: string };
   lastname?: { message: string };
   position?: { message: string };
 }
 
-const Edit: React.FC = () => {
-  const [firstname, setFirstName] = useState<string>('');
-  const [lastname, setLastName] = useState<string>('');
-  const [position, setPosition] = useState<string>('');
+// Define the player data type (assuming it contains these fields)
+interface Player {
+  firstname: string;
+  lastname: string;
+  position: string;
+}
 
+const Edit: React.FC = () => {
+  const [formData, setFormData] = useState<FormState>({
+    firstname: "",
+    lastname: "",
+    position: "",
+  });
   const [errors, setErrors] = useState<Errors>({});
-  const params = useParams<{ id: string }>();
+  const params = useParams<{ id: string }>(); // Ensure the id is properly typed
   const navigate = useNavigate();
 
+  // Fetch the player data when the component mounts or params.id changes
   useEffect(() => {
     if (params.id) {
       dataService.getOnePlayer(params.id, (player: Player) => {
-        setFirstName(player.firstname);
-        setLastName(player.lastname);
-        setPosition(player.position);
+        setFormData({
+          firstname: player.firstname,
+          lastname: player.lastname,
+          position: player.position,
+        });
       });
     }
   }, [params.id]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  // Handle form submission
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    setErrors({});
+    setErrors({}); // Reset previous errors
 
-    if (params.id) {
-      dataService.updatePlayer(
-        params.id,
-        { firstname, lastname, position },
-        (error: any) => {
-          if (!error) {
-            navigate('/');
-          } else {
-            console.error(error);
-          }
-        }
-      );
-    }
+    dataService.updatePlayer(params.id, formData, (error: any) => {
+      if (!error) {
+        navigate("/"); // Navigate to the home page after successful update
+      } else {
+        console.log(error);
+        setErrors(error?.data?.errors || {}); // Set errors if there are any
+      }
+    });
   };
 
   return (
@@ -63,13 +72,16 @@ const Edit: React.FC = () => {
         type="text"
         id="inputFirstName"
         name="firstname"
-        value={firstname}
-        onChange={(e) => setFirstName(e.target.value)}
+        value={formData.firstname}
+        onChange={(e) =>
+          setFormData({ ...formData, firstname: e.target.value })
+        }
         className="form-control"
+        placeholder="First Name"
         autoFocus
       />
       {errors.firstname && (
-        <div className="alert alert-danger"> {errors.firstname.message}</div>
+        <div className="alert alert-danger">{errors.firstname.message}</div>
       )}
 
       <label htmlFor="inputLastName" className="sr-only">
@@ -79,13 +91,13 @@ const Edit: React.FC = () => {
         type="text"
         id="inputLastName"
         name="lastname"
-        value={lastname}
-        onChange={(e) => setLastName(e.target.value)}
+        value={formData.lastname}
+        onChange={(e) => setFormData({ ...formData, lastname: e.target.value })}
         className="form-control"
         placeholder="Last Name"
       />
       {errors.lastname && (
-        <div className="alert alert-danger"> {errors.lastname.message}</div>
+        <div className="alert alert-danger">{errors.lastname.message}</div>
       )}
 
       <label htmlFor="inputPosition" className="sr-only">
@@ -95,13 +107,13 @@ const Edit: React.FC = () => {
         type="text"
         id="inputPosition"
         name="position"
-        value={position}
-        onChange={(e) => setPosition(e.target.value)}
+        value={formData.position}
+        onChange={(e) => setFormData({ ...formData, position: e.target.value })}
         className="form-control"
         placeholder="Position"
       />
       {errors.position && (
-        <div className="alert alert-danger"> {errors.position.message}</div>
+        <div className="alert alert-danger">{errors.position.message}</div>
       )}
 
       <button className="btn btn-lg btn-primary btn-block" type="submit">
