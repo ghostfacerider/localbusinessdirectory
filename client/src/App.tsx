@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import Main from "./pages/Main";
-import SingleListing from "./pages/SingleListing";
-import SignIn from "./pages/SignIn";
-import Register from "./pages/Register";
-import ProtectedRoutes from "./components/ProtectedRoutes";
-import CreateForm from "./pages/CreateForm";
-import Edit from "./pages/Edit";
+import NavBar from "./components/NavBar.tsx";
+import Footer from "./components/Footer.tsx";
+import Main from "./pages/Main.tsx";
+import SingleListing from "./pages/SingleListing.tsx";
+import SignIn from "./pages/SignIn.tsx";
+import Register from "./pages/Register.tsx";
+import ProtectedRoutes from "./components/ProtectedRoutes.tsx";
+import CreateForm from "./pages/CreateForm.tsx";
+import Edit from "./pages/Edit.tsx";
 
 const App: React.FC = () => {
   return (

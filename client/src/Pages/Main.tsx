@@ -1,12 +1,12 @@
 import { useState } from "react";
-import Search from "../components/Search";
-import SearchCard from "../components/SearchCard";
-import Newsletter from "../components/Newsletter";
-import Categories from "./Categories";
-import ListingTypes from "./ListingTypes";
-import Blog from "./Blog";
-import Pricing from "./Pricing";
-import Download from "./Download";
+import Search from "../components/Search.tsx";
+import SearchCard from "../components/SearchCard.tsx";
+import Newsletter from "../components/Newsletter.tsx";
+import Categories from "./Categories.tsx";
+import ListingTypes from "./ListingTypes.tsx";
+import Blog from "./Blog.tsx";
+import Pricing from "./Pricing.tsx";
+import Download from "./Download.tsx";
 
 const Main: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState({
