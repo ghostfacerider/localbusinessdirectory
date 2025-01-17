@@ -4,10 +4,11 @@ import * as UserService from '../services/UserService';
 import logo from '../assets/img/logo.png';
 
 function NavBar(): JSX.Element {
-
   const navigate = useNavigate();
 
-  const handleLogout = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
+  const handleLogout = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+  ): void => {
     console.log('handleLogout');
     event.preventDefault();
     UserService.signout();
@@ -95,7 +96,11 @@ function NavBar(): JSX.Element {
                       Welcome
                     </a>
                     <div className="dropdown-menu" aria-labelledby="dropdown07">
-                      <Link to="#" className="dropdown-item" onClick={handleLogout}>
+                      <Link
+                        to="#"
+                        className="dropdown-item"
+                        onClick={handleLogout}
+                      >
                         Logout
                       </Link>
                     </div>

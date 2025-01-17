@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../assets/css/signin.css';
 import * as UserService from '../services/UserService';
 import { handleError, FormErrors } from '../common/errorUtils';
 
@@ -26,11 +27,23 @@ const SignIn = () => {
 
   return (
     <section className="gray" onSubmit={handleSubmit}>
-      <div className="modal fade" id="login" tabIndex={-1} role="dialog" aria-labelledby="loginmodal" aria-hidden="true">
+      <div
+        className="modal fade"
+        id="login"
+        tabIndex={-1}
+        role="dialog"
+        aria-labelledby="loginmodal"
+        aria-hidden="true"
+      >
         <div className="modal-dialog login-pop-form" role="document">
           <div className="modal-content" id="loginmodal">
             <div className="modal-headers">
-              <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
+              <button
+                type="button"
+                className="close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
                 <span className="ti-close"></span>
               </button>
             </div>
@@ -49,8 +62,14 @@ const SignIn = () => {
                     className="form-control rounded bg-light"
                     placeholder="Email*"
                   />
-                  {errors.email && <div className="alert alert-danger">{errors.email}</div>}
-                  {errors.serverMessage && <div className="alert alert-danger">{errors.serverMessage}</div>}
+                  {errors.email && (
+                    <div className="alert alert-danger">{errors.email}</div>
+                  )}
+                  {errors.serverMessage && (
+                    <div className="alert alert-danger">
+                      {errors.serverMessage}
+                    </div>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -63,11 +82,16 @@ const SignIn = () => {
                     className="form-control rounded bg-light"
                     placeholder="Password*"
                   />
-                  {errors.password && <div className="alert alert-danger">{errors.password}</div>}
+                  {errors.password && (
+                    <div className="alert alert-danger">{errors.password}</div>
+                  )}
                 </div>
 
                 <div className="form-group">
-                  <button type="submit" className="btn btn-md full-width theme-bg text-light rounded ft-medium">
+                  <button
+                    type="submit"
+                    className="btn btn-md full-width theme-bg text-light rounded ft-medium"
+                  >
                     Sign In
                   </button>
                 </div>
@@ -77,13 +101,21 @@ const SignIn = () => {
                   <div className="option-log">
                     <div className="single-log-opt">
                       <a href="javascript:void(0);" className="log-btn">
-                        <img src="https://via.placeholder.com/200x200" className="img-fluid" alt="" />
+                        <img
+                          src="https://via.placeholder.com/200x200"
+                          className="img-fluid"
+                          alt=""
+                        />
                         Login with Google
                       </a>
                     </div>
                     <div className="single-log-opt">
                       <a href="javascript:void(0);" className="log-btn">
-                        <img src="assets/img/facebook.png" className="img-fluid" alt="" />
+                        <img
+                          src="assets/img/facebook.png"
+                          className="img-fluid"
+                          alt=""
+                        />
                         Login with Facebook
                       </a>
                     </div>

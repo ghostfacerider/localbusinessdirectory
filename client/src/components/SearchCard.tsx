@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import * as BusinessService from '../services/BusinessService';
-import * as businessTypes from '../config/business-types'
+import * as businessTypes from '../config/business-types';
 
 interface SearchProps {
   onSearch: (searchData: { findQuery: string; whereQuery: string }) => void;
@@ -40,7 +40,9 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
           className="form-control radius"
           placeholder="Nail salons, plumbers, takeout..."
           value={findQuery}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => setFindQuery(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setFindQuery(e.target.value)
+          }
         />
       </div>
       <div className="main-search-item">
@@ -50,7 +52,9 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
           className="form-control"
           placeholder="San Francisco, CA"
           value={whereQuery}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => setWhereQuery(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setWhereQuery(e.target.value)
+          }
         />
       </div>
       <div className="main-search-button">
@@ -64,7 +68,8 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
           <i className="fas fa-search"></i>
         </button>
       </div>
-      {error && <div className="alert alert-danger">{error}</div>} {/* Display error message if any */}
+      {error && <div className="alert alert-danger">{error}</div>}{' '}
+      {/* Display error message if any */}
     </form>
   );
 };

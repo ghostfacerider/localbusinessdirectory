@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as businessTypes from '../config/business-types'
+import * as businessTypes from '../config/business-types';
 import { handleError, FormErrors } from '../common/errorUtils';
 import * as DataService from '../services/DataService';
-
 
 const Create: React.FC = () => {
   const [formState, setFormState] = useState<businessTypes.Player>({
@@ -31,7 +30,7 @@ const Create: React.FC = () => {
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    field: keyof businessTypes.Player
+    field: keyof businessTypes.Player,
   ) => {
     setFormState({
       ...formState,

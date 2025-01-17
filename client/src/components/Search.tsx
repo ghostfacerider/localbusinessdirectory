@@ -26,7 +26,9 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
           className="form-control radius"
           placeholder="Nail salons, plumbers, takeout..."
           value={findQuery}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => setFindQuery(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setFindQuery(e.target.value)
+          }
         />
       </div>
       <div className="main-search-item">
@@ -36,7 +38,9 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
           className="form-control"
           placeholder="San Francisco, CA"
           value={whereQuery}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => setWhereQuery(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setWhereQuery(e.target.value)
+          }
         />
       </div>
       <div className="main-search-button">

@@ -6,7 +6,10 @@ const Main: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [locationQuery, setLocationQuery] = useState<string>('');
 
-  const handleSearch = (searchData: { findQuery: string; whereQuery: string }) => {
+  const handleSearch = (searchData: {
+    findQuery: string;
+    whereQuery: string;
+  }) => {
     setSearchQuery(searchData.findQuery);
     setLocationQuery(searchData.whereQuery);
   };
@@ -85,7 +88,10 @@ const Main: React.FC = () => {
 
             <div className="row justify-content-center">
               {[...Array(10)].map((_, index) => (
-                <div key={index} className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
+                <div
+                  key={index}
+                  className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6"
+                >
                   <div className="empl-thumb text-center px-3 py-4">
                     <img
                       src="https://via.placeholder.com/300x90"
@@ -107,7 +113,12 @@ const Main: React.FC = () => {
         <Download />
         {/* <!-- ======================= Newsletter Start ============================ --> */}
         <Newsletter />
-        <a id="tops-button" className="top-scroll" title="Back to top" href="#top">
+        <a
+          id="tops-button"
+          className="top-scroll"
+          title="Back to top"
+          href="#top"
+        >
           <i className="ti-arrow-up" />
         </a>
       </div>

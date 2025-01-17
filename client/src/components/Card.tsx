@@ -6,8 +6,8 @@ import {
   useSpring,
 } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import * as businessTypes from '../config/business-types'
-import * as BusinessService from "../services/BusinessService";
+import * as businessTypes from '../config/business-types';
+import * as BusinessService from '../services/BusinessService';
 
 const ROTATION_RANGE = 10.5;
 const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
@@ -38,7 +38,10 @@ const Card: React.FC = () => {
     loadBusinesses();
   }, []);
 
-  const handleMouseMove = (index: number, e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (
+    index: number,
+    e: React.MouseEvent<HTMLDivElement>,
+  ) => {
     if (!ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();

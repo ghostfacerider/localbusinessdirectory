@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import * as businessTypes from '../config/business-types'
-import * as BusinessService from "../services/BusinessService";
+import * as businessTypes from '../config/business-types';
+import * as BusinessService from '../services/BusinessService';
 
 const Card: React.FC = () => {
   const [businesses, setBusinesses] = useState<businessTypes.Business[]>([]);
@@ -79,7 +79,10 @@ const Card: React.FC = () => {
               <div className="Goodup-grid-fl-wrap">
                 <div className="Goodup-caption px-3 py-2">
                   <h4 className="mb-0 ft-medium medium">
-                    <Link to={`/single-listing/${business.business_id}`} className="text-dark fs-md">
+                    <Link
+                      to={`/single-listing/${business.business_id}`}
+                      className="text-dark fs-md"
+                    >
                       {business.name}
                     </Link>
                   </h4>

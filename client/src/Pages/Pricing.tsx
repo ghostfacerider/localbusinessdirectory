@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const Pricing: React.FC = () => {
   return (
@@ -48,8 +48,8 @@ export const Pricing: React.FC = () => {
                       Usage
                     </li>
                     <li>
-                      <i className="fa fa-angle-right"></i> 6 Months Support &amp;
-                      Updates
+                      <i className="fa fa-angle-right"></i> 6 Months Support
+                      &amp; Updates
                     </li>
                     <li>
                       <i className="fa fa-angle-right"></i> 10 Website License
@@ -58,8 +58,8 @@ export const Pricing: React.FC = () => {
                       <i className="fa fa-angle-right"></i> Quickstart Included
                     </li>
                     <li>
-                      <i className="fa fa-angle-right"></i> Access to Plugins &amp;
-                      Theme
+                      <i className="fa fa-angle-right"></i> Access to Plugins
+                      &amp; Theme
                     </li>
                     <li>
                       <i className="fa fa-angle-right"></i> Branding/Copyright
@@ -108,8 +108,8 @@ export const Pricing: React.FC = () => {
                       Usage
                     </li>
                     <li>
-                      <i className="fa fa-angle-right"></i> 12 Months Support &amp;
-                      Updates
+                      <i className="fa fa-angle-right"></i> 12 Months Support
+                      &amp; Updates
                     </li>
                     <li>
                       <i className="fa fa-angle-right"></i> 20 Website License
@@ -118,8 +118,8 @@ export const Pricing: React.FC = () => {
                       <i className="fa fa-angle-right"></i> Quickstart Included
                     </li>
                     <li>
-                      <i className="fa fa-angle-right"></i> Access to Plugins &amp;
-                      Theme
+                      <i className="fa fa-angle-right"></i> Access to Plugins
+                      &amp; Theme
                     </li>
                     <li>
                       <i className="fa fa-angle-right"></i> Branding/Copyright
@@ -168,8 +168,8 @@ export const Pricing: React.FC = () => {
                       Usage
                     </li>
                     <li>
-                      <i className="fa fa-angle-right"></i> Lifetime Support &amp;
-                      Updates
+                      <i className="fa fa-angle-right"></i> Lifetime Support
+                      &amp; Updates
                     </li>
                     <li>
                       <i className="fa fa-angle-right"></i> 50 Website License
@@ -178,8 +178,8 @@ export const Pricing: React.FC = () => {
                       <i className="fa fa-angle-right"></i> Quickstart Included
                     </li>
                     <li>
-                      <i className="fa fa-angle-right"></i> Access to Plugins &amp;
-                      Theme
+                      <i className="fa fa-angle-right"></i> Access to Plugins
+                      &amp; Theme
                     </li>
                     <li>
                       <i className="fa fa-angle-right"></i> Branding/Copyright

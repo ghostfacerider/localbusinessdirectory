@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import * as businessTypes from '../config/business-types'
-import * as BusinessService from "../services/BusinessService";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import * as businessTypes from '../config/business-types';
+import * as BusinessService from '../services/BusinessService';
 
 const Card: React.FC = () => {
   const [businesses, setBusinesses] = useState<businessTypes.Business[]>([]);
-  const [mode, setMode] = useState<string>("online");
+  const [mode, setMode] = useState<string>('online');
   const [hoveredCards, setHoveredCards] = useState<boolean[]>([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await BusinessService.getBusinessDetails();
-        console.log("The data from the cards:", data);
+        console.log('The data from the cards:', data);
         setBusinesses(data);
-        localStorage.setItem("card", JSON.stringify(data));
+        localStorage.setItem('card', JSON.stringify(data));
       } catch (err) {
         console.error(err);
-        setMode("offline");
-        const cachedData = localStorage.getItem("card");
+        setMode('offline');
+        const cachedData = localStorage.getItem('card');
         if (cachedData) {
           setBusinesses(JSON.parse(cachedData));
         }
@@ -52,15 +52,15 @@ const Card: React.FC = () => {
       aria-labelledby="places-tab"
     >
       <div>
-        {mode === "offline" && (
+        {mode === 'offline' && (
           <div>You are in offline mode or some issue with connections</div>
         )}
       </div>
       <div
         style={{
-          display: "flex",
-          flexWrap: "wrap",
-          margin: "10px",
+          display: 'flex',
+          flexWrap: 'wrap',
+          margin: '10px',
         }}
       >
         {businesses.map((business, index) => (
@@ -71,9 +71,9 @@ const Card: React.FC = () => {
             className="col-xl-3 col-lg-4 col-md-6 col-sm-12"
             style={{
               margin: 20,
-              transformStyle: "preserve-3d",
-              transform: hoveredCards[index] ? "scale(1.1)" : "scale(1)",
-              transition: "transform 0.3s ease",
+              transformStyle: 'preserve-3d',
+              transform: hoveredCards[index] ? 'scale(1.1)' : 'scale(1)',
+              transition: 'transform 0.3s ease',
             }}
           >
             <div className="Goodup-grid-wrap">

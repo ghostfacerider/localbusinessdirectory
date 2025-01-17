@@ -40,7 +40,7 @@
 /*------------------------------------
 	Using Fonts
 ------------------------------------ */
-@import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap');
 
 /*------------------------------------------------------------
 	Page Loading
@@ -82,14 +82,14 @@ body {
   background: #ffffff;
   color: #696969;
   font-size: 14px;
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
   margin: 0;
   overflow-x: hidden !important;
   font-weight: 400;
 }
 .snackbar-container p,
 .tooltip {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
   font-size: 14px !important;
   font-weight: 500 !important;
 }
@@ -210,7 +210,7 @@ address {
 
 .explore-content h1,
 .explore-content h2 {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
   font-weight: 600;
 }
 .shadow-0 {
@@ -269,7 +269,7 @@ h6 {
   font-size: 20px !important;
 }
 .lead-i {
-  font-family: "Work Sans", sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 22px !important;
   font-style: italic;
 }
@@ -373,16 +373,16 @@ ul.list-style li {
   position: relative;
 }
 ul.list-style li:before {
-  content: "\e64c";
+  content: '\e64c';
   position: absolute;
   left: 0;
   font-size: 14px;
   top: 0;
   color: #525252;
-  font-family: "themify";
+  font-family: 'themify';
 }
 ul.list-style.style-2 li:before {
-  content: "\e628" !important;
+  content: '\e628' !important;
   color: #525252;
 }
 ul.icons_lists {
@@ -402,7 +402,7 @@ ul.icons_lists li:before {
   width: 15px;
   height: 15px;
   background: #f4f5f7;
-  content: "\e64c";
+  content: '\e64c';
   position: absolute;
   display: flex;
   align-items: center;
@@ -578,7 +578,7 @@ ul.icons_lists.colors li:before {
   opacity: 0;
   background: #172228;
 }
-.bg-img-holder:not([class*="col-"]) {
+.bg-img-holder:not([class*='col-']) {
   width: 100%;
 }
 .bg-img-holder.background--bottom {
@@ -601,7 +601,7 @@ ul.icons_lists.colors li:before {
 }
 [data-overlay]:before {
   position: absolute;
-  content: "";
+  content: '';
   background: #000000;
   width: 100%;
   height: 100%;
@@ -618,37 +618,37 @@ ul.icons_lists.colors li:before {
 [data-overlay].bg--primary:before {
   background: #4a90e2;
 }
-[data-overlay="1"]:before {
+[data-overlay='1']:before {
   opacity: 0.1;
 }
-[data-overlay="2"]:before {
+[data-overlay='2']:before {
   opacity: 0.2;
 }
-[data-overlay="3"]:before {
+[data-overlay='3']:before {
   opacity: 0.3;
 }
-[data-overlay="4"]:before {
+[data-overlay='4']:before {
   opacity: 0.4;
 }
-[data-overlay="5"]:before {
+[data-overlay='5']:before {
   opacity: 0.5;
 }
-[data-overlay="6"]:before {
+[data-overlay='6']:before {
   opacity: 0.6;
 }
-[data-overlay="7"]:before {
+[data-overlay='7']:before {
   opacity: 0.7;
 }
-[data-overlay="8"]:before {
+[data-overlay='8']:before {
   opacity: 0.8;
 }
-[data-overlay="9"]:before {
+[data-overlay='9']:before {
   opacity: 0.9;
 }
-[data-overlay="10"]:before {
+[data-overlay='10']:before {
   opacity: 1;
 }
-[data-overlay="0"]:before {
+[data-overlay='0']:before {
   opacity: 0;
 }
 [data-scrim-bottom] {
@@ -765,7 +765,7 @@ html body .text-themecolor {
 .lists-3 li:before,
 .lists-2 li:before,
 .lists-1 li:before {
-  font-family: "themify";
+  font-family: 'themify';
   margin: 0;
   position: relative;
   color: #66676b;
@@ -780,19 +780,19 @@ html body .text-themecolor {
   color: #e42d29;
 }
 .lists-1 li:before {
-  content: "\e71b";
+  content: '\e71b';
   font-size: 13px;
 }
 .lists-2 li:before {
-  content: "\e724";
+  content: '\e724';
   font-size: 13px;
 }
 .lists-3 li:before {
-  content: "\e64c";
+  content: '\e64c';
   font-size: 13px;
 }
 .lists-4 li:before {
-  content: "\e65d";
+  content: '\e65d';
   font-size: 13px;
 }
 /*-------------- Global Settings: Alerts & Notification --------------*/
@@ -973,7 +973,7 @@ ul.simple-list li {
   position: relative;
 }
 ul.simple-list li:before {
-  content: "\e6af";
+  content: '\e6af';
   font-family: themify;
   position: absolute;
   left: 0;
@@ -1290,7 +1290,7 @@ button.close {
   width: 100%;
 }
 .checkbox-custom + .checkbox-custom-label:before {
-  content: "";
+  content: '';
   background: #fff;
   border: 2px solid #dae3ec;
   display: inline-block;
@@ -1308,7 +1308,7 @@ button.close {
   float: right;
 }
 .radio-custom + .radio-custom-label:before {
-  content: "";
+  content: '';
   background: #fff;
   border: 2px solid #dae3ec;
   display: inline-block;
@@ -1327,8 +1327,8 @@ button.close {
   border: none;
 }
 .checkbox-custom:checked + .checkbox-custom-label:after {
-  content: "\f058";
-  font-family: "Font Awesome 5 Free";
+  content: '\f058';
+  font-family: 'Font Awesome 5 Free';
   position: absolute;
   left: 5px;
   top: 5px;
@@ -1354,7 +1354,7 @@ button.close {
 .radio-custom:focus + .radio-custom-label {
   outline: none; /* focus style */
 }
-.company-brands input[type="checkbox"]:focus {
+.company-brands input[type='checkbox']:focus {
   outline: none;
 }
 .company-brands label:focus {
@@ -1405,13 +1405,13 @@ button.close {
   box-sizing: border-box;
 }
 .onoffswitch-inner:before {
-  content: "";
+  content: '';
   padding-right: 27px;
   background-color: #27b737;
   color: #ffffff;
 }
 .onoffswitch-inner:after {
-  content: "";
+  content: '';
   padding-right: 24px;
   background-color: #3e4555;
   color: #999999;
@@ -1442,22 +1442,22 @@ button.close {
   right: 0px;
 }
 /*----------- GLobal Settings: Custom Radio Button ------------*/
-[type="radio"]:checked,
-[type="radio"]:not(:checked) {
+[type='radio']:checked,
+[type='radio']:not(:checked) {
   position: absolute;
   left: -9999px;
 }
-[type="radio"]:checked + label,
-[type="radio"]:not(:checked) + label {
+[type='radio']:checked + label,
+[type='radio']:not(:checked) + label {
   position: relative;
   padding-left: 28px;
   cursor: pointer;
   line-height: 20px;
   display: inline-block;
 }
-[type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before {
-  content: "";
+[type='radio']:checked + label:before,
+[type='radio']:not(:checked) + label:before {
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -1467,9 +1467,9 @@ button.close {
   border-radius: 100%;
   background: #fff;
 }
-[type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after {
-  content: "";
+[type='radio']:checked + label:after,
+[type='radio']:not(:checked) + label:after {
+  content: '';
   width: 12px;
   height: 12px;
   background: #f41b3b;
@@ -1480,12 +1480,12 @@ button.close {
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-[type="radio"]:not(:checked) + label:after {
+[type='radio']:not(:checked) + label:after {
   opacity: 0;
   -webkit-transform: scale(0);
   transform: scale(0);
 }
-[type="radio"]:checked + label:after {
+[type='radio']:checked + label:after {
   opacity: 1;
   -webkit-transform: scale(1);
   transform: scale(1);
@@ -1670,7 +1670,7 @@ nav a:hover {
 }
 
 .nav-toggle:before {
-  content: "";
+  content: '';
   position: absolute;
   width: 24px;
   height: 2px;
@@ -1797,7 +1797,7 @@ nav a:hover {
   color: #f41b3b !important;
 }
 
-.nav-menu > li > a > [class*="ion-"],
+.nav-menu > li > a > [class*='ion-'],
 .nav-menu > li > a > i {
   width: 18px;
   height: 16px;
@@ -1808,7 +1808,7 @@ nav a:hover {
   position: relative;
 }
 
-.nav-menu > li > a > [class*="ion-"] {
+.nav-menu > li > a > [class*='ion-'] {
   width: 16px;
   display: inline-block;
   transform: scale(1.8);
@@ -1829,7 +1829,7 @@ nav a:hover {
   width: auto;
 }
 
-.nav-menu.nav-menu-social > li > a > [class*="ion-"] {
+.nav-menu.nav-menu-social > li > a > [class*='ion-'] {
   font-size: 12px;
 }
 
@@ -1952,7 +1952,7 @@ nav a:hover {
 
 .nav-search-icon:after,
 .nav-search-icon:before {
-  content: "";
+  content: '';
   pointer-events: none;
 }
 
@@ -2001,8 +2001,8 @@ nav a:hover {
   height: 48px;
 }
 
-.nav-search-inner input[type="search"],
-.nav-search-inner input[type="text"] {
+.nav-search-inner input[type='search'],
+.nav-search-inner input[type='text'] {
   height: 70px;
   width: 100%;
   margin: 0;
@@ -2017,8 +2017,8 @@ nav a:hover {
   transition: all 0.3s;
 }
 
-.navigation-portrait .nav-search-inner input[type="search"],
-.navigation-portrait .nav-search-inner input[type="text"] {
+.navigation-portrait .nav-search-inner input[type='search'],
+.navigation-portrait .nav-search-inner input[type='text'] {
   height: 48px;
   font-size: 18px;
   line-height: 48px;
@@ -2115,7 +2115,7 @@ nav a:hover {
 }
 .nav-menu > li > .nav-dropdown:before {
   background-color: #ffffff;
-  content: "";
+  content: '';
   width: 22px;
   height: 22px;
   left: 27px;
@@ -2149,7 +2149,7 @@ nav a:hover {
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
 }
 .nav-dropdown > li:last-child > a {
   border-bottom: none;
@@ -2422,7 +2422,7 @@ nav a {
 }
 
 .menu--francisco .menu__link::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -2626,7 +2626,7 @@ nav a {
   font-weight: 500;
   color: #495363;
   position: relative;
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
   padding: 1rem 1.2rem;
   border-bottom: 1px solid #edf0f3;
 }
@@ -2650,7 +2650,7 @@ nav a {
   border-radius: 50%;
   font-size: 13px;
   font-weight: 600 !important;
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
   color: #ffffff;
 }
 span.notti_coun.style-1 {
@@ -2849,7 +2849,7 @@ span.expiration {
     font-size: 14px;
     font-weight: 600;
     color: #293544;
-    font-family: "Jost", sans-serif;
+    font-family: 'Jost', sans-serif;
   }
   li._my_prt_list a span {
     width: auto;
@@ -2900,7 +2900,7 @@ span.expiration {
     display: inline-flex;
     font-weight: 500;
     color: #293544;
-    font-family: "Jost", sans-serif;
+    font-family: 'Jost', sans-serif;
   }
   .mobile_nav ul li._my_prt_list a span {
     width: auto;
@@ -2943,8 +2943,8 @@ DROPDOWN STYLE
 nav .menu > li.dropdown > a:before,
 nav .menu > li.megamenu > a:before {
   margin-left: 10px;
-  content: "\e61a";
-  font-family: "themify";
+  content: '\e61a';
+  font-family: 'themify';
   float: right;
   position: relative;
   font-size: 12px;
@@ -2952,8 +2952,8 @@ nav .menu > li.megamenu > a:before {
 }
 nav .menu > li.dropdown li.dropdown > a:before {
   margin-left: 10px;
-  content: "\e649";
-  font-family: "themify";
+  content: '\e649';
+  font-family: 'themify';
   float: right;
   position: relative;
   font-size: 14px;
@@ -3034,7 +3034,7 @@ nav .menu li.dropdown.open > a {
   color: #72809d;
   display: block;
   font-weight: 500;
-  font-family: "Muli", sans-serif;
+  font-family: 'Muli', sans-serif;
 }
 
 .account-drop .btn.btn-order-by-filt {
@@ -3524,7 +3524,7 @@ span.search-tag i {
 }
 .gm-style {
   font:
-    400 14px "Jost",
+    400 14px 'Jost',
     sans-serif !important;
   text-decoration: none;
 }
@@ -3596,7 +3596,7 @@ button.map-btn {
   width: 100%;
 }
 .Goodup-grid-thumb a:before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -3701,7 +3701,7 @@ button.map-btn {
 }
 .Goodup-featured-tag:before,
 .Goodup-featured-tag:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 0;
   height: 0;
@@ -4056,7 +4056,7 @@ span.Goodup-apr-rates i {
   color: #202838;
 }
 .doctor-grid-caption .doc-title.verified:before {
-  content: "";
+  content: '';
   position: absolute;
   right: -25px;
   top: 4px;
@@ -4163,8 +4163,8 @@ ul.doc.ratting-view li i.filled {
   margin-bottom: 0;
   line-height: 1;
 }
-.toggler [type="checkbox"]:checked,
-.toggler [type="checkbox"]:not(:checked) {
+.toggler [type='checkbox']:checked,
+.toggler [type='checkbox']:not(:checked) {
   position: absolute;
   left: -9999px;
   opacity: 0;
@@ -4313,8 +4313,8 @@ ul.doc.ratting-view li i.filled {
 }
 .vrt-list-amenties ul li .vrt-amens.yes:before {
   position: absolute;
-  font-family: "LineIcons";
-  content: "\ea5b";
+  font-family: 'LineIcons';
+  content: '\ea5b';
   left: 0;
   font-size: 12px;
   font-weight: 600;
@@ -4322,8 +4322,8 @@ ul.doc.ratting-view li i.filled {
 }
 .vrt-list-amenties ul li .vrt-amens.no:before {
   position: absolute;
-  font-family: "LineIcons";
-  content: "\ea6a";
+  font-family: 'LineIcons';
+  content: '\ea6a';
   left: 0;
   font-size: 12px;
   font-weight: 600;
@@ -4815,7 +4815,7 @@ ul.doc.ratting-view li i.filled {
   position: relative;
 }
 .seperate:before {
-  content: "";
+  content: '';
   width: 4px;
   height: 4px;
   position: absolute;
@@ -5194,7 +5194,7 @@ ul.doc.ratting-view li i.filled {
 .dlf-flew:after {
   background: linear-gradient(180deg, #0000 31.42%, #000);
   bottom: 0;
-  content: "";
+  content: '';
   left: 0;
   pointer-events: none;
   position: absolute;
@@ -5681,8 +5681,8 @@ select {
   position: relative;
 }
 .rev_desc:before {
-  content: "\f10d";
-  font-family: "Font Awesome 5 Free";
+  content: '\f10d';
+  font-family: 'Font Awesome 5 Free';
   left: 0px;
   top: -50px;
   font-size: 49px;
@@ -5758,8 +5758,8 @@ select {
   opacity: 0.5;
 }
 .prt_body ul li:before {
-  content: "\f00c";
-  font-family: "Font Awesome 5 Free";
+  content: '\f00c';
+  font-family: 'Font Awesome 5 Free';
   width: 30px;
   height: 30px;
   display: inline-flex;
@@ -5774,7 +5774,7 @@ select {
   font-size: 13px;
 }
 .prt_body ul li.none:before {
-  content: "\f00d";
+  content: '\f00d';
   background: rgba(220, 53, 69, 0.12) !important;
   color: rgb(220 53 69) !important;
 }
@@ -6001,7 +6001,7 @@ div#myTabContent {
 }
 .collapsible-link:before,
 .accordion .btn-link:before {
-  content: "";
+  content: '';
   width: 14px;
   height: 2px;
   background: #333;
@@ -6015,7 +6015,7 @@ div#myTabContent {
 /* Vertical line */
 .collapsible-link:after,
 .accordion .btn-link:after {
-  content: "";
+  content: '';
   width: 2px;
   height: 14px;
   background: #333;
@@ -6026,13 +6026,13 @@ div#myTabContent {
   transition: all 0.3s;
 }
 
-.collapsible-link[aria-expanded="true"]:after,
-.accordion .btn-link[aria-expanded="true"]:after {
+.collapsible-link[aria-expanded='true']:after,
+.accordion .btn-link[aria-expanded='true']:after {
   transform: rotate(90deg) translateX(1px);
 }
 
-.collapsible-link[aria-expanded="true"]:before,
-.accordion .btn-link[aria-expanded="true"]:before {
+.collapsible-link[aria-expanded='true']:before,
+.accordion .btn-link[aria-expanded='true']:before {
   transform: rotate(180deg);
 }
 .card-header {
@@ -6081,7 +6081,7 @@ div#myTabContent {
 }
 .about-bg:before {
   position: absolute;
-  content: "";
+  content: '';
   background: linear-gradient(to left, transparent 25%, #101219);
   left: 0;
   right: 0;
@@ -6380,7 +6380,7 @@ div#myTabContent {
   color: #5a6880;
 }
 .goodup-dashboard-grouping-list.invoices ul ul li:after {
-  content: "";
+  content: '';
   display: inline-block;
   width: 1px;
   height: 11px;
@@ -6964,7 +6964,7 @@ button.aps-clone {
   min-width: 40px;
   width: 40px;
   height: 38px;
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
   font-weight: 600;
 }
 .daterangepicker .calendar-table td {
@@ -6972,7 +6972,7 @@ button.aps-clone {
   color: #6b7588;
   width: 40px;
   height: 38px;
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
   font-weight: 500;
 }
 .daterangepicker .drp-calendar {
@@ -7161,7 +7161,7 @@ th.month {
   position: absolute;
   top: 12px;
   left: -9px;
-  content: "\f0d9";
+  content: '\f0d9';
   font-family: fontawesome;
   font-size: 31px;
   color: #f4f5f7;
@@ -7195,7 +7195,7 @@ th.month {
 .message-plunch.me .dash-msg-text:before {
   left: auto;
   right: -11px;
-  content: "\f0da";
+  content: '\f0da';
 }
 .message-reply {
   display: block;
@@ -7297,8 +7297,8 @@ span._user_status.busy {
   text-decoration: underline;
 }
 .blg_more a:before {
-  content: "\e661";
-  font-family: "themify";
+  content: '\e661';
+  font-family: 'themify';
   position: absolute;
   right: -15px;
   top: 0;
@@ -7748,7 +7748,7 @@ h3.pa-name {
 .single_widgets.widget_search form {
   position: relative;
 }
-.single_widgets.widget_search form input[type="search"] {
+.single_widgets.widget_search form input[type='search'] {
   border-radius: 4px;
   border: 1px solid #ebedf5;
   background: #f9fafc;

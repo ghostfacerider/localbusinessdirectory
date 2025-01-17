@@ -7,33 +7,33 @@ function MarkerClusterer(map, opt_markers, opt_options) {
   this.styles_ = [];
   this.ready_ = false;
   var options = opt_options || {};
-  this.gridSize_ = options["gridSize"] || 60;
-  this.minClusterSize_ = options["minimumClusterSize"] || 2;
-  this.maxZoom_ = options["maxZoom"] || null;
-  this.styles_ = options["styles"] || [];
-  this.imagePath_ = options["imagePath"] || this.MARKER_CLUSTER_IMAGE_PATH_;
+  this.gridSize_ = options['gridSize'] || 60;
+  this.minClusterSize_ = options['minimumClusterSize'] || 2;
+  this.maxZoom_ = options['maxZoom'] || null;
+  this.styles_ = options['styles'] || [];
+  this.imagePath_ = options['imagePath'] || this.MARKER_CLUSTER_IMAGE_PATH_;
   this.imageExtension_ =
-    options["imageExtension"] || this.MARKER_CLUSTER_IMAGE_EXTENSION_;
+    options['imageExtension'] || this.MARKER_CLUSTER_IMAGE_EXTENSION_;
   this.zoomOnClick_ = true;
-  if (options["zoomOnClick"] != undefined) {
-    this.zoomOnClick_ = options["zoomOnClick"];
+  if (options['zoomOnClick'] != undefined) {
+    this.zoomOnClick_ = options['zoomOnClick'];
   }
   this.averageCenter_ = false;
-  if (options["averageCenter"] != undefined) {
-    this.averageCenter_ = options["averageCenter"];
+  if (options['averageCenter'] != undefined) {
+    this.averageCenter_ = options['averageCenter'];
   }
   this.setupStyles_();
   this.setMap(map);
   this.prevZoom_ = this.map_.getZoom();
   var that = this;
-  google.maps.event.addListener(this.map_, "zoom_changed", function () {
+  google.maps.event.addListener(this.map_, 'zoom_changed', function () {
     var zoom = that.map_.getZoom();
     if (that.prevZoom_ != zoom) {
       that.prevZoom_ = zoom;
       that.resetViewport();
     }
   });
-  google.maps.event.addListener(this.map_, "idle", function () {
+  google.maps.event.addListener(this.map_, 'idle', function () {
     that.redraw();
   });
   if (opt_markers && opt_markers.length) {
@@ -41,8 +41,8 @@ function MarkerClusterer(map, opt_markers, opt_options) {
   }
 }
 MarkerClusterer.prototype.MARKER_CLUSTER_IMAGE_PATH_ =
-  "https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m";
-MarkerClusterer.prototype.MARKER_CLUSTER_IMAGE_EXTENSION_ = "png";
+  'https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m';
+MarkerClusterer.prototype.MARKER_CLUSTER_IMAGE_EXTENSION_ = 'png';
 MarkerClusterer.prototype.extend = function (obj1, obj2) {
   return function (object) {
     for (var property in object.prototype) {
@@ -61,7 +61,7 @@ MarkerClusterer.prototype.setupStyles_ = function () {
   }
   for (var i = 0, size; (size = this.sizes[i]); i++) {
     this.styles_.push({
-      url: this.imagePath_ + (i + 1) + "." + this.imageExtension_,
+      url: this.imagePath_ + (i + 1) + '.' + this.imageExtension_,
       height: size,
       width: size,
     });
@@ -126,9 +126,9 @@ MarkerClusterer.prototype.addMarkers = function (markers, opt_nodraw) {
 };
 MarkerClusterer.prototype.pushMarkerTo_ = function (marker) {
   marker.isAdded = false;
-  if (marker["draggable"]) {
+  if (marker['draggable']) {
     var that = this;
-    google.maps.event.addListener(marker, "dragend", function () {
+    google.maps.event.addListener(marker, 'dragend', function () {
       marker.isAdded = false;
       that.repaint();
     });
@@ -213,11 +213,11 @@ MarkerClusterer.prototype.getExtendedBounds = function (bounds) {
   var projection = this.getProjection();
   var tr = new google.maps.LatLng(
     bounds.getNorthEast().lat(),
-    bounds.getNorthEast().lng()
+    bounds.getNorthEast().lng(),
   );
   var bl = new google.maps.LatLng(
     bounds.getSouthWest().lat(),
-    bounds.getSouthWest().lng()
+    bounds.getSouthWest().lng(),
   );
   var trPix = projection.fromLatLngToDivPixel(tr);
   trPix.x += this.gridSize_;
@@ -309,7 +309,7 @@ MarkerClusterer.prototype.createClusters_ = function () {
   }
   var mapBounds = new google.maps.LatLngBounds(
     this.map_.getBounds().getSouthWest(),
-    this.map_.getBounds().getNorthEast()
+    this.map_.getBounds().getNorthEast(),
   );
   var bounds = this.getExtendedBounds(mapBounds);
   for (var i = 0, marker; (marker = this.markers_[i]); i++) {
@@ -330,7 +330,7 @@ function Cluster(markerClusterer) {
   this.clusterIcon_ = new ClusterIcon(
     this,
     markerClusterer.getStyles(),
-    markerClusterer.getGridSize()
+    markerClusterer.getGridSize(),
   );
 }
 Cluster.prototype.isMarkerAlreadyAdded = function (marker) {
@@ -448,42 +448,42 @@ ClusterIcon.prototype.triggerClusterClick = function (event) {
   var markerClusterer = this.cluster_.getMarkerClusterer();
   google.maps.event.trigger(
     markerClusterer,
-    "clusterclick",
+    'clusterclick',
     this.cluster_,
-    event
+    event,
   );
   if (markerClusterer.isZoomOnClick()) {
     this.map_.fitBounds(this.cluster_.getBounds());
   }
 };
 ClusterIcon.prototype.onAdd = function () {
-  this.div_ = document.createElement("DIV");
-  this.div_.className = "cluster";
+  this.div_ = document.createElement('DIV');
+  this.div_.className = 'cluster';
   if (this.visible_) {
     var pos = this.getPosFromLatLng_(this.center_);
     this.div_.style.cssText = this.createCss(pos);
     this.div_.innerHTML = this.sums_.text;
-    this.div_.className = "cluster-visible";
+    this.div_.className = 'cluster-visible';
   }
   var panes = this.getPanes();
   panes.overlayMouseTarget.appendChild(this.div_);
   var that = this;
   var isDragging = false;
-  google.maps.event.addDomListener(this.div_, "click", function (event) {
+  google.maps.event.addDomListener(this.div_, 'click', function (event) {
     if (!isDragging) {
       that.triggerClusterClick(event);
     }
   });
-  google.maps.event.addDomListener(this.div_, "mousedown", function () {
+  google.maps.event.addDomListener(this.div_, 'mousedown', function () {
     isDragging = false;
   });
-  google.maps.event.addDomListener(this.div_, "mousemove", function () {
+  google.maps.event.addDomListener(this.div_, 'mousemove', function () {
     isDragging = true;
   });
 };
 ClusterIcon.prototype.getPosFromLatLng_ = function (latlng) {
   var pos = this.getProjection().fromLatLngToDivPixel(latlng);
-  if (typeof this.iconAnchor_ === "object" && this.iconAnchor_.length === 2) {
+  if (typeof this.iconAnchor_ === 'object' && this.iconAnchor_.length === 2) {
     pos.x -= this.iconAnchor_[0];
     pos.y -= this.iconAnchor_[1];
   } else {
@@ -495,13 +495,13 @@ ClusterIcon.prototype.getPosFromLatLng_ = function (latlng) {
 ClusterIcon.prototype.draw = function () {
   if (this.visible_) {
     var pos = this.getPosFromLatLng_(this.center_);
-    this.div_.style.top = pos.y + "px";
-    this.div_.style.left = pos.x + "px";
+    this.div_.style.top = pos.y + 'px';
+    this.div_.style.left = pos.x + 'px';
   }
 };
 ClusterIcon.prototype.hide = function () {
   if (this.div_) {
-    this.div_.style.display = "none";
+    this.div_.style.display = 'none';
   }
   this.visible_ = false;
 };
@@ -509,7 +509,7 @@ ClusterIcon.prototype.show = function () {
   if (this.div_) {
     var pos = this.getPosFromLatLng_(this.center_);
     this.div_.style.cssText = this.createCss(pos);
-    this.div_.style.display = "";
+    this.div_.style.display = '';
   }
   this.visible_ = true;
 };
@@ -536,135 +536,135 @@ ClusterIcon.prototype.useStyle = function () {
   var index = Math.max(0, this.sums_.index - 1);
   index = Math.min(this.styles_.length - 1, index);
   var style = this.styles_[index];
-  this.url_ = style["url"];
-  this.height_ = style["height"];
-  this.width_ = style["width"];
-  this.textColor_ = style["textColor"];
-  this.anchor_ = style["anchor"];
-  this.textSize_ = style["textSize"];
-  this.backgroundPosition_ = style["backgroundPosition"];
-  this.iconAnchor_ = style["iconAnchor"];
+  this.url_ = style['url'];
+  this.height_ = style['height'];
+  this.width_ = style['width'];
+  this.textColor_ = style['textColor'];
+  this.anchor_ = style['anchor'];
+  this.textSize_ = style['textSize'];
+  this.backgroundPosition_ = style['backgroundPosition'];
+  this.iconAnchor_ = style['iconAnchor'];
 };
 ClusterIcon.prototype.setCenter = function (center) {
   this.center_ = center;
 };
 ClusterIcon.prototype.createCss = function (pos) {
   var style = [];
-  style.push("background-image:url(" + this.url_ + ");");
+  style.push('background-image:url(' + this.url_ + ');');
   var backgroundPosition = this.backgroundPosition_
     ? this.backgroundPosition_
-    : "0 0";
-  style.push("background-position:" + backgroundPosition + ";");
-  if (typeof this.anchor_ === "object") {
+    : '0 0';
+  style.push('background-position:' + backgroundPosition + ';');
+  if (typeof this.anchor_ === 'object') {
     if (
-      typeof this.anchor_[0] === "number" &&
+      typeof this.anchor_[0] === 'number' &&
       this.anchor_[0] > 0 &&
       this.anchor_[0] < this.height_
     ) {
       style.push(
-        "height:" +
+        'height:' +
           (this.height_ - this.anchor_[0]) +
-          "px; padding-top:" +
+          'px; padding-top:' +
           this.anchor_[0] +
-          "px;"
+          'px;',
       );
     } else if (
-      typeof this.anchor_[0] === "number" &&
+      typeof this.anchor_[0] === 'number' &&
       this.anchor_[0] < 0 &&
       -this.anchor_[0] < this.height_
     ) {
       style.push(
-        "height:" +
+        'height:' +
           this.height_ +
-          "px; line-height:" +
+          'px; line-height:' +
           (this.height_ + this.anchor_[0]) +
-          "px;"
+          'px;',
       );
     } else {
       style.push(
-        "height:" + this.height_ + "px; line-height:" + this.height_ + "px;"
+        'height:' + this.height_ + 'px; line-height:' + this.height_ + 'px;',
       );
     }
     if (
-      typeof this.anchor_[1] === "number" &&
+      typeof this.anchor_[1] === 'number' &&
       this.anchor_[1] > 0 &&
       this.anchor_[1] < this.width_
     ) {
       style.push(
-        "width:" +
+        'width:' +
           (this.width_ - this.anchor_[1]) +
-          "px; padding-left:" +
+          'px; padding-left:' +
           this.anchor_[1] +
-          "px;"
+          'px;',
       );
     } else {
-      style.push("width:" + this.width_ + "px; text-align:center;");
+      style.push('width:' + this.width_ + 'px; text-align:center;');
     }
   } else {
     style.push(
-      "height:" +
+      'height:' +
         this.height_ +
-        "px; line-height:" +
+        'px; line-height:' +
         this.height_ +
-        "px; width:" +
+        'px; width:' +
         this.width_ +
-        "px; text-align:center;"
+        'px; text-align:center;',
     );
   }
-  var txtColor = this.textColor_ ? this.textColor_ : "black";
+  var txtColor = this.textColor_ ? this.textColor_ : 'black';
   var txtSize = this.textSize_ ? this.textSize_ : 11;
   style.push(
-    "cursor:pointer; top:" +
+    'cursor:pointer; top:' +
       pos.y +
-      "px; left:" +
+      'px; left:' +
       pos.x +
-      "px; color:" +
+      'px; color:' +
       txtColor +
-      "; position:absolute; font-size:" +
+      '; position:absolute; font-size:' +
       txtSize +
-      "px; font-family:Arial,sans-serif; font-weight:bold"
+      'px; font-family:Arial,sans-serif; font-weight:bold',
   );
-  return style.join("");
+  return style.join('');
 };
-window["MarkerClusterer"] = MarkerClusterer;
-MarkerClusterer.prototype["addMarker"] = MarkerClusterer.prototype.addMarker;
-MarkerClusterer.prototype["addMarkers"] = MarkerClusterer.prototype.addMarkers;
-MarkerClusterer.prototype["clearMarkers"] =
+window['MarkerClusterer'] = MarkerClusterer;
+MarkerClusterer.prototype['addMarker'] = MarkerClusterer.prototype.addMarker;
+MarkerClusterer.prototype['addMarkers'] = MarkerClusterer.prototype.addMarkers;
+MarkerClusterer.prototype['clearMarkers'] =
   MarkerClusterer.prototype.clearMarkers;
-MarkerClusterer.prototype["fitMapToMarkers"] =
+MarkerClusterer.prototype['fitMapToMarkers'] =
   MarkerClusterer.prototype.fitMapToMarkers;
-MarkerClusterer.prototype["getCalculator"] =
+MarkerClusterer.prototype['getCalculator'] =
   MarkerClusterer.prototype.getCalculator;
-MarkerClusterer.prototype["getGridSize"] =
+MarkerClusterer.prototype['getGridSize'] =
   MarkerClusterer.prototype.getGridSize;
-MarkerClusterer.prototype["getExtendedBounds"] =
+MarkerClusterer.prototype['getExtendedBounds'] =
   MarkerClusterer.prototype.getExtendedBounds;
-MarkerClusterer.prototype["getMap"] = MarkerClusterer.prototype.getMap;
-MarkerClusterer.prototype["getMarkers"] = MarkerClusterer.prototype.getMarkers;
-MarkerClusterer.prototype["getMaxZoom"] = MarkerClusterer.prototype.getMaxZoom;
-MarkerClusterer.prototype["getStyles"] = MarkerClusterer.prototype.getStyles;
-MarkerClusterer.prototype["getTotalClusters"] =
+MarkerClusterer.prototype['getMap'] = MarkerClusterer.prototype.getMap;
+MarkerClusterer.prototype['getMarkers'] = MarkerClusterer.prototype.getMarkers;
+MarkerClusterer.prototype['getMaxZoom'] = MarkerClusterer.prototype.getMaxZoom;
+MarkerClusterer.prototype['getStyles'] = MarkerClusterer.prototype.getStyles;
+MarkerClusterer.prototype['getTotalClusters'] =
   MarkerClusterer.prototype.getTotalClusters;
-MarkerClusterer.prototype["getTotalMarkers"] =
+MarkerClusterer.prototype['getTotalMarkers'] =
   MarkerClusterer.prototype.getTotalMarkers;
-MarkerClusterer.prototype["redraw"] = MarkerClusterer.prototype.redraw;
-MarkerClusterer.prototype["removeMarker"] =
+MarkerClusterer.prototype['redraw'] = MarkerClusterer.prototype.redraw;
+MarkerClusterer.prototype['removeMarker'] =
   MarkerClusterer.prototype.removeMarker;
-MarkerClusterer.prototype["removeMarkers"] =
+MarkerClusterer.prototype['removeMarkers'] =
   MarkerClusterer.prototype.removeMarkers;
-MarkerClusterer.prototype["resetViewport"] =
+MarkerClusterer.prototype['resetViewport'] =
   MarkerClusterer.prototype.resetViewport;
-MarkerClusterer.prototype["repaint"] = MarkerClusterer.prototype.repaint;
-MarkerClusterer.prototype["setCalculator"] =
+MarkerClusterer.prototype['repaint'] = MarkerClusterer.prototype.repaint;
+MarkerClusterer.prototype['setCalculator'] =
   MarkerClusterer.prototype.setCalculator;
-MarkerClusterer.prototype["setGridSize"] =
+MarkerClusterer.prototype['setGridSize'] =
   MarkerClusterer.prototype.setGridSize;
-MarkerClusterer.prototype["setMaxZoom"] = MarkerClusterer.prototype.setMaxZoom;
-MarkerClusterer.prototype["onAdd"] = MarkerClusterer.prototype.onAdd;
-MarkerClusterer.prototype["draw"] = MarkerClusterer.prototype.draw;
-Cluster.prototype["getCenter"] = Cluster.prototype.getCenter;
-Cluster.prototype["getSize"] = Cluster.prototype.getSize;
-Cluster.prototype["getMarkers"] = Cluster.prototype.getMarkers;
-ClusterIcon.prototype["onAdd"] = ClusterIcon.prototype.onAdd;
-ClusterIcon.prototype["draw"] = ClusterIcon.prototype.draw;
-ClusterIcon.prototype["onRemove"] = ClusterIcon.prototype.onRemove;
+MarkerClusterer.prototype['setMaxZoom'] = MarkerClusterer.prototype.setMaxZoom;
+MarkerClusterer.prototype['onAdd'] = MarkerClusterer.prototype.onAdd;
+MarkerClusterer.prototype['draw'] = MarkerClusterer.prototype.draw;
+Cluster.prototype['getCenter'] = Cluster.prototype.getCenter;
+Cluster.prototype['getSize'] = Cluster.prototype.getSize;
+Cluster.prototype['getMarkers'] = Cluster.prototype.getMarkers;
+ClusterIcon.prototype['onAdd'] = ClusterIcon.prototype.onAdd;
+ClusterIcon.prototype['draw'] = ClusterIcon.prototype.draw;
+ClusterIcon.prototype['onRemove'] = ClusterIcon.prototype.onRemove;

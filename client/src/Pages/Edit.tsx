@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { handleError, FormErrors } from '../common/errorUtils';
 import * as DataService from '../services/DataService';
 
-
 const Edit: React.FC = () => {
   const [firstname, setFirstName] = useState<string>('');
   const [lastname, setLastName] = useState<string>('');
@@ -35,14 +34,17 @@ const Edit: React.FC = () => {
     event.preventDefault();
     setErrors({});
     if (params.id) {
-      DataService.updatePlayer(params.id, { firstname, lastname, position }, (error) => {
-        if (!error) {
-          navigate('/');
-        } else {
-          console.error(error);
-          handleError(error, setErrors);
-        }
-      }
+      DataService.updatePlayer(
+        params.id,
+        { firstname, lastname, position },
+        (error) => {
+          if (!error) {
+            navigate('/');
+          } else {
+            console.error(error);
+            handleError(error, setErrors);
+          }
+        },
       );
     }
   };

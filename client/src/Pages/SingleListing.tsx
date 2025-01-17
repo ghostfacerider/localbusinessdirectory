@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FormErrors } from '../common/errorUtils';
-import * as businessTypes from '../config/business-types'
+import * as businessTypes from '../config/business-types';
 import { getBusinessDetailById } from '../services/BusinessService';
 
 export const SingleListing: React.FC = () => {
   const { business_id } = useParams<{ business_id: string }>();
-  const [businesses, setBusiness] = useState<businessTypes.BusinessDetail | null>(null);
+  const [businesses, setBusiness] =
+    useState<businessTypes.BusinessDetail | null>(null);
   const [errors, setErrors] = useState<FormErrors>({});
 
   useEffect(() => {
@@ -206,9 +207,9 @@ export const SingleListing: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div >
+            </div>
             {/* Amenities and More */}
-            < div className="bg-white rounded mb-4" >
+            <div className="bg-white rounded mb-4">
               <div className="jbd-01 px-4 py-4">
                 <div className="jbd-details">
                   <h5 className="ft-bold fs-lg">Amenities and More</h5>
@@ -216,7 +217,11 @@ export const SingleListing: React.FC = () => {
                     <ul>
                       <li>
                         <div className="Goodup-afl-pace">
-                          <img src="assets/img/verify.svg" className="" alt="" />
+                          <img
+                            src="assets/img/verify.svg"
+                            className=""
+                            alt=""
+                          />
                           <span>Health Score 8.7 / 10</span>
                         </div>
                       </li>
@@ -464,9 +469,9 @@ export const SingleListing: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </ div>
+            </div>
             {/* Frequently Asked Questions */}
-            <div className="d-block mb-2" >
+            <div className="d-block mb-2">
               <div className="jbd-01 py-2">
                 <div className="jbd-details">
                   <h5 className="ft-bold fs-lg">Frequently Asked Questions</h5>
@@ -609,9 +614,9 @@ export const SingleListing: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div >
+            </div>
             {/* Recommended Reviews */}
-            <div className="bg-white rounded mb-4" >
+            <div className="bg-white rounded mb-4">
               <div className="jbd-01 px-4 py-4">
                 <div className="jbd-details mb-4">
                   <h5 className="ft-bold fs-lg">Recommended Reviews</h5>
@@ -802,9 +807,9 @@ export const SingleListing: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div >
+            </div>
             {/* Location & Hours */}
-            <div className="bg-white rounded mb-4" >
+            <div className="bg-white rounded mb-4">
               <div className="jbd-01 px-4 py-4">
                 <div className="jbd-details mb-4">
                   <h5 className="ft-bold fs-lg">Location &amp; Hours</h5>
@@ -848,23 +853,17 @@ export const SingleListing: React.FC = () => {
                             </tr>
                             <tr>
                               <td>Tue</td>
-                              <td>
-                                {businesses?.working_hours?.Tuesday}
-                              </td>
+                              <td>{businesses?.working_hours?.Tuesday}</td>
                               <td />
                             </tr>
                             <tr>
                               <td>Wed</td>
-                              <td>
-                                {businesses?.working_hours?.Tuesday}
-                              </td>
+                              <td>{businesses?.working_hours?.Tuesday}</td>
                               <td />
                             </tr>
                             <tr>
                               <td>Thu</td>
-                              <td>
-                                {businesses?.working_hours?.Wednesday}
-                              </td>
+                              <td>{businesses?.working_hours?.Wednesday}</td>
                               <td />
                             </tr>
                             <tr>
@@ -874,9 +873,7 @@ export const SingleListing: React.FC = () => {
                             </tr>
                             <tr>
                               <td>Sat</td>
-                              <td>
-                                {businesses?.working_hours?.Saturday}
-                              </td>
+                              <td>{businesses?.working_hours?.Saturday}</td>
                               <td />
                             </tr>
                             <tr>
@@ -891,9 +888,9 @@ export const SingleListing: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div >
+            </div>
             {/* Drop Your Review */}
-            <div className="bg-white rounded mb-4" >
+            <div className="bg-white rounded mb-4">
               <div className="jbd-01 px-4 py-4">
                 <div className="jbd-details mb-4">
                   <h5 className="ft-bold fs-lg">Drop Your Review</h5>
@@ -964,12 +961,12 @@ export const SingleListing: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div >
-          </div >
+            </div>
+          </div>
           {/* Sidebar */}
-          < div className="col-xl-4 col-lg-4 col-md-4 col-sm-12" >
+          <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12">
             {/* order Booking */}
-            <div className="jb-apply-form bg-white rounded py-4 px-4 mb-4" >
+            <div className="jb-apply-form bg-white rounded py-4 px-4 mb-4">
               <h4 className="ft-bold mb-1">Order Food</h4>
               <div className="Goodup-09kjh">
                 <ul>
@@ -1006,9 +1003,9 @@ export const SingleListing: React.FC = () => {
                   </button>
                 </div>
               </form>
-            </div >
+            </div>
             {/* Author Box */}
-            <div className="jb-apply-form bg-white rounded py-4 px-4 mb-4" >
+            <div className="jb-apply-form bg-white rounded py-4 px-4 mb-4">
               <div className="Goodup-agent-blocks">
                 <div className="Goodup-agent-thumb">
                   {/* <img
@@ -1020,10 +1017,7 @@ export const SingleListing: React.FC = () => {
                   /> */}
                 </div>
                 <div className="Goodup-agent-caption">
-                  <h4 className="ft-medium mb-0">
-                    {' '}
-                    {businesses?.owner_name}
-                  </h4>
+                  <h4 className="ft-medium mb-0"> {businesses?.owner_name}</h4>
                   <span className="agd-location">
                     <i className="lni lni-map-marker me-1" />
                     {businesses?.state}
@@ -1075,9 +1069,9 @@ export const SingleListing: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div >
+            </div>
             {/* Business Inof */}
-            <div className="jb-apply-form bg-white rounded py-4 px-4 mb-4" >
+            <div className="jb-apply-form bg-white rounded py-4 px-4 mb-4">
               <div className="uli-list-info">
                 <ul>
                   <li>
@@ -1098,9 +1092,7 @@ export const SingleListing: React.FC = () => {
                       </div>
                       <div className="list-uiyt-capt">
                         <h5>Drop a Mail</h5>
-                        <p>
-                          {businesses?.emails_and_contacts?.emails}
-                        </p>
+                        <p>{businesses?.emails_and_contacts?.emails}</p>
                       </div>
                     </div>
                   </li>
@@ -1111,12 +1103,7 @@ export const SingleListing: React.FC = () => {
                       </div>
                       <div className="list-uiyt-capt">
                         <h5>Call Us</h5>
-                        <p>
-                          {
-                            businesses?.emails_and_contacts
-                              ?.phone_numbers
-                          }
-                        </p>
+                        <p>{businesses?.emails_and_contacts?.phone_numbers}</p>
                       </div>
                     </div>
                   </li>
@@ -1133,7 +1120,7 @@ export const SingleListing: React.FC = () => {
                   </li>
                 </ul>
               </div>
-            </div >
+            </div>
             <div className="row g-3 mb-3">
               <div className="col-4">
                 <a href="javascript:void(0);" className="adv-btn full-width">
@@ -1154,10 +1141,10 @@ export const SingleListing: React.FC = () => {
                 </a>
               </div>
             </div>
-          </div >
-        </div >
-      </div >
-    </section >
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

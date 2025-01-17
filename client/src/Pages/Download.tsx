@@ -59,7 +59,11 @@ export const Download: React.FC = () => {
                     href="index.html"
                     className="download-btn play-store ms-2 mb-1 d-inline-flex"
                   >
-                    <img src="assets/img/and.png" width="200" alt="Android App" />
+                    <img
+                      src="assets/img/and.png"
+                      width="200"
+                      alt="Android App"
+                    />
                   </a>
                 </div>
               </div>

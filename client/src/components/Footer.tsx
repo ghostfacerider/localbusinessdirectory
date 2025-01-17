@@ -90,7 +90,13 @@ const Footer: React.FC = () => {
                 },
                 {
                   title: 'Helpful Topics',
-                  links: ['Site Map', 'Security', 'Contact', "FAQ's Page", 'Privacy'],
+                  links: [
+                    'Site Map',
+                    'Security',
+                    'Contact',
+                    "FAQ's Page",
+                    'Privacy',
+                  ],
                 },
               ].map((section, index) => (
                 <div
@@ -120,7 +126,11 @@ const Footer: React.FC = () => {
               <div className="col-lg-12 col-md-12 text-center">
                 <p className="mb-0">
                   © 2022 Goodup. Designed By{' '}
-                  <a href="https://themezhub.com" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://themezhub.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     ThemezHub
                   </a>
                   .

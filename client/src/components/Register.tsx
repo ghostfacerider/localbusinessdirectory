@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as UserService from '../services/UserService';
-import * as businessTypes from '../config/business-types'
+import * as businessTypes from '../config/business-types';
 
 const Register: React.FC = () => {
   const [firstname, setFirstName] = useState<string>('');
@@ -18,13 +18,16 @@ const Register: React.FC = () => {
     console.log({ email, password, firstname, lastname });
     setErrors({});
 
-    UserService.register({ email, password, firstname, lastname }, (error: unknown) => {
-      if (!error) {
-        navigate('/');
-      } else {
-        console.log(error);
-      }
-    });
+    UserService.register(
+      { email, password, firstname, lastname },
+      (error: unknown) => {
+        if (!error) {
+          navigate('/');
+        } else {
+          console.log(error);
+        }
+      },
+    );
   };
 
   return (
