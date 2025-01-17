@@ -6,10 +6,12 @@
   "scripts": {
     "start": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
     "preview": "vite preview",
     "prettier:fix": "prettier --write \"src/**/*.{ts,tsx,js,jsx}\"",
-    "prettier:check": "prettier \"src/**/*.{ts,tsx,js,jsx}\""
+    "prettier:check": "prettier \"src/**/*.{ts,tsx,js,jsx}\"",
+    "test": "test",
+    "eject": "eject"
   },
   "dependencies": {
     "axios": "^1.7.9",
