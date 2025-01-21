@@ -7,13 +7,18 @@ import jestPlugin from 'eslint-plugin-jest';
 export default [
   {
     files: ['**/*.ts', '**/*.tsx'],
-    ignores: ['node_modules/**'],
+    ignores: [
+      'node_modules/',
+      'build/',
+      'dist/',
+      'package-lock.json',
+    ],
     languageOptions: {
       parser: tsParser,
       ecmaVersion: 2021,
       sourceType: 'module',
       parserOptions: {
-        project: './tsconfig.json'
+        project: './tsconfig.app.json',
       },
     },
     plugins: {
@@ -24,8 +29,6 @@ export default [
     },
     rules: {
       'prettier/prettier': 'error',
-      '@typescript-eslint/no-unused-vars': 'warn',
-      '@typescript-eslint/no-explicit-any': 'warn',
     },
   },
   {
@@ -38,18 +41,18 @@ export default [
     },
   },
   {
-    // Specific configuration for `vite.config.ts`
     files: ['vite.config.ts'],
     languageOptions: {
       parser: tsParser,
       ecmaVersion: 2021,
       sourceType: 'module',
       parserOptions: {
-        project: './tsconfig.vite.json', // Separate tsconfig for Vite configuration file
+        project: './tsconfig.vite.json',
       },
     },
     rules: {
-      '@typescript-eslint/no-unused-vars': 'off', // Example: adjust specific rules for this file
+      '@typescript-eslint/no-unused-vars': 'off',
     },
   },
 ];
+
