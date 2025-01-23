@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FormErrors } from '../common/errorUtils';
 import * as businessTypes from '../config/business-types';
@@ -541,9 +541,9 @@ export const SingleListing: React.FC = () => {
                         </div>
                         <div className="clearfix" />
                         <p>
-                          " Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                          proident. "
+                          &qout Duis aute irure dolor in reprehenderit in voluptate velit esse
+                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                          non proident. &qout
                         </p>
                         <div className="pull-left reviews-reaction">
                           <a href="#" className="comment-like active">
@@ -588,9 +588,9 @@ export const SingleListing: React.FC = () => {
                         </div>
                         <div className="clearfix" />
                         <p>
-                          " Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                          proident. "
+                          &qout Duis aute irure dolor in reprehenderit in voluptate velit esse
+                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                          non proident. &qout
                         </p>
                         <div className="pull-left reviews-reaction">
                           <a href="#" className="comment-like active">
@@ -636,9 +636,9 @@ export const SingleListing: React.FC = () => {
                         </div>
                         <div className="clearfix" />
                         <p>
-                          " Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                          proident. "
+                          &qout Duis aute irure dolor in reprehenderit in voluptate velit esse
+                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                          non proident. &qout
                         </p>
                         <div className="pull-left reviews-reaction">
                           <a href="#" className="comment-like active">

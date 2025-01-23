@@ -14,55 +14,37 @@ export default [
       'package-lock.json',
     ],
     languageOptions: {
-      parser: tsParser,
-      ecmaVersion: 2021,
+       parser: tsParser,
+      ecmaVersion: 2022,
       sourceType: 'module',
       parserOptions: {
         project: './tsconfig.app.json',
       },
     },
-    // plugins: {
-    //   react: reactPlugin,
-    //   prettier: prettierPlugin,
-    //   '@typescript-eslint': tsPlugin,
-    //   jest: jestPlugin,
-    // },
-    extends: [
-      'airbnb-typescript',
-      'airbnb/hooks',
-      'plugin:@typescript-eslint/recommended',
-      'plugin:jest/recommended',
-      'prettier',
-      'prettier/react',
-      'prettier/@typescript-eslint',
-      'plugin:prettier/recommended',
-    ],
-    rules: {
-      'prettier/prettier': 'error',
-    },
-  },
-  {
-    files: ['src/**/*.ts', 'src/**/*.tsx'],
     plugins: {
+      react: reactPlugin,
+      prettier: prettierPlugin,
+      '@typescript-eslint': tsPlugin,
       jest: jestPlugin,
     },
-    rules: {
+    // extends: [
+    //   'airbnb-typescript',
+    //   'airbnb/hooks',
+    //   'plugin:@typescript-eslint/recommended',
+    //   'plugin:jest/recommended',
+    //   'prettier',
+    //   'prettier/react',
+    //   'prettier/@typescript-eslint',
+    //   'plugin:prettier/recommended',
+    // ],
+    rules: {  // Airbnb base rules for TypeScript
+      ...tsPlugin.configs.recommended.rules,
+      // Jest recommended rules
       ...jestPlugin.configs.recommended.rules,
+      // React plugin rules
+      ...reactPlugin.configs.recommended.rules,
+      'prettier/prettier': 'error',
     },
-  },
-  {
-    files: ['vite.config.ts'],
-    languageOptions: {
-      parser: tsParser,
-      ecmaVersion: 2021,
-      sourceType: 'module',
-      parserOptions: {
-        project: './tsconfig.vite.json',
-      },
-    },
-    rules: {
-      '@typescript-eslint/no-unused-vars': 'off',
-    },
-  },
+  }
 ];
 
