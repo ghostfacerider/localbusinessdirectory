@@ -69,9 +69,7 @@
     ]
   },
   "lint-staged": {
-    "src/**/*.tsx": [
-      "npm run prettier:fix",
-      "npm run lint"
-    ]
+ "*.js": "npm run lint",
+  "*.{ts,tsx}": "prettier --write src/**/*.ts src/**/*.tsx"
   }
 }
