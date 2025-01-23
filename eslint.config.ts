@@ -21,12 +21,12 @@ export default [
         project: './tsconfig.app.json',
       },
     },
-    plugins: {
-      react: reactPlugin,
-      prettier: prettierPlugin,
-      '@typescript-eslint': tsPlugin,
-      jest: jestPlugin,
-    },
+    // plugins: {
+    //   react: reactPlugin,
+    //   prettier: prettierPlugin,
+    //   '@typescript-eslint': tsPlugin,
+    //   jest: jestPlugin,
+    // },
     extends: [
       'airbnb-typescript',
       'airbnb/hooks',
