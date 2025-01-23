@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion"
 import { Link } from "react-router-dom";
 import * as businessTypes from '../config/business-types';
 import * as BusinessService from '../services/BusinessService';
