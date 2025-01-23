@@ -27,6 +27,16 @@ export default [
       '@typescript-eslint': tsPlugin,
       jest: jestPlugin,
     },
+    extends: [
+      'airbnb-typescript',
+      'airbnb/hooks',
+      'plugin:@typescript-eslint/recommended',
+      'plugin:jest/recommended',
+      'prettier',
+      'prettier/react',
+      'prettier/@typescript-eslint',
+      'plugin:prettier/recommended',
+    ],
     rules: {
       'prettier/prettier': 'error',
     },
