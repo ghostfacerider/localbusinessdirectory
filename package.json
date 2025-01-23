@@ -6,10 +6,10 @@
   "scripts": {
     "start": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint \"src/**/*.ts\" \"src/**/*.tsx\"",
+    "lint": "eslint --fix src/**/*.ts src/**/*.tsx",
     "preview": "vite preview",
     "prettier:fix": "prettier --write src/**/*.ts src/**/*.tsx",
-    "prettier:check": "prettier \"src/**/*.ts\" \"src/**/*.tsx\"",
+    "prettier:check": "prettier src/**/*.ts src/**/*.tsx",
     "test": "test",
     "eject": "eject",
     "prepare": "husky install"
@@ -69,6 +69,7 @@
     ]
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": ["npm run prettier:fix","npm run lint"]
+    "src/**/*.{ts,tsx}": "npm run prettier:fix",
+    "*.js": "npm run lint"
   }
 }
