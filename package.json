@@ -68,11 +68,12 @@
       "react-app/jest"
     ]
   },
- "lint-staged": {
-  "*.js": "npm run lint",
-  "src/**/*.{ts,tsx}": [
-    "npm run prettier:fix"
-  ]
+"lint-staged": {
+"src/**/*.{ts/tsx}": [
+"npm run prettier:fix .",
+"npm run lint",
+"git add"
+]
 }
 
 }
