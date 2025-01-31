@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import * as businessTypes from '../config/business-types'
+import * as businessTypes from '../config/business-types';
 import * as BusinessService from '../services/BusinessService';
 
 const Card: React.FC = () => {
@@ -12,15 +12,6 @@ const Card: React.FC = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-
-
-
-
-
-
-
-
-        
         const data = await BusinessService.getBusinessDetails();
         console.log('The data from the cards:', data);
         setBusinesses(data);

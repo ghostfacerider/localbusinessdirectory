@@ -74,7 +74,7 @@
     "npm run prettier:fix"
   ],
    "*.{ts,tsx}": [
-    "git add"
+    "git add ."
   ]
 }
 
